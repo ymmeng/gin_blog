@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import argparse
+import os
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description="go_blog 环境辅助工具")
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('--start', action='store_true', help='启动所有服务')
+    group.add_argument('--stop', action='store_true', help="停止所有服务")
+    group.add_argument('--down', action='store_true', help="停止并删除所有服务容器")
+    group.add_argument('--restart', action='store_true', help="重启所有服务")
+    group.add_argument('--reload', action='store_true', help="重启所有服务")
+    group.add_argument('--status', action='store_true', help="查看所有服务状态")
+    group.add_argument('--tail', help="输出指定服务日志")
+
+    parser.add_argument('--build', action='store_true', help="编译所有服务")
+
+    return parser.parse_args()
+
+
+def main():
+    args = parse_args()
+
+    if args.start:
+        os.system('docker-compose up -d')
+
+    if args.stop:
+        os.system('docker-compose stop')
+
+    if args.restart:
+        os.system('docker-compose restart')
+
+    if args.down:
+        os.system('docker-compose down')
+
+    if args.status:
+        os.system('docker-compose ps')
+
+    if args.tail:
+        os.system(f'docker-compose logs {format(args.tail)} ')
+
+    if args.build:
+        os.system(f'docker-compose build {format(args.build)}')
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,41 @@
+################NGINX##########################
+NGINX_HOST_HTTP_PORT=6080
+NGINX_HOST_HTTPS_PORT=6443
+NGINX_HOST_LOG_PATH=./logs/nginx/
+NGINX_SITES_PATH=./nginx/sites/
+NGINX_SSL_PATH=./nginx/ssl/
+NGINX_PHP_UPSTREAM_CONTAINER=php-fpm
+NGINX_PHP_UPSTREAM_PORT=6000
+
+################REDIS##########################
+REDIS_HOST_PORT=6079
+
+DATA_PATH_HOST=~/.laradock/data
+
+################MYSQL##########################
+MYSQL_VERSION=latest
+MYSQL_DATABASE=ymmeng
+MYSQL_ROOT_PASSWORD=123
+MYSQL_HOST_PORT=6036
+MYSQL_USER_NAME=ymmeng
+MYSQL_USER_PASSWORD=123
+MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d
+
+################PHP MY ADMIN##########################
+PMA_USER=default
+PMA_PASSWORD=123
+PMA_ROOT_PASSWORD=123
+PMA_PORT=6033
+PMA_DB_ENGINE=mysql
+
+# All Networks driver
+NETWORKS_DRIVER=bridge
+
+# All volumes driver
+VOLUMES_DRIVER=local
+
+CHANGE_SOURCE=false
+
+APP_CODE_PATH_HOST=../www
+APP_CODE_PATH_CONTAINER=/var/www
+APP_CODE_CONTAINER_FLAG=:cached
