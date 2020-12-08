@@ -2043,6 +2043,15 @@ anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+aplayer@^1.10.1:
+  version "1.10.1"
+  resolved "https://registry.npm.taobao.org/aplayer/download/aplayer-1.10.1.tgz#318289206107452cc39e8f552fa6cc6cb459a90c"
+  integrity sha1-MYKJIGEHRSzDno9VL6bMbLRZqQw=
+  dependencies:
+    balloon-css "^0.5.0"
+    promise-polyfill "7.1.0"
+    smoothscroll "0.4.0"
+
 aproba@^1.1.1:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/aproba/download/aproba-1.2.0.tgz"
@@ -2240,6 +2249,13 @@ aws4@^1.8.0:
   resolved "https://registry.npm.taobao.org/aws4/download/aws4-1.11.0.tgz?cache=0&sync_timestamp=1604101311814&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faws4%2Fdownload%2Faws4-1.11.0.tgz"
   integrity sha1-1h9G2DslGSUOJ4Ta9bCUeai0HFk=
 
+axios@0.19.2:
+  version "0.19.2"
+  resolved "https://registry.npm.taobao.org/axios/download/axios-0.19.2.tgz?cache=0&sync_timestamp=1603468716105&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha1-PqNsXYgY0NX4qKl6bTa4bNwAyyc=
+  dependencies:
+    follow-redirects "1.5.10"
+
 axios@^0.18.1:
   version "0.18.1"
   resolved "https://registry.npm.taobao.org/axios/download/axios-0.18.1.tgz?cache=0&sync_timestamp=1603468716105&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.18.1.tgz"
@@ -2313,6 +2329,16 @@ balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
+
+balloon-css@^0.5.0:
+  version "0.5.2"
+  resolved "https://registry.npm.taobao.org/balloon-css/download/balloon-css-0.5.2.tgz#9e2163565a136c9d4aa20e8400772ce3b738d3ff"
+  integrity sha1-niFjVloTbJ1Kog6EAHcs47c40/8=
+
+balloon-css@^1.0.3:
+  version "1.2.0"
+  resolved "https://registry.npm.taobao.org/balloon-css/download/balloon-css-1.2.0.tgz#53d3fb4051264a278a58713bed6865845dbcaf4b"
+  integrity sha1-U9P7QFEmSieKWHE77WhlhF28r0s=
 
 base64-arraybuffer@^0.1.5:
   version "0.1.5"
@@ -3890,6 +3916,15 @@ dotenv@^8.2.0:
   version "8.2.0"
   resolved "https://registry.npm.taobao.org/dotenv/download/dotenv-8.2.0.tgz"
   integrity sha1-l+YZJZradQ7qPk6j4mvO6lQksWo=
+
+dplayer@^1.26.0:
+  version "1.26.0"
+  resolved "https://registry.npm.taobao.org/dplayer/download/dplayer-1.26.0.tgz#d366200b1962bd09e91226066f2aadea6f35c71b"
+  integrity sha1-02YgCxlivQnpEiYGbyqt6m81xxs=
+  dependencies:
+    axios "0.19.2"
+    balloon-css "^1.0.3"
+    promise-polyfill "8.1.3"
 
 duplexer@^0.1.1:
   version "0.1.2"
@@ -7975,6 +8010,16 @@ promise-inflight@^1.0.1:
   resolved "https://registry.npm.taobao.org/promise-inflight/download/promise-inflight-1.0.1.tgz"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
+promise-polyfill@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.npm.taobao.org/promise-polyfill/download/promise-polyfill-7.1.0.tgz?cache=0&sync_timestamp=1603488122269&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpromise-polyfill%2Fdownload%2Fpromise-polyfill-7.1.0.tgz#4d749485b44577c14137591c6f36e5d7e2dd3378"
+  integrity sha1-TXSUhbRFd8FBN1kcbzbl1+LdM3g=
+
+promise-polyfill@8.1.3:
+  version "8.1.3"
+  resolved "https://registry.npm.taobao.org/promise-polyfill/download/promise-polyfill-8.1.3.tgz?cache=0&sync_timestamp=1603488122269&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpromise-polyfill%2Fdownload%2Fpromise-polyfill-8.1.3.tgz#8c99b3cf53f3a91c68226ffde7bde81d7f904116"
+  integrity sha1-jJmzz1PzqRxoIm/9573oHX+QQRY=
+
 promise-timeout@^1.3.0:
   version "1.3.0"
   resolved "https://registry.npm.taobao.org/promise-timeout/download/promise-timeout-1.3.0.tgz"
@@ -8774,6 +8819,11 @@ smoothscroll-polyfill@^0.4.4:
   version "0.4.4"
   resolved "https://registry.npm.taobao.org/smoothscroll-polyfill/download/smoothscroll-polyfill-0.4.4.tgz"
   integrity sha1-OiWRMdxpMObKgAA+HLA7YDtpq/g=
+
+smoothscroll@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npm.taobao.org/smoothscroll/download/smoothscroll-0.4.0.tgz#40e507b46461408ba1b787d0081e1e883c4124a5"
+  integrity sha1-QOUHtGRhQIuht4fQCB4eiDxBJKU=
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

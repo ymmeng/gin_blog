@@ -29,6 +29,8 @@
 
     <main class="body">
       <div class="article">
+        <div id="dplayer"></div>
+        <div id="aplayer"></div>
         <h1>article</h1>
         <section>
           <article v-for="itme in Artlist" :key="itme.ID">
@@ -41,7 +43,6 @@
                 <div class="img" v-if="itme.img">
                   <img src="itme.img" alt="正在加载图片..." />
                 </div>
-                <!-- <v-md-editor :value="itme.content" mode="preview"></v-md-editor> -->
               </a>
             </div>
           </article>
@@ -92,14 +93,85 @@
         <i class="fab fa-twitch"></i>
       </a>
     </div>
-
     <footer>--- 幽梦-Blog 始于2020 ---</footer>
   </div>
 </template>
 
+
 <script>
+import DPlayer from 'dplayer'
 export default {
   props: ['id'],
+  mounted() {
+    const dp = new DPlayer({
+      container: document.getElementById('dplayer'),
+      video: {
+        url: 'http://127.0.0.1/1.mp4',
+        // 视频封面
+        pic: 'https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg',
+        // 视频流畅度
+        quality: [
+          {
+            name: '高清',
+            url: 'http://127.0.0.1/1.mp4',
+            type: 'normal',
+          },
+          {
+            name: '标清',
+            url: 'http://127.0.0.1/1.mp4',
+            type: 'normal',
+          },
+        ],
+        defaultQuality: 0,
+        // 视频缩略图
+        thumbnails: 'https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg',
+      },
+      theme: '#3498db',
+      lang: navigator.language.toLowerCase('zh-cn'),
+      playbackSpeed: [0.5, 0.75, 1, 1.2, 1.4, 1.5, 1.6, 2],
+      // 视频logo
+      logo: 'https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg',
+      // 邮件菜单
+      contextmenu: [
+        {
+          text: 'custom1',
+          link: 'https://github.com/DIYgod/DPlayer',
+        },
+        {
+          text: 'custom2',
+          click: (player) => {
+            console.log(player)
+          },
+        },
+      ],
+      highlight: [
+        {
+          time: 20,
+          text: '这是第 20 秒',
+        },
+        {
+          time: 120,
+          text: '这是 2 分钟',
+        },
+      ],
+      live: true,
+      danmaku: true,
+      apiBackend: {
+        read: function (endpoint, callback) {
+          console.log('Pretend to connect WebSocket')
+          callback()
+        },
+        send: function (endpoint, danmakuData, callback) {
+          console.log('Pretend to send danmaku via WebSocket', danmakuData)
+          callback()
+        },
+      },
+      video: {
+        url: 'http://127.0.0.1/1.mp4',
+        type: 'mp4',
+      },
+    })
+  },
   data() {
     return {
       affix: 0,
@@ -212,6 +284,8 @@ export default {
 .body {
   margin: 0 10%;
   display: flex;
+  min-width: 1024px;
+
   .info {
     width: 30%;
     background: pink;
