@@ -11,12 +11,24 @@ import CateList from '../components/category/CateList.vue'
 import UserList from '../components/user/UserList.vue'
 import Registered from '../components/registered.vue'
 import Login from '../components/Login.vue'
+import Article from '../components/Article.vue'
 
 Vue.use(VueRouter)
 const routes = [{
   path: '/',
   name: 'index',
-  component: Index
+  component: Index,
+
+  // children: [{
+  //   path: '/article/:id',
+  //   component: Article,
+  //   props: true
+  // },]
+},
+{
+  path: '/article/:id',
+  component: Article,
+  props: true
 },
 {
   path: '/registered',
@@ -47,11 +59,10 @@ const routes = [{
     component: AddArt
   },
   {
-    path: '/admin/addart/:id',
+    path: '/admin/editart/:id',
     component: AddArt,
     props: true
   },
-
   {
     path: '/admin/artlist',
     component: ArtList

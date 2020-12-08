@@ -56,7 +56,7 @@
             <a-button
               type="primary"
               style="margin-right: 20px"
-              @click="$router.push(`addart/${data.ID}`)"
+              @click="$router.push(`editart/${data.ID}`)"
               icon="edit"
               >编辑</a-button
             >

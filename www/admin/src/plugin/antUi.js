@@ -20,6 +20,8 @@ import {
     Switch,
     Radio,
     Upload,
+    Affix,
+    Pagination,
 
 } from 'ant-design-vue'
 
@@ -51,3 +53,5 @@ Vue.use(Select)
 Vue.use(Switch)
 Vue.use(Upload)
 Vue.use(Radio)
+Vue.use(Affix)
+Vue.use(Pagination)

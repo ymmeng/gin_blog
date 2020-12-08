@@ -5,20 +5,23 @@
       href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css"
       rel="stylesheet"
     />
+
     <header class="Nav">
-      <div class="header">
-        <div id="logo"><a href="/">幽梦Blog</a></div>
-        <div class="button">
-          <a-button
-            key=""
-            type="primary"
-            style="margin-right: 20px"
-            @click="login"
-            >登录</a-button
-          >
-          <a-button type="info" @click="registered">注册</a-button>
+      <a-affix :offset-top="affix">
+        <div class="header">
+          <div id="logo"><a href="/">幽梦Blog</a></div>
+          <div class="button">
+            <a-button
+              key=""
+              type="primary"
+              style="margin-right: 20px"
+              @click="login"
+              >登录</a-button
+            >
+            <a-button type="info" @click="registered">注册</a-button>
+          </div>
         </div>
-      </div>
+      </a-affix>
       <div class="Cates">
         <div class="Cate" v-for="cate in cates" :key="cate.key"></div>
       </div>
@@ -30,12 +33,12 @@
         <section>
           <article v-for="itme in Artlist" :key="itme.ID">
             <div id="art">
-              <a icon="edit" type="primary" @click="art(itme.ID)">
+              <a @click="art(itme.ID)">
                 <h1>{{ itme.title }}</h1>
                 <p>{{ itme.CreatedAt }}</p>
                 <p>{{ itme.desc }}</p>
                 <br />
-                <div class="img">
+                <div class="img" v-if="itme.img">
                   <img src="itme.img" alt="正在加载图片..." />
                 </div>
                 <!-- <v-md-editor :value="itme.content" mode="preview"></v-md-editor> -->
@@ -43,12 +46,41 @@
             </div>
           </article>
         </section>
+        <!-- 分页 -->
+        <div>
+          <a-pagination
+            show-quick-jumper
+            show-size-changer
+            :page-size-options="pageSizeOptions"
+            :page-size="queryParam.PageSize"
+            :total="queryParam.total"
+            @change="pagChange"
+            @showSizeChange="onShowSizeChange"
+          >
+          </a-pagination>
+        </div>
       </div>
       <div class="info">
         <nav>
           <h1>Welcome</h1>
+          <!-- 近期发布 -->
+          <div></div>
+          <!-- 访问排行 -->
+          <div></div>
+          <!-- 标签云 -->
           <div>
-            <!-- <a
+            <ul>
+              <li v-for="itme in Catelist" :key="itme.id" value="itme.name">
+                <a-button>{{ itme.name }}</a-button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </main>
+
+    <div>
+      <!-- <a
               class="btn"
               v-for="(item, index) in test"
               v-bind:key="index"
@@ -56,13 +88,10 @@
             >
               <i class="fab fa-github"></i>
             </a> -->
-            <a class="btn" href="https://space.bilibili.com/11866444">
-              <i class="fab fa-twitch"></i>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </main>
+      <a class="btn" href="https://space.bilibili.com/11866444">
+        <i class="fab fa-twitch"></i>
+      </a>
+    </div>
 
     <footer>--- 幽梦-Blog 始于2020 ---</footer>
   </div>
@@ -73,38 +102,52 @@ export default {
   props: ['id'],
   data() {
     return {
-      cates: 6,
-      test: undefined,
-      paginationOption: {
-        pageSizeOptions: ['5', '10', '20', '50'],
-
-        total: 0,
-        showSizeChanger: true,
-        showTotal: (total) => `共${total}篇文章`,
-      },
-      Artlist: 10,
-      queryParam: { title: '', PageSize: 5, Current: 1 },
+      affix: 0,
+      cates: 0,
+      Catelist: [],
+      Artlist: undefined,
+      pageSizeOptions: ['1', '3', '5', '7', '10', '15'],
+      queryParam: { title: '', PageSize: 3, Current: 1, total: 0 },
     }
   },
   created() {
     this.getArtList()
+    this.getCateList()
   },
   methods: {
+    onShowSizeChange(current, pageSize) {
+      console.log(current, pageSize)
+      this.queryParam.PageSize = pageSize
+      this.getArtList()
+    },
+    // 改变分页时执行
+    pagChange(pageNumber) {
+      this.queryParam.Current = pageNumber
+      this.getArtList()
+    },
+    // 获取所有分类
+    async getCateList() {
+      const { data: res } = await this.$http.get('categorys')
+      if (res.status != 200) return this.$message.error(res.message)
+      this.Catelist = res.data
+      this.cates = res.total
+    },
     // 获取所有文章
     async getArtList() {
       const { data: res } = await this.$http.get('articles', {
         params: {
           title: this.queryParam.title,
-          pagesize: this.queryParam.PageSize,
-          pagenum: this.queryParam.Current,
+          pageSize: this.queryParam.PageSize,
+          pageNum: this.queryParam.Current,
         },
       })
       if (res.status != 200) return this.$message.error(res.message)
       this.Artlist = res.data
-      this.paginationOption.total = res.total
+      console.log(this.Artlist)
+      this.queryParam.total = res.total
     },
     art(id) {
-      this.$router.push(`/admin/addart/${id}`)
+      this.$router.push(`/article/${id}`)
     },
     login() {
       this.$router.push('/login')
@@ -139,10 +182,10 @@ export default {
     background: rgba(255, 255, 255, 0.7);
     position: relative;
     #logo {
-      display: flex;
-      align-items: center;
+      position: absolute;
+      top: 50%;
       font-size: 30px;
-      height: 100%;
+      transform: translate(0, -50%);
     }
     .button {
       position: absolute;
@@ -153,7 +196,7 @@ export default {
   }
   .Cates {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 100%;
   }
@@ -162,12 +205,12 @@ export default {
     width: 180px;
     background: #3498db;
     border-radius: 20%;
-    border: 10px solid pink;
+    border: 1px solid pink;
     margin: 1%;
   }
 }
 .body {
-  margin: 0 30px;
+  margin: 0 10%;
   display: flex;
   .info {
     width: 30%;
@@ -227,6 +270,7 @@ export default {
   }
   .article {
     width: 70%;
+    margin-right: 2%;
     background: rgb(192, 253, 255);
     #art {
       width: 100%;
@@ -236,7 +280,6 @@ export default {
       .img {
         height: 100px;
         width: 100%;
-        background: pink;
       }
     }
   }

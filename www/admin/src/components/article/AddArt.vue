@@ -52,10 +52,9 @@
           <!-- 选择编辑器 -->
           <div>
             <a-select
-              class="SelectEdit"
               v-model="editValue"
               style="width: 200px"
-              @change="handleChange"
+              @change="SelectEditChange"
             >
               <a-select-option value="v-md-editor"
                 >v-md-editor编辑器</a-select-option
@@ -97,8 +96,8 @@
             {{ artInfo.id ? '更新' : '提交' }}</a-button
           >
           <a-button type="danger" @click="artCancel()">取消</a-button>
-        </a-form-model-item></a-form-model
-      >
+        </a-form-model-item>
+      </a-form-model>
     </a-card>
   </div>
 </template>
@@ -144,8 +143,8 @@ export default {
     }
   },
   methods: {
-    // 枚举选项
-    handleChange(value) {
+    // 枚举选择
+    SelectEditChange(value) {
       this.editValue = `${value}`
     },
     // 绑定@imgAdd event
