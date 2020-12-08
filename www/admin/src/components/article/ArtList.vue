@@ -46,7 +46,10 @@
         borderad
       >
         <span slot="img" class="ArtImg">
-          <img src="https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg" alt="" />
+          <img
+            src="https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg"
+            alt="正在加载图片..."
+          />
         </span>
         <template slot="action" slot-scope="data">
           <div class="actionSlot">

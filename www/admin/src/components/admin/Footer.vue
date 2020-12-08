@@ -1,5 +1,7 @@
 <template>
-  <span class="footer"> --- Go-Blog 管理后台 ---</span>
+  <div>
+    <span class="footer"> --- Go-Blog 管理后台 ---</span>
+  </div>
 </template>
 
 <style scoped>

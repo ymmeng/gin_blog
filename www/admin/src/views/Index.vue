@@ -5,8 +5,7 @@
       href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css"
       rel="stylesheet"
     />
-
-    <div class="Nav">
+    <header class="Nav">
       <div class="header">
         <div id="logo"><a href="/">幽梦Blog</a></div>
         <div class="button">
@@ -23,48 +22,55 @@
       <div class="Cates">
         <div class="Cate" v-for="cate in cates" :key="cate.key"></div>
       </div>
-      <div></div>
-    </div>
-    <div class="body">
+    </header>
+
+    <main class="body">
       <div class="article">
         <h1>article</h1>
-        <ul>
-          <li v-for="itme in Artlist" :key="itme.id">
+        <section>
+          <article v-for="itme in Artlist" :key="itme.ID">
             <div id="art">
-              <h1>{{ itme.title }}</h1>
+              <a icon="edit" type="primary" @click="art(itme.ID)">
+                <h1>{{ itme.title }}</h1>
+                <p>{{ itme.CreatedAt }}</p>
+                <p>{{ itme.desc }}</p>
+                <br />
+                <div class="img">
+                  <img src="itme.img" alt="正在加载图片..." />
+                </div>
+                <!-- <v-md-editor :value="itme.content" mode="preview"></v-md-editor> -->
+              </a>
             </div>
-            <p>{{ itme.CreatedAt }}</p>
-            <p>{{ itme.desc }}</p>
-            <br />
-            <span>{{ itme.img }}</span>
-            <v-md-editor :value="itme.content" mode="preview"></v-md-editor>
-          </li>
-        </ul>
+          </article>
+        </section>
       </div>
       <div class="info">
-        <span>
+        <nav>
           <h1>Welcome</h1>
           <div>
-            <a
+            <!-- <a
               class="btn"
               v-for="(item, index) in test"
               v-bind:key="index"
               href="https://github.com/yyeexin"
             >
               <i class="fab fa-github"></i>
-            </a>
+            </a> -->
             <a class="btn" href="https://space.bilibili.com/11866444">
               <i class="fab fa-twitch"></i>
             </a>
           </div>
-        </span>
+        </nav>
       </div>
-    </div>
+    </main>
+
+    <footer>--- 幽梦-Blog 始于2020 ---</footer>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['id'],
   data() {
     return {
       cates: 6,
@@ -95,8 +101,10 @@ export default {
       })
       if (res.status != 200) return this.$message.error(res.message)
       this.Artlist = res.data
-      console.log(this.Artlist)
       this.paginationOption.total = res.total
+    },
+    art(id) {
+      this.$router.push(`/admin/addart/${id}`)
     },
     login() {
       this.$router.push('/login')
@@ -159,7 +167,6 @@ export default {
   }
 }
 .body {
-  background: rgb(141, 89, 89);
   margin: 0 30px;
   display: flex;
   .info {
@@ -223,8 +230,14 @@ export default {
     background: rgb(192, 253, 255);
     #art {
       width: 100%;
-      height: 100px;
-      background: pink;
+      height: 200px;
+      background: rgb(141, 219, 126);
+      margin: 20px 0;
+      .img {
+        height: 100px;
+        width: 100%;
+        background: pink;
+      }
     }
   }
 }

@@ -8,7 +8,6 @@
       <a-menu-item key="admin/index"
         ><a-icon type="dashboard" /><span>仪表盘</span></a-menu-item
       >
-
       <a-sub-menu>
         <span slot="title"><a-icon type="file" /><span>文章管理</span></span>
         <a-menu-item key="admin/addart"
@@ -31,16 +30,16 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      collapsed: false
+      collapsed: false,
     }
   },
   methods: {
-    goToPage (item) {
+    goToPage(item) {
       this.$router.push('/' + item.key).catch((err) => err)
-    }
-  }
+    },
+  },
 }
 </script>
 
