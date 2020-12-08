@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// 页面路由组件
 import AdminLogin from '../views/AdminLogin.vue'
 import Admin from '../views/Admin.vue'
 import Index from '../views/Index.vue'
-
-// 页面路由组件
 import AdminIndex from '../components/admin/AdminIndex.vue'
 import AddArt from '../components/article/AddArt.vue'
 import ArtList from '../components/article/ArtList.vue'

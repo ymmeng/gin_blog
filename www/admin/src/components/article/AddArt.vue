@@ -74,6 +74,7 @@
               :disabled-menus="[]"
               :include-level="[2, 3, 4]"
               @upload-image="handleUploadImage"
+              height="700px"
             ></v-md-editor>
 
             <!-- mavon-editor编辑器 -->
@@ -82,7 +83,7 @@
               v-model="artInfo.content"
               ref="md"
               @imgAdd="$imgAdd"
-              style="z-index: 0"
+              style="z-index: 0; height: 700px"
             ></mavon-editor>
           </div>
         </a-form-model-item>

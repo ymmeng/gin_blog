@@ -37,7 +37,7 @@
             <p>{{ itme.desc }}</p>
             <br />
             <span>{{ itme.img }}</span>
-            <p>{{ itme.content }}</p>
+            <v-md-editor :value="itme.content" mode="preview"></v-md-editor>
           </li>
         </ul>
       </div>
