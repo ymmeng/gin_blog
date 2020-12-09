@@ -22,7 +22,9 @@ import {
     Upload,
     Affix,
     Pagination,
-
+    Slider,
+    InputNumber,
+    BackTop,
 } from 'ant-design-vue'
 
 message.config({
@@ -35,6 +37,7 @@ Vue.prototype.$message = message
 Vue.prototype.$confirm = Modal.confirm
 
 Vue.use(Button)
+Vue.use(BackTop)
 Vue.use(FormModel)
 Vue.use(Input)
 Vue.use(Icon)
@@ -55,3 +58,5 @@ Vue.use(Upload)
 Vue.use(Radio)
 Vue.use(Affix)
 Vue.use(Pagination)
+Vue.use(Slider)
+Vue.use(InputNumber)

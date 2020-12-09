@@ -13,7 +13,7 @@
         :columns="columns"
         :pagination="paginationOption"
         :dataSource="Catelist"
-        borderad
+        bordered
       >
         <template slot="action" slot-scope="data">
           <div class="actionSlot">
@@ -230,5 +230,8 @@ export default {
 .actionSlot {
   display: flex;
   justify-content: center;
+}
+.ant-row {
+  margin-bottom: 15px;
 }
 </style>

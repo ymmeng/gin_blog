@@ -25,7 +25,7 @@
         :columns="columns"
         :pagination="paginationOption"
         :dataSource="userlist"
-        borderad
+        bordered
       >
         <span slot="headimg" class="ArtImg" slot-scope="headimg">
           <a href=""><img :src="headimg" /></a>
@@ -58,84 +58,87 @@
         </template>
       </a-table>
     </a-card>
-    <!-- 新增用户 -->
-    <a-modal
-      width="30%"
-      closable
-      title="新增用户"
-      :visible="addUserVisible"
-      @ok="addUserOk"
-      @cancel="addUserCancel"
-      destroyOnClose
-    >
-      <a-form-model :model="newUserInfo" :rules="newUserRules" ref="addUserRef">
-        <a-form-model-item label="用户名" prop="username" has-feedback>
-          <a-input v-model="newUserInfo.username"></a-input>
-        </a-form-model-item>
-
-        <a-form-model-item label="密码" prop="password" has-feedback>
-          <a-input-password v-model="newUserInfo.password"></a-input-password>
-        </a-form-model-item>
-
-        <a-form-model-item label="确认密码" prop="checkpass" has-feedback>
-          <a-input-password v-model="newUserInfo.checkpass"></a-input-password>
-        </a-form-model-item>
-      </a-form-model>
-    </a-modal>
-    <!-- 编辑用户 -->
-    <a-modal
-      closable
-      title="编辑用户"
-      :visible="editUserVisible"
-      @ok="editUserOk"
-      @cancel="editUserCancel"
-    >
-      <a-form-model
-        :model="editUserInfo"
-        :rules="editUserRules"
-        ref="editUserRef"
+    <div class="operation">
+      <!-- 新增用户 -->
+      <a-modal
+        title="新增用户"
+        :visible="addUserVisible"
+        @ok="addUserOk"
+        @cancel="addUserCancel"
       >
-        <a-form-model-item label="用户名" prop="username" has-feedback>
-          <a-input v-model="editUserInfo.username"></a-input>
-        </a-form-model-item>
+        <a-form-model
+          :model="newUserInfo"
+          :rules="newUserRules"
+          ref="addUserRef"
+        >
+          <a-form-model-item label="用户名" prop="username" has-feedback>
+            <a-input v-model="newUserInfo.username"></a-input>
+          </a-form-model-item>
 
-        <a-form-model-item label="选择该用户的身份" prop="role">
-          <a-radio-group
-            default-value="a"
-            button-style="solid"
-            @change="adminChange"
-            defaultValue="2"
-          >
-            <a-radio-button value="1"> 管理员 </a-radio-button>
-            <a-radio-button value="2"> 订阅者 </a-radio-button>
-          </a-radio-group>
-        </a-form-model-item>
-      </a-form-model>
-    </a-modal>
-    <!-- 修改密码 -->
-    <a-modal
-      closable
-      title="修改密码"
-      :visible="updatePassVisible"
-      @ok="updatePassOk"
-      @cancel="updatePassCancel"
-    >
-      <a-form-model
-        :model="updatePassInfo"
-        :rules="updatePassRules"
-        ref="updatePassRef"
+          <a-form-model-item label="密码" prop="password" has-feedback>
+            <a-input-password v-model="newUserInfo.password"></a-input-password>
+          </a-form-model-item>
+
+          <a-form-model-item label="确认密码" prop="checkpass" has-feedback>
+            <a-input-password
+              v-model="newUserInfo.checkpass"
+            ></a-input-password>
+          </a-form-model-item>
+        </a-form-model>
+      </a-modal>
+      <!-- 编辑用户 -->
+      <a-modal
+        title="编辑用户"
+        :visible="editUserVisible"
+        @ok="editUserOk"
+        @cancel="editUserCancel"
       >
-        <a-form-model-item label="新密码" prop="password" has-feedback>
-          <a-input v-model="updatePassInfo.password"></a-input>
-        </a-form-model-item>
+        <a-form-model
+          :model="editUserInfo"
+          :rules="editUserRules"
+          ref="editUserRef"
+        >
+          <a-form-model-item label="用户名" prop="username" has-feedback>
+            <a-input v-model="editUserInfo.username"></a-input>
+          </a-form-model-item>
 
-        <a-form-model-item label="确认密码" prop="checkpass" has-feedback>
-          <a-input-password
-            v-model="updatePassInfo.checkpass"
-          ></a-input-password>
-        </a-form-model-item>
-      </a-form-model>
-    </a-modal>
+          <a-form-model-item label="选择该用户的身份" prop="role">
+            <a-radio-group
+              default-value="a"
+              button-style="solid"
+              @change="adminChange"
+              defaultValue="2"
+            >
+              <a-radio-button value="1"> 管理员 </a-radio-button>
+              <a-radio-button value="2"> 订阅者 </a-radio-button>
+            </a-radio-group>
+          </a-form-model-item>
+        </a-form-model>
+      </a-modal>
+      <!-- 修改密码 -->
+      <a-modal
+        title="修改密码"
+        :visible="updatePassVisible"
+        @ok="updatePassOk"
+        @cancel="updatePassCancel"
+      >
+        <a-form-model
+          :model="updatePassInfo"
+          :rules="updatePassRules"
+          ref="updatePassRef"
+        >
+          <a-form-model-item label="新密码" prop="password" has-feedback>
+            <a-input v-model="updatePassInfo.password"></a-input>
+          </a-form-model-item>
+
+          <a-form-model-item label="确认密码" prop="checkpass" has-feedback>
+            <a-input-password
+              v-model="updatePassInfo.checkpass"
+            ></a-input-password>
+          </a-form-model-item>
+        </a-form-model>
+      </a-modal>
+    </div>
   </div>
 </template>
 
@@ -190,16 +193,6 @@ export default {
         total: 0,
         showSizeChanger: true,
         showTotal: (total) => `共${total}位用户`,
-        // onChage: (page, pageSize) => {
-        //   ;(this.pageSizeOptions.defaultCurrent = page),
-        //     (this.pageSizeOptions.defaultPageSize = pagesize)
-        //   this.getUserList()
-        // },
-        // onshowSizeChange: (current, size) => {
-        //   ;(this.pageSizeOptions.defaultCurrent = current),
-        //     (this.pageSizeOptions.defaultPageSize = size)
-        //   this.getUserList()
-        // },
       },
       userlist: [],
       columns,
@@ -441,12 +434,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .actionSlot {
   display: flex;
   justify-content: center;
 }
 .ArtImg img {
   height: 100px;
+}
+.ant-row {
+  margin-bottom: 15px;
+  max-width: 750px;
 }
 </style>

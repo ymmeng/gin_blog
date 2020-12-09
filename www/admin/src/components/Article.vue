@@ -3,8 +3,11 @@
     <div class="art">
       <div class="artInfo">
         <h1>{{ artInfo.title }}</h1>
-        <p>发布时间：{{ artInfo.CreatedAt }}</p>
-        <p>分类：{{ artInfo.Category.name }}</p>
+        <span>发布时间：{{ artInfo.CreatedAt }}</span>
+        <a :href="artInfo.Category.name"
+          ><span>分类：{{ artInfo.Category.name }}</span></a
+        >
+        <span>浏览量：</span>
         <p>文章描述：{{ artInfo.desc }}</p>
         <img v-if="artInfo.img" :src="artInfo.img" alt="正在加载图片..." />
       </div>
@@ -19,11 +22,14 @@
         ></v-md-editor>
       </div>
     </div>
+    <ToTop></ToTop>
   </main>
 </template>
 
 <script>
+import ToTop from './GotoTop'
 export default {
+  components: { ToTop },
   props: ['id'],
   data() {
     return {
@@ -67,6 +73,9 @@ main {
     text-align: center;
     img {
       width: 700px;
+    }
+    span {
+      margin-left: 30px;
     }
   }
   .artContent {

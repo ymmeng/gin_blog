@@ -2,8 +2,8 @@
   <div>
     <!-- 显示文章 -->
     <a-card>
-      <a-row :gutter="30">
-        <a-col :span="7">
+      <a-row :gutter="12">
+        <a-col :span="5">
           <a-input-search
             v-model="queryParam.title"
             placeholder="请输入要查找的文章标题"
@@ -13,7 +13,7 @@
           />
         </a-col>
 
-        <a-col :span="4">
+        <a-col :span="2">
           <a-button type="primary" @click="$router.push(`/admin/addart`)"
             >写文章</a-button
           >
@@ -21,7 +21,7 @@
 
         <a-col :span="3">
           <a-select
-            placeholder="请选择分类"
+            placeholder="请选择分类筛选文章"
             style="width: 200px"
             @change="cateChange"
           >
@@ -33,7 +33,7 @@
             >
           </a-select>
         </a-col>
-        <a-col :span="1">
+        <a-col :span="2">
           <a-button type="primary" @click="getArtList()">显示全部</a-button>
         </a-col>
       </a-row>
@@ -43,7 +43,7 @@
         :columns="columns"
         :pagination="paginationOption"
         :dataSource="Artlist"
-        borderad
+        bordered
       >
         <span slot="img" class="ArtImg">
           <img
@@ -194,5 +194,9 @@ export default {
 }
 .ArtImg img {
   height: 100px;
+}
+.ant-row {
+  margin-bottom: 15px;
+  min-width: 1224px;
 }
 </style>

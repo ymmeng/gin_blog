@@ -3,7 +3,4 @@ module.exports = {
     // publicPath: './admin/',
     // outputDir: { dist },
     // assetsDir: 'static',
-    optimizeDeps: {
-        include: ['@kangc/v-md-editor/lib/theme/vuepress.js'],
-    },
 }
