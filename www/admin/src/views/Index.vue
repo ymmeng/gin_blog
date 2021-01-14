@@ -8,18 +8,21 @@
       <a-layout-header
         class="header"
         :style="{ position: 'fixed', zIndex: 1, width: '100%' }"
-        ><Header></Header
-      ></a-layout-header>
+      >
+        <Header></Header>
+      </a-layout-header>
 
       <div class="Cates"></div>
       <a-layout class="body">
         <a-layout-content><Content></Content> </a-layout-content>
+
         <a-layout-sider><Nav></Nav> </a-layout-sider>
       </a-layout>
+
       <a-layout-footer>
         <ToTop></ToTop>
-        <Footer></Footer
-      ></a-layout-footer>
+        <Footer></Footer>
+      </a-layout-footer>
     </a-layout>
   </div>
 </template>
@@ -38,20 +41,10 @@ export default {
     Header,
     Nav,
   },
-  data() {
-    return {
-      cates: 0,
-    }
-  },
 }
 </script>
 
 <style lang="less" scoped>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
 .main {
   height: 100%;
   width: 100%;
@@ -59,15 +52,14 @@ export default {
 .header {
   background-color: rgba(255, 255, 255, 0.6);
 }
-
 .Cates {
   display: flex;
   justify-content: space-around;
   align-items: center;
   height: 520px;
   background: url('../assets/img/bg.jpg');
+  background-size: cover;
 }
-
 .body {
   margin: 0 10%;
   display: flex;

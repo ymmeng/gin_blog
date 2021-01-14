@@ -6,6 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
+// Article 服务
 type Article struct {
 	gorm.Model
 	Category Category `gorm:"foreignkey:Cid"`

@@ -2,7 +2,6 @@ package model
 
 import (
 	"encoding/base64"
-	"fmt"
 	"go_blog/utils/errmsg"
 	"log"
 
@@ -10,6 +9,7 @@ import (
 	"golang.org/x/crypto/scrypt"
 )
 
+// User 服务
 type User struct {
 	gorm.Model
 	Username string `gorm:"type: varchar(20); unique;not null" json:"username" validate:"required,min=4,max=12" label:"用户名"`
@@ -29,12 +29,9 @@ func CheckUser(name string) (code int) {
 }
 
 // CheckUpUser 查询用户是否存在
-func CheckUpUser(id int, name string) (code int) {
+func CheckUpUser(id int) (code int) {
 	var user User
-	db.Select("id,username").Where("username = ?", name).First(&user)
-	fmt.Println(user.Username)
-	fmt.Println(user.ID)
-	fmt.Println(id)
+	db.Select("id,username").Where("id = ?", id).First(&user)
 	if user.ID == uint(id) {
 		return errmsg.SUCCES
 	}
@@ -64,18 +61,18 @@ func GetUser(id int) (User, int) {
 }
 
 // GetUsers 获取用户列表
-func GetUsers(username string, pageSize int, pageNum int) ([]User, int, int) {
-	var users []User
+func GetUsers(username string, pageSize int, pageNum int) ([]*User, int, int) {
+	var users []*User
 	var total int
 	if username == "" {
-		err = db.Select("id,username,head_img,role").Find(&users).Limit(pageSize).Offset((pageNum - 1) * pageSize).Error
+		err = db.Find(&users).Limit(pageSize).Offset((pageNum - 1) * pageSize).Error
 		db.Model(&users).Count(&total)
 		if err != nil && err != gorm.ErrRecordNotFound {
 			return nil, errmsg.ERROR, 0
 		}
 		return users, errmsg.SUCCES, total
 	}
-	err = db.Order("Updated_At DESC").Select("id,username,head_img,role").Where("username LIKE ?", "%"+username+"%").Find(&users).Limit(pageSize).Offset((pageNum - 1) * pageSize).Error
+	err = db.Order("Updated_At DESC").Where("username LIKE ?", "%"+username+"%").Find(&users).Limit(pageSize).Offset((pageNum - 1) * pageSize).Error
 	db.Model(&users).Where("username LIKE ?", "%"+username+"%").Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, errmsg.ERROR, 0

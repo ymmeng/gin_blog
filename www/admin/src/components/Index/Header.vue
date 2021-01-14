@@ -31,7 +31,6 @@ export default {
 <style lang="less" scoped>
 .header {
   padding: 0 40px 0 40px;
-  background: rgba(255, 255, 255, 0.7);
   position: relative;
   #logo {
     position: absolute;

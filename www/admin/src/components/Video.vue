@@ -30,7 +30,6 @@ export default {
     const dp = new DPlayer({
       container: document.getElementById('dplayer'),
       video: {
-        url: 'http://127.0.0.1/1.mp4',
         // 视频封面
         pic: 'https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg',
         // 视频流畅度
