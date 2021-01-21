@@ -1,4 +1,4 @@
-# admin go_blog 后端项目
+# view go_blog 前端展示项目
 
 ## 项目启动
 ```
