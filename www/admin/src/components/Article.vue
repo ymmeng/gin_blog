@@ -11,12 +11,12 @@
       <a-layout-content>
         <div class="art">
           <div class="artInfo">
-            <h1>{{ artInfo.title }}</h1>
+            <h2>{{ artInfo.title }}</h2>
             <span>发布时间：{{ artInfo.CreatedAt }}</span>
             <a :href="artInfo.Category.name"
               ><span>分类：{{ artInfo.Category.name }}</span></a
             >
-            <span>浏览量：</span>
+            <span>浏览量：0</span>
             <p>文章描述：{{ artInfo.desc }}</p>
             <img v-if="artInfo.img" :src="artInfo.img" alt="正在加载图片..." />
           </div>
@@ -54,12 +54,12 @@ export default {
         desc: '',
         content: '',
         img: '',
+        CreatedAt: '',
         Category: {
           id: 0,
           name: '',
         },
       },
-      test: undefined,
     }
   },
   created() {
@@ -73,6 +73,10 @@ export default {
       const { data: res } = await this.$http.get(`article/info/${id}`)
       if (res.status != 200) return this.$message.error(res.message)
       this.artInfo = res.data
+
+      let data = this.artInfo['CreatedAt'].substring(0, 10)
+      let time = this.artInfo['CreatedAt'].substring(11, 19)
+      this.artInfo['CreatedAt'] = data + ' ' + time
     },
   },
 }
@@ -89,6 +93,7 @@ export default {
   min-width: 521px;
   max-width: 1024px;
   .artInfo {
+    margin-top: 20px;
     text-align: center;
     h1 {
       font-size: 34px;

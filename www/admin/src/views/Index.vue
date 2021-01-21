@@ -12,9 +12,10 @@
         <Header></Header>
       </a-layout-header>
 
-      <div class="Cates"></div>
+      <div class="cates"></div>
+
       <a-layout class="body">
-        <a-layout-content><Content></Content> </a-layout-content>
+        <a-layout-content id="content"><Content></Content> </a-layout-content>
 
         <a-layout-sider><Nav></Nav> </a-layout-sider>
       </a-layout>
@@ -52,7 +53,7 @@ export default {
 .header {
   background-color: rgba(255, 255, 255, 0.6);
 }
-.Cates {
+.cates {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -64,5 +65,8 @@ export default {
   margin: 0 10%;
   display: flex;
   min-width: 1024px;
+  #content{
+    margin-top:20px;
+  }
 }
 </style>

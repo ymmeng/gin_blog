@@ -6,7 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-// Article 服务
+// Article 模型
 type Article struct {
 	gorm.Model
 	Category Category `gorm:"foreignkey:Cid"`
@@ -39,7 +39,7 @@ func GetArticle(id int) (Article, int) {
 func GetCatArt(cid int, pageSize int, pageNum int) ([]Article, int, int) {
 	var actArtList []Article
 	var total int
-	err = db.Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid=?", cid).Find(&actArtList).Count(&total).Error
+	err = db.Order("Updated_At DESC").Preload("Category").Limit(pageSize).Offset((pageNum-1)*pageSize).Where("cid=?", cid).Find(&actArtList).Count(&total).Error
 	if err != nil {
 		return nil, errmsg.ERROR_Category_NOT_EXIST, 0
 	}
@@ -47,8 +47,8 @@ func GetCatArt(cid int, pageSize int, pageNum int) ([]Article, int, int) {
 }
 
 // GetArticles 获取文章列表
-func GetArticles(title string, pageSize int, pageNum int) ([]Article, int, int) {
-	var actList []Article
+func GetArticles(title string, pageSize int, pageNum int) ([]*Article, int, int) {
+	var actList []*Article
 	var total int
 	if title == "" {
 		err = db.Order("Updated_At DESC").Preload("Category").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&actList).Error
@@ -68,17 +68,14 @@ func GetArticles(title string, pageSize int, pageNum int) ([]Article, int, int) 
 
 // EditArticle 编辑文章信息
 func EditArticle(id int, data *Article) int {
-	var art Article
-	var maps = make(map[string]interface{})
-	maps["title"] = data.Title
-	maps["cid"] = data.Cid
-	maps["desc"] = data.Desc
-	maps["content"] = data.Content
-	maps["img"] = data.Img
-	err = db.Model(&art).Where("id =?", id).Updates(maps).Error
+	var art *Article
+
+	err = db.Model(&art).Where("id =?", id).Save(data).Error
+
 	if err != nil {
 		return errmsg.ERROR
 	}
+
 	return errmsg.SUCCES
 }
 

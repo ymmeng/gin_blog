@@ -11,8 +11,10 @@ import (
 
 var code int
 
+// UserController 用户控制器
 type UserController struct{}
 
+// UserRegister 用户接口
 func UserRegister(group *gin.RouterGroup) {
 	var user = &UserController{}
 	group.POST("/user/add", user.AddUser)

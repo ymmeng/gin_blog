@@ -220,7 +220,7 @@ export default {
     editCateCancel() {
       this.$refs.editCateRef.resetFields()
       this.editCateVisible = false
-      this.$message.info('编辑用户已取消')
+      this.$message.info('编辑分类已取消')
     },
   },
 }

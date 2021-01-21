@@ -2,11 +2,12 @@
   <div>
     <div class="article">
       <Video></Video>
+      <!-- 文章列表 -->
       <section>
         <article id="art" v-for="itme in Artlist" :key="itme.ID">
           <a @click="art(itme.ID)">
             <div class="artInfo">
-              <h1>{{ itme.title }}</h1>
+              <h2>{{ itme.title }}</h2>
               <span>{{ itme.CreatedAt }}</span>
               <p>{{ itme.desc }}</p>
             </div>
@@ -74,7 +75,6 @@ export default {
       })
       if (res.status != 200) return this.$message.error(res.message)
       this.Artlist = res.data
-      console.log(this.Artlist)
       this.queryParam.total = res.total
     },
     // 跳转到指定文章页面

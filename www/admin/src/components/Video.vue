@@ -36,17 +36,17 @@ export default {
         quality: [
           {
             name: '高清',
-            url: 'http://127.0.0.1/1.mp4',
+            url: 'http://127.0.0.1:10083/1.mp4',
             type: 'normal',
           },
           {
             name: '标清',
-            url: 'http://127.0.0.1/1.mp4',
+            url: 'http://127.0.0.1:10083/1.mp4',
             type: 'normal',
           },
           {
             name: '流畅',
-            url: 'http://127.0.0.1/1.mp4',
+            url: 'http://127.0.0.1:10083/1.mp4',
             type: 'normal',
           },
         ],
