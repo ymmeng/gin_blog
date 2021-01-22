@@ -18,12 +18,6 @@ const routes = [{
   path: '/',
   name: 'index',
   component: Index,
-
-  // children: [{
-  //   path: '/article/:id',
-  //   component: Article,
-  //   props: true
-  // },]
 },
 {
   path: '/article/:id',
