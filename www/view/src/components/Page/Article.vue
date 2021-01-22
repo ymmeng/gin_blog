@@ -2,7 +2,6 @@
   <div>
     <ToTop></ToTop>
     <Header ></Header>
-
     <link
       href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css"
       rel="stylesheet"
@@ -100,7 +99,6 @@ export default {
   justify-content: space-around;
   align-items: center;
   height: 520px;
-  // background: url('../../assets/img/bg.jpg');
   background-size: cover;
   .artInfo {
     margin-top: 20px;
