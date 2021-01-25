@@ -24,9 +24,9 @@
         <a-layout-content>
           <div class="art">
             <div>
-              <v-md-editor
+              <v-md-editor 
                 class="artContent"
-                :value="artInfo.content"
+                v-model="artInfo.content"
                 mode="preview"
               ></v-md-editor>
             </div>
