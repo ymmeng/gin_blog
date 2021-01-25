@@ -45,13 +45,13 @@ export default {
 .log {
   height: 32px;
   margin: 20px;
-  background-color: rgb(24, 149, 221);
+  color: #eff;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
   border: 1px solid transparent;
-  background: linear-gradient( white,rgb(24, 149, 221)) padding-box,
+  background: linear-gradient(rgb(1, 0, 0), rgb(0, 0, 0)) padding-box,
     repeating-linear-gradient(-45deg, black 0, black 25%, white 0, white 50%) 0 /
       0.6em 0.6em;
   animation: ants 12s linear infinite;

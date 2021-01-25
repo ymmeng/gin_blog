@@ -97,9 +97,6 @@ func InitRouter() {
 		routerV1.POST("upload", v1.UpLoad)
 		// 用户 模块的路由接口
 		v1.UserRegister(routerV1)
-		// routerV1.POST("user/add", v1.AddUser)
-		// routerV1.GET("users", v1.GetUsers)
-		// routerV1.GET("user/:id", v1.GetUser)
 		// 分类 模块的路由接口
 		routerV1.GET("categorys", v1.GetCategorys)
 		routerV1.GET("category/:id", v1.GetCategory)

@@ -332,7 +332,6 @@ export default {
       })
       if (res.status != 200) return this.$message.error(res.message)
       this.userlist = res.data
-      console.log(this.userlist)
       this.paginationOption.total = res.total
     },
 

@@ -1,7 +1,7 @@
 <template>
   <a-layout-footer breakpoint="lg" v-model="collapsed">
-    <div>
-      <span class="footer"> --- 幽梦-Blog 后台管理 ---</span>
+    <div class="footer">
+      <span> --- 幽梦-Blog 后台管理 ---</span>
     </div>
   </a-layout-footer>
 </template>

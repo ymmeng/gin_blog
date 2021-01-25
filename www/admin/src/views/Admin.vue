@@ -27,8 +27,4 @@ export default {
 .container {
   height: 100%;
 }
-
-.ant-layout-content {
-  min-height: 2;
-}
 </style>

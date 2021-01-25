@@ -11,51 +11,80 @@ import UserList from '../components/user/UserList.vue'
 
 Vue.use(VueRouter)
 const routes = [
-{
-  path: '/adminLogin',
-  name: 'adminLogin',
-  component: AdminLogin
-},
-{
-  path: '/',
-  name: 'admin',
-  component: Admin,
+  {
+    path: '/adminLogin',
+    name: 'adminLogin',
+    meta: {
+      title: '请登录'
+    },
+    component: AdminLogin
+  },
+  {
+    path: '/',
+    name: 'admin',
+    meta: {
+      title: 'GinBlog 后台管理页面'
+    },
+    component: Admin,
 
-  children: [{
-    path: '/admin/index',
-    component: AdminIndex
-  },
-  {
-    path: '/admin/addart',
-    component: AddArt
-  },
-  {
-    path: '/admin/editart/:id',
-    component: AddArt,
-    props: true
-  },
-  {
-    path: '/admin/artlist',
-    component: ArtList
-  },
-  {
-    path: '/admin/catelist',
-    component: CateList
-  },
-  {
-    path: '/admin/userlist',
-    component: UserList
+    children: [{
+      path: '/admin/index',
+      component: AdminIndex,
+      meta: {
+        title: 'GinBlog 后台管理页面'
+      }
+    },
+    {
+      path: '/admin/addart',
+      component: AddArt,
+      meta: {
+        title: '新增文章'
+      }
+    },
+    {
+      path: '/admin/editart/:id',
+      component: AddArt,
+      meta: {
+        title: '编辑文章'
+      },
+      props: true
+    },
+    {
+      path: '/admin/artlist',
+      component: ArtList,
+      meta: {
+        title: '文章列表'
+      }
+    },
+    {
+      path: '/admin/catelist',
+      component: CateList,
+      meta: {
+        title: '分类列表'
+      }
+    },
+    {
+      path: '/admin/userlist',
+      component: UserList,
+      meta: {
+        title: '用户列表'
+      }
+    }]
   }]
-}]
 
 const router = new VueRouter({
   routes
 })
 
 router.beforeEach((to, from, next) => {
-  const token = window.sessionStorage.getItem('token')
-  if (to.path == '/adminLogin') return next()
-  if (!token && to.path == '/admin/' || to.path == 'admin/*') {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+
+  const userToken = window.sessionStorage.getItem('token')
+  if (to.path === '/adminLogin') return next()
+  if (!userToken) {
     next('/adminLogin')
   } else {
     next()

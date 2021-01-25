@@ -41,18 +41,12 @@ func SetToken(role int, username string) (string, int) {
 
 // CheckToken 验证token
 func CheckToken(token string) (*MyClaims, int) {
-	// setToken, _ := jwt.ParseWithClaims(token, &MyClaims{}, func(t *jwt.Token) (interface{}, error) {
-	// 	return JwyKey, nil
-	// })
-	// key, _ := setToken.Claims.(*MyClaims)
-	// if setToken.Valid {
-	// 	return key, errmsg.SUCCES
-	// }
-	// return nil, errmsg.ERROR
 	var claims MyClaims
+
 	setToken, err := jwt.ParseWithClaims(token, &claims, func(token *jwt.Token) (i interface{}, e error) {
 		return JwyKey, nil
 	})
+
 	if err != nil {
 		if ve, ok := err.(*jwt.ValidationError); ok {
 			if ve.Errors&jwt.ValidationErrorMalformed != 0 {
@@ -64,6 +58,7 @@ func CheckToken(token string) (*MyClaims, int) {
 			}
 		}
 	}
+
 	if setToken != nil {
 		if key, ok := setToken.Claims.(*MyClaims); ok && setToken.Valid {
 			return key, errmsg.SUCCES
@@ -71,14 +66,16 @@ func CheckToken(token string) (*MyClaims, int) {
 			return nil, errmsg.ERROR_TOKEN_WRONG
 		}
 	}
+
 	return nil, errmsg.ERROR_TOKEN_WRONG
 }
 
 // JwtToken 中间件
 func JwtToken() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		var code int
+
 		tokenHerder := c.Request.Header.Get("Authorization")
-		code := errmsg.SUCCES
 		if tokenHerder == "" {
 			code = errmsg.ERROR_TOKEN_EXIST
 			c.JSON(200, gin.H{
@@ -99,6 +96,7 @@ func JwtToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+
 		if len(checkToken) != 2 && checkToken[0] != "Bearer" {
 			code = errmsg.ERROR_TOKEN_TYPE_WRONG
 			c.JSON(200, gin.H{
@@ -108,7 +106,9 @@ func JwtToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+
 		key, TCode := CheckToken(checkToken[1])
+
 		if TCode == errmsg.ERROR {
 			code = errmsg.ERROR_TOKEN_WRONG
 			c.JSON(200, gin.H{
@@ -118,6 +118,7 @@ func JwtToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+
 		if time.Now().Unix() > key.ExpiresAt {
 			code = errmsg.ERROR_TOKEN_RUNTIME
 			c.JSON(200, gin.H{
@@ -127,6 +128,7 @@ func JwtToken() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+
 		c.Set("username", key)
 		c.Next()
 	}

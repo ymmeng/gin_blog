@@ -3,7 +3,6 @@ package v1
 import (
 	"go_blog/model"
 	"go_blog/utils/errmsg"
-	"go_blog/utils/validator"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -25,16 +24,16 @@ func UserRegister(group *gin.RouterGroup) {
 // AddUser 添加用户
 func (u *UserController) AddUser(c *gin.Context) {
 	var data model.User
-	var msg string
+	// var msg string
 	c.ShouldBindJSON(&data)
-	msg, code = validator.Validate(&data)
-	if code != errmsg.SUCCES {
-		c.JSON(200, gin.H{
-			"status":  code,
-			"message": msg,
-		})
-		c.Abort()
-	}
+	// msg, code = validator.Validate(&data)
+	// if code != errmsg.SUCCES {
+	// 	c.JSON(200, gin.H{
+	// 		"status":  code,
+	// 		"message": msg,
+	// 	})
+	// 	c.Abort()
+	// }
 
 	code = model.CheckUser(data.Username)
 	if code == errmsg.SUCCES {

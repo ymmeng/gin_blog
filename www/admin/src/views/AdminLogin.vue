@@ -2,7 +2,7 @@
   <div class="container">
     <div class="loginBox">
       <h1 class="head">
-      <span>管理员登录界面</span>
+        <span>管理员登录界面</span>
       </h1>
 
       <a-form-model
@@ -91,9 +91,12 @@ export default {
         if (!valid)
           return this.$message.error('您输入的内容不符，请检查后重新输入')
         const { data: res } = await this.$http.post('login', this.formdata)
-        if (res.status != 201) return this.$message.error(res.message)
-        window.localStorage.setItem('token', res.token)
-        this.$message.success(res.message, 0.5)
+        if (res.status != 200 && res.status != 201)
+          return this.$message.error(res.message)
+        if (res.status != 201 && res.status == 200)
+          return this.$message.error('权限不足')
+        window.sessionStorage.setItem('token', res.token)
+        this.$message.success(res.message)
         this.$router.push('/admin/index')
       })
     },
@@ -102,10 +105,10 @@ export default {
 </script>
 
 <style scoped>
-.head{
+.head {
   padding-top: 10px;
   text-align: center;
-  font-weight:500;
+  font-weight: 500;
 }
 .container {
   min-width: 1024px;
