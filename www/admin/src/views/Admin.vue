@@ -9,9 +9,9 @@
         <Header></Header>
       </a-layout-header>
 
-      <a-layout-content>
+      <div class="content">
         <router-view :key="$route.path"></router-view>
-      </a-layout-content>
+      </div>
 
       <a-layout-footer>
         <Footer></Footer>
@@ -25,7 +25,7 @@ import Nav from '../components/admin/Nav'
 import Footer from '../components/admin/Footer'
 import Header from '../components/admin/Hearde'
 export default {
-  components: { Nav, Footer, Header }
+  components: { Nav, Footer, Header },
 }
 </script>
 
@@ -37,5 +37,8 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+.ant-layout-content {
+  min-height: 2;
 }
 </style>

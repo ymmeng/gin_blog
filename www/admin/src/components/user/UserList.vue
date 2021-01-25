@@ -149,7 +149,7 @@ const columns = [
     dataIndex: 'ID',
     width: '5%',
     key: 'id',
-    align: 'center',
+    align: 'center'
   },
   {
     title: '头像',
@@ -157,14 +157,14 @@ const columns = [
     width: '8%',
     align: 'center',
     key: 'headimg',
-    scopedSlots: { customRender: 'headimg' },
+    scopedSlots: { customRender: 'headimg' }
   },
   {
     title: '用户名',
     dataIndex: 'username',
     width: '10%',
     align: 'center',
-    key: 'username',
+    key: 'username'
   },
 
   {
@@ -173,18 +173,18 @@ const columns = [
     width: '10%',
     key: 'role',
     scopedSlots: { customRender: 'role' },
-    align: 'center',
+    align: 'center'
   },
   {
     title: '操作',
     width: '30%',
     key: 'action',
     scopedSlots: { customRender: 'action' },
-    align: 'center',
-  },
+    align: 'center'
+  }
 ]
 export default {
-  data() {
+  data () {
     return {
       paginationOption: {
         pageSizeOptions: ['5', '10', '20', '50'],
@@ -192,7 +192,7 @@ export default {
         defaultCurrent: 1,
         total: 0,
         showSizeChanger: true,
-        showTotal: (total) => `共${total}位用户`,
+        showTotal: (total) => `共${total}位用户`
       },
       userlist: [],
       columns,
@@ -200,19 +200,19 @@ export default {
       editUserInfo: {
         id: 0,
         username: '',
-        role: 2,
+        role: 2
       },
       newUserInfo: {
         id: 0,
         username: '',
         password: '',
         checkpass: '',
-        role: 2,
+        role: 2
       },
       updatePassInfo: {
         id: 0,
         password: '',
-        checkpass: '',
+        checkpass: ''
       },
       editUserRules: {
         username: [
@@ -221,8 +221,8 @@ export default {
             min: 4,
             max: 12,
             message: '用户名在4-12位字符之间...',
-            trigger: 'blur',
-          },
+            trigger: 'blur'
+          }
         ],
         password: [
           { required: true, message: '请输入密码...', trigger: 'blur' },
@@ -230,8 +230,8 @@ export default {
             min: 3,
             max: 20,
             message: '密码在3-20位字符之间...',
-            trigger: 'blur',
-          },
+            trigger: 'blur'
+          }
         ],
         checkpass: [
           {
@@ -245,9 +245,9 @@ export default {
                 callback()
               }
             },
-            trigger: 'blur',
-          },
-        ],
+            trigger: 'blur'
+          }
+        ]
       },
       newUserRules: {
         username: [
@@ -256,8 +256,8 @@ export default {
             min: 4,
             max: 12,
             message: '用户名在4-12位字符之间...',
-            trigger: 'blur',
-          },
+            trigger: 'blur'
+          }
         ],
         password: [
           { required: true, message: '请输入密码...', trigger: 'blur' },
@@ -265,8 +265,8 @@ export default {
             min: 3,
             max: 20,
             message: '密码在3-20位字符之间...',
-            trigger: 'blur',
-          },
+            trigger: 'blur'
+          }
         ],
         checkpass: [
           {
@@ -280,9 +280,9 @@ export default {
                 callback()
               }
             },
-            trigger: 'blur',
-          },
-        ],
+            trigger: 'blur'
+          }
+        ]
       },
       updatePassRules: {
         password: [
@@ -291,8 +291,8 @@ export default {
             min: 3,
             max: 20,
             message: '密码在3-20位字符之间...',
-            trigger: 'blur',
-          },
+            trigger: 'blur'
+          }
         ],
         checkpass: [
           {
@@ -308,27 +308,27 @@ export default {
                 callback()
               }
             },
-            trigger: 'blur',
-          },
-        ],
+            trigger: 'blur'
+          }
+        ]
       },
       editUserVisible: false,
       addUserVisible: false,
-      updatePassVisible: false,
+      updatePassVisible: false
     }
   },
-  created() {
+  created () {
     this.getUserList()
   },
   methods: {
     // 获取所有用户
-    async getUserList() {
+    async getUserList () {
       const { data: res } = await this.$http.get('users', {
         params: {
           username: this.queryParam.username,
           pagesize: this.paginationOption.defaultPageSize,
-          pagenum: this.paginationOption.defaultCurrent,
-        },
+          pagenum: this.paginationOption.defaultCurrent
+        }
       })
       if (res.status != 200) return this.$message.error(res.message)
       this.userlist = res.data
@@ -337,7 +337,7 @@ export default {
     },
 
     // 删除用户
-    deleteUser(id) {
+    deleteUser (id) {
       this.$confirm({
         title: '提示：',
         content: '确定要删除该用户吗?该操作一旦执行无法撤销。',
@@ -349,17 +349,17 @@ export default {
         },
         onCancel: () => {
           this.$message.info('已取消该操作。')
-        },
+        }
       })
     },
     // 添加用户
-    addUserOk() {
+    addUserOk () {
       this.$refs.addUserRef.validate(async (valid) => {
         if (!valid) return this.$message.error('参数不符合要求，请重新输入')
         const { data: res } = await this.$http.post('user/add', {
           username: this.newUserInfo.username,
           password: this.newUserInfo.password,
-          role: this.newUserInfo.role,
+          role: this.newUserInfo.role
         })
         if (res.status != 200) return this.$message.error(res.message)
         this.addUserVisible = false
@@ -367,30 +367,30 @@ export default {
         this.getUserList()
       })
     },
-    addUserCancel() {
+    addUserCancel () {
       this.$refs.addUserRef.resetFields()
       this.addUserVisible = false
       this.$message.info('添加用户已取消')
     },
     // 编辑用户
-    adminChange(data) {
+    adminChange (data) {
       var data = data.target
       this.newUserInfo.role = Number(data.value)
     },
-    async editUser(id) {
+    async editUser (id) {
       this.editUserVisible = true
       const { data: res } = await this.$http.get(`user/${id}`)
       this.editUserInfo.username = res.data.username
       this.editUserInfo.id = id
     },
-    editUserOk() {
+    editUserOk () {
       this.$refs.editUserRef.validate(async (valid) => {
         if (!valid) return this.$message.error('参数不符合要求，请重新输入')
         const { data: res } = await this.$http.put(
           `user/${this.editUserInfo.id}`,
           {
             username: this.editUserInfo.username,
-            role: this.editUserInfo.role,
+            role: this.editUserInfo.role
           }
         )
         if (res.status != 200) return this.$message.error(res.message)
@@ -399,24 +399,24 @@ export default {
         this.getUserList()
       })
     },
-    editUserCancel() {
+    editUserCancel () {
       this.$refs.editUserRef.resetFields()
       this.editUserVisible = false
       this.$message.info('编辑用户已取消')
     },
     // 修改密码
-    async updatePass(id) {
+    async updatePass (id) {
       this.updatePassVisible = true
       const { data: res } = await this.$http.get(`user/${id}`)
       this.updatePassInfo.id = id
     },
-    updatePassOk() {
+    updatePassOk () {
       this.$refs.updatePassRef.validate(async (valid) => {
         if (!valid) return this.$message.error('参数不符合要求，请重新输入')
         const { data: res } = await this.$http.put(
           `user/${this.updatePassInfo.id}`,
           {
-            password: this.updatePassInfo.password,
+            password: this.updatePassInfo.password
           }
         )
         if (res.status != 200) return this.$message.error(res.message)
@@ -425,12 +425,12 @@ export default {
         this.getUserList()
       })
     },
-    updatePassCancel() {
+    updatePassCancel () {
       this.$refs.updatePassRef.resetFields()
       this.updatePassVisible = false
       this.$message.info('修改密码已取消')
-    },
-  },
+    }
+  }
 }
 </script>
 

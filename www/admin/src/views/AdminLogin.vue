@@ -102,12 +102,12 @@ export default {
 .container {
   min-width: 1024px;
   height: 100%;
-  background-color: #8ec5fc;
+  background-color: #5a5a5a;
 }
 .loginBox {
   width: 450px;
   height: 300px;
-  background-image: linear-gradient(72deg, #74ebd5 0%, #9face6 90%);
+  background-image: linear-gradient(72deg, #363636 0%, #505050 90%);
   position: absolute;
   top: 50%;
   left: 70%;

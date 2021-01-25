@@ -6,7 +6,7 @@
       >
       <span>
         <a-button type="link">
-          <a-badge :count="5" :overflow-count="99">
+          <a-badge :count="0" :overflow-count="99">
             <a-avatar icon="user" style="background: #92c068" :size="45"
           /></a-badge>
         </a-button>
@@ -27,6 +27,8 @@ export default {
 
 <style lang="less" scoped>
 .main {
+  width: 100%;
+  height: 100%;
 }
 .userInfo {
   float: right;

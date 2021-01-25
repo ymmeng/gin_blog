@@ -24,7 +24,7 @@ import {
     Pagination,
     Slider,
     InputNumber,
-    BackTop,
+    BackTop
 } from 'ant-design-vue'
 
 message.config({

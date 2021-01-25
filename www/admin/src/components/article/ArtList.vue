@@ -77,28 +77,28 @@ const columns = [
     dataIndex: 'ID',
     width: '3%',
     key: 'id',
-    align: 'center',
+    align: 'center'
   },
   {
     title: '分类',
     dataIndex: 'Category.name',
     width: '8%',
     align: 'center',
-    key: 'name',
+    key: 'name'
   },
   {
     title: '文章标题',
     dataIndex: 'title',
     width: '15%',
     key: 'title',
-    align: 'center',
+    align: 'center'
   },
   {
     title: '文章描述',
     dataIndex: 'desc',
     width: '25%',
     key: 'desc',
-    align: 'center',
+    align: 'center'
   },
   {
     title: '文章概念图',
@@ -106,59 +106,59 @@ const columns = [
     width: '15%',
     key: 'img',
     align: 'center',
-    scopedSlots: { customRender: 'img' },
+    scopedSlots: { customRender: 'img' }
   },
   {
     title: '操作',
     width: '5%',
     key: 'action',
     align: 'center',
-    scopedSlots: { customRender: 'action' },
-  },
+    scopedSlots: { customRender: 'action' }
+  }
 ]
 export default {
-  data() {
+  data () {
     return {
       paginationOption: {
         pageSizeOptions: ['5', '10', '20', '50'],
 
         total: 0,
         showSizeChanger: true,
-        showTotal: (total) => `共${total}篇文章`,
+        showTotal: (total) => `共${total}篇文章`
       },
       Artlist: [],
       Catelist: [],
       columns,
-      queryParam: { title: '', pageSize: 5, current: 1 },
+      queryParam: { title: '', pageSize: 5, current: 1 }
     }
   },
-  created() {
+  created () {
     this.getArtList()
     this.getCateList()
   },
   methods: {
     // 获取所有文章
-    async getArtList() {
+    async getArtList () {
       const { data: res } = await this.$http.get('articles', {
         params: {
           title: this.queryParam.title,
           pagesize: this.queryParam.pageSize,
-          pagenum: this.queryParam.current,
-        },
+          pagenum: this.queryParam.current
+        }
       })
       if (res.status != 200) return this.$message.error(res.message)
       this.Artlist = res.data
       this.paginationOption.total = res.total
     },
     // 获取所有分类
-    async getCateList() {
+    async getCateList () {
       const { data: res } = await this.$http.get('categorys')
       if (res.status != 200) return this.$message.error(res.message)
       this.Catelist = res.data
       this.paginationOption.total = res.total
     },
     // 删除文章
-    deleteArt(id) {
+    deleteArt (id) {
       this.$confirm({
         title: '提示：',
         content: '确定要删除该文章吗?该操作一旦执行无法撤销。',
@@ -170,20 +170,20 @@ export default {
         },
         onCancel: () => {
           this.$message.info('已取消该操作。')
-        },
+        }
       })
     },
     // 查询分类下的文章
-    cateChange(value) {
+    cateChange (value) {
       this.getCateArt(value)
     },
-    async getCateArt(id) {
+    async getCateArt (id) {
       const { data: res } = await this.$http.get(`article/catelist/${id}`)
       if (res.status != 200) return this.$message.error(res.message)
       this.Artlist = res.data
       this.paginationOption.total = res.total
-    },
-  },
+    }
+  }
 }
 </script>
 

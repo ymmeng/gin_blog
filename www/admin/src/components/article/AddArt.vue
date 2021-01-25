@@ -1,105 +1,101 @@
 <template>
-  <div>
-    <a-card>
-      <div>
-        <h1>
-          {{ artInfo.id ? '修改文章' : '添加新的文章' }}
-        </h1>
-      </div>
-      <a-form-model :model="artInfo" ref="artInfoRef" :rules="artInfoRules">
-        <!-- 文章标题 -->
-        <a-form-model-item label="文章标题" prop="title" class="bt">
-          <a-input style="width: 600px" v-model="artInfo.title"></a-input
-        ></a-form-model-item>
-        <!-- 文章分类 -->
-        <a-form-model-item label="文章分类" prop="cid">
-          <a-select
-            v-model="artInfo.cid"
-            style="width: 300px"
-            placeholder="请选择文章分类"
-            @change="cateChange"
+  <a-card>
+    <div>
+      <h1 id="title">
+        {{ artInfo.id ? '修改文章' : '添加新的文章' }}
+      </h1>
+    </div>
+    <a-form-model :model="artInfo" ref="artInfoRef" :rules="artInfoRules">
+      <!-- 文章标题 -->
+      <a-form-model-item label="文章标题" prop="title" class="bt">
+        <a-input style="width: 600px" v-model="artInfo.title"></a-input
+      ></a-form-model-item>
+      <!-- 文章分类 -->
+      <a-form-model-item label="文章分类" prop="cid">
+        <a-select
+          v-model="artInfo.cid"
+          style="width: 300px"
+          placeholder="请选择文章分类"
+          @change="cateChange"
+        >
+          <a-select-option
+            v-for="item in Carelist"
+            :key="item.id"
+            :value="item.id"
+            >{{ item.name }}</a-select-option
           >
-            <a-select-option
-              v-for="item in Carelist"
-              :key="item.id"
-              :value="item.id"
-              >{{ item.name }}</a-select-option
+        </a-select>
+      </a-form-model-item>
+      <a-form-model-item label="文章描述" prop="desc">
+        <a-input type="textarea" v-model="artInfo.desc"></a-input>
+      </a-form-model-item>
+      <!-- 文章缩略图 -->
+      <a-form-model-item label="文章缩略图"
+        ><p style="color: #999">
+          图片大小5M以内(支持jpg、png、gif、jpeg、swf、svg格式)
+        </p>
+        <a-upload
+          :multiple="true"
+          :action="upUrl"
+          :headers="headers"
+          @change="upChange"
+          list-type="picture-card"
+          data:{inputType="importValue}"
+          accept=".jpg,.png,.gif,.jpeg,.swf,.svg"
+        >
+          <a-button name="file">
+            <a-icon type="upload" /> 点击上传缩略图
+          </a-button>
+        </a-upload>
+      </a-form-model-item>
+      <!-- 文章内容 -->
+      <a-form-model-item label="文章内容" prop="content">
+        <!-- 选择编辑器 -->
+        <div>
+          <a-select
+            v-model="editValue"
+            style="width: 249px"
+            @change="SelectEditChange"
+          >
+            <a-select-option value="v-md-editor"
+              >v-md-editor编辑器</a-select-option
+            >
+            <a-select-option value="mavon-editor"
+              >mavon-editor编辑器</a-select-option
             >
           </a-select>
-        </a-form-model-item>
-        <a-form-model-item label="文章描述" prop="desc">
-          <a-input type="textarea" v-model="artInfo.desc"></a-input>
-        </a-form-model-item>
-        <!-- 文章缩略图 -->
-        <a-form-model-item label="文章缩略图"
-          ><p style="color: #aaa">5M以内(支持jpg、png、gif、jpeg、swf、svg)</p>
-          <a-upload
-            :multiple="true"
-            :action="upUrl"
-            :headers="headers"
-            @change="upChange"
-            list-type="picture-card"
-            data:{inputType="importValue}"
-            accept=".jpg,.png,.gif,.jpeg,.swf,.svg"
-          >
-            <a-button name="file">
-              <a-icon type="upload" /> 点击上传缩略图
-            </a-button>
-          </a-upload>
-        </a-form-model-item>
-        <!-- 文章内容 -->
-        <a-form-model-item label="文章内容" prop="content">
-          <!-- 选择编辑器 -->
-          <div>
-            <a-select
-              v-model="editValue"
-              style="width: 200px"
-              @change="SelectEditChange"
-            >
-              <a-select-option value="v-md-editor"
-                >v-md-editor编辑器</a-select-option
-              >
-              <a-select-option value="mavon-editor"
-                >mavon-editor编辑器</a-select-option
-              >
-            </a-select>
-          </div>
-          <hr />
-          <div>
-            <!-- v-md-editor编辑器 -->
-            <v-md-editor
-              v-if="editValue == 'v-md-editor'"
-              v-model="artInfo.content"
-              :disabled-menus="[]"
-              :include-level="[2, 3, 4]"
-              @upload-image="handleUploadImage"
-              height="700px"
-            ></v-md-editor>
+        </div>
+        <div class="editor">
+          <!-- v-md-editor编辑器 -->
+          <v-md-editor
+            v-if="editValue == 'v-md-editor'"
+            v-model="artInfo.content"
+            :disabled-menus="[]"
+            :include-level="[2, 3, 4]"
+            @upload-image="handleUploadImage"
+            height="700px"
+          ></v-md-editor>
 
-            <!-- mavon-editor编辑器 -->
-            <mavon-editor
-              v-if="editValue == 'mavon-editor'"
-              v-model="artInfo.content"
-              ref="md"
-              @imgAdd="$imgAdd"
-              style="z-index: 0; height: 700px"
-            ></mavon-editor>
-          </div>
-        </a-form-model-item>
-        <!-- 按钮 -->
-        <a-form-model-item>
-          <a-button
-            type="primary"
-            style="margin: 0 30px 0"
-            @click="artOk(artInfo.id)"
-          >
-            {{ artInfo.id ? '更新' : '提交' }}</a-button
-          >
-          <a-button type="danger" @click="artCancel()">取消</a-button>
-        </a-form-model-item>
-      </a-form-model>
-    </a-card>
-  </div>
+          <!-- mavon-editor编辑器 -->
+          <mavon-editor
+            v-if="editValue == 'mavon-editor'"
+            v-model="artInfo.content"
+            ref="md"
+            @imgAdd="$imgAdd"
+            style="z-index: 0; height: 700px"
+          ></mavon-editor>
+        </div>
+      </a-form-model-item>
+      <hr />
+      <!-- 按钮 -->
+      <a-form-model-item class="butdiv">
+        <a-button type="primary" @click="artOk(artInfo.id)" id="button">
+          {{ artInfo.id ? '更新' : '提交' }}</a-button
+        >
+        <a-button type="danger" @click="artCancel()">清空</a-button>
+      </a-form-model-item>
+    </a-form-model>
+  </a-card>
 </template>
 
 <script>
@@ -121,14 +117,32 @@ export default {
       upUrl: Url + '/upload',
       headers: {},
       artInfoRules: {
-        title: [{ required: true, message: '请输入文章标题', trigger: 'blur' }],
+        title: [
+          { required: true, message: '请输入文章标题', trigger: 'blur' },
+          {
+            min: 1,
+            max: 50,
+            message: '文章题目在1~50个字符之间',
+            trigger: 'blur',
+          },
+        ],
         cid: [{ required: true, message: '请选择文章分类', trigger: 'blur' }],
         desc: [
           { required: true, message: '请对该文章进行描述', trigger: 'blur' },
-          { max: 120, message: '文章描述最多为120个字符', trigger: 'change' },
+          {
+            min: 4,
+            max: 200,
+            message: '文章描述在4~200个字符之间',
+            trigger: 'blur',
+          },
         ],
         content: [
           { required: true, message: '请输入文章内容', trigger: 'blur' },
+          {
+            min: 18,
+            message: '文章内容最少为18个字符',
+            trigger: 'blur',
+          },
         ],
       },
     }
@@ -169,7 +183,6 @@ export default {
     },
     handleUploadImage(event, insertImage, files) {
       // 拿到 files 之后上传到文件服务器，然后向编辑框中插入对应的内容
-      console.log(files)
       insertImage({
         url:
           'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1269952892,3525182336&fm=26&gp=0.jpg',
@@ -245,6 +258,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+#title {
+  font-size: 30px;
+  text-align: center;
+}
 a-card {
   h1 {
     font-size: 24px;
@@ -252,5 +269,14 @@ a-card {
 }
 hr {
   border-top: 1px dashed #c5c5c5;
+}
+.butdiv {
+  padding-top: 30px;
+}
+#button {
+  margin: 0 30px 0;
+}
+.editor {
+  padding-top: 30px;
 }
 </style>

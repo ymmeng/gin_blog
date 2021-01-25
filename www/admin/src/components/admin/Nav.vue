@@ -8,15 +8,13 @@
       <a-menu-item key="admin/index"
         ><a-icon type="dashboard" /><span>仪表盘</span></a-menu-item
       >
-      <a-sub-menu>
-        <span slot="title"><a-icon type="file" /><span>文章管理</span></span>
-        <a-menu-item key="admin/addart"
-          ><a-icon type="form" /><span>写文章</span></a-menu-item
-        >
-        <a-menu-item key="admin/artlist"
-          ><a-icon type="ordered-list" /><span>文章列表</span></a-menu-item
-        >
-      </a-sub-menu>
+
+      <a-menu-item key="admin/addart"
+        ><a-icon type="form" /><span>写文章</span></a-menu-item
+      >
+      <a-menu-item key="admin/artlist"
+        ><a-icon type="ordered-list" /><span>文章列表</span></a-menu-item
+      >
 
       <a-menu-item key="admin/catelist"
         ><a-icon type="book" /><span>分类列表</span></a-menu-item
