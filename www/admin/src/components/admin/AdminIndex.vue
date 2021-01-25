@@ -4,8 +4,7 @@
     <div class="info"></div>
   </div>
 </template>
-<script src="js/echarts.min.js"></script>
-<script src="js/index.js"></script>
+
 <script>
 export default {}
 </script>

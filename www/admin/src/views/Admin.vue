@@ -1,21 +1,15 @@
 <template>
   <a-layout class="container">
-    <a-layout-sider>
-      <Nav></Nav>
-    </a-layout-sider>
+    <Nav></Nav>
 
     <a-layout>
-      <a-layout-header class="headerBtn">
-        <Header></Header>
-      </a-layout-header>
+      <Header></Header>
 
       <div class="content">
         <router-view :key="$route.path"></router-view>
       </div>
 
-      <a-layout-footer>
-        <Footer></Footer>
-      </a-layout-footer>
+      <Footer></Footer>
     </a-layout>
   </a-layout>
 </template>
@@ -33,11 +27,7 @@ export default {
 .container {
   height: 100%;
 }
-.headerBtn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
+
 .ant-layout-content {
   min-height: 2;
 }

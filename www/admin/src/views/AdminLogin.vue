@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="loginBox">
+      <h1 class="head">
       <span>管理员登录界面</span>
+      </h1>
+
       <a-form-model
         class="loginForm"
         :model="formdata"
@@ -99,6 +102,11 @@ export default {
 </script>
 
 <style scoped>
+.head{
+  padding-top: 10px;
+  text-align: center;
+  font-weight:500;
+}
 .container {
   min-width: 1024px;
   height: 100%;
@@ -107,7 +115,7 @@ export default {
 .loginBox {
   width: 450px;
   height: 300px;
-  background-image: linear-gradient(72deg, #363636 0%, #505050 90%);
+  background-image: linear-gradient(72deg, #817e7e 0%, #505050 90%);
   position: absolute;
   top: 50%;
   left: 70%;

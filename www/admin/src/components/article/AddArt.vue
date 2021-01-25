@@ -89,10 +89,12 @@
       <hr />
       <!-- 按钮 -->
       <a-form-model-item class="butdiv">
-        <a-button type="primary" @click="artOk(artInfo.id)" id="button">
+        <a-button type="primary" @click="artOk(artInfo.id)" id="buttonY">
           {{ artInfo.id ? '更新' : '提交' }}</a-button
         >
-        <a-button type="danger" @click="artCancel()">清空</a-button>
+        <a-button type="danger" @click="artCancel()" id="buttonN"
+          >清空</a-button
+        >
       </a-form-model-item>
     </a-form-model>
   </a-card>
@@ -231,6 +233,8 @@ export default {
     // 提交文章
     artOk(id) {
       this.$refs.artInfoRef.validate(async (valid) => {
+        if (!valid)
+          return this.$message.error('您输入的内容不符，请检查后重新输入')
         if (id == 0) {
           const { data: res } = await this.$http.post(
             'article/add',
@@ -273,8 +277,37 @@ hr {
 .butdiv {
   padding-top: 30px;
 }
-#button {
+#buttonY {
   margin: 0 30px 0;
+  border: 1px solid transparent;
+  background: linear-gradient(white, rgb(59, 111, 255)) padding-box,
+    repeating-linear-gradient(
+        -45deg,
+        rgb(59, 111, 255) 0,
+        black 25%,
+        white 0,
+        white 50%
+      )
+      0 / 0.6em 0.6em;
+  animation: ants 8s linear infinite;
+}
+#buttonN {
+  border: 1px solid transparent;
+  background: linear-gradient(white, rgb(255, 0, 0)) padding-box,
+    repeating-linear-gradient(
+        -45deg,
+        rgb(255, 59, 59) 0,
+        black 25%,
+        white 0,
+        white 50%
+      )
+      0 / 0.6em 0.6em;
+  animation: ants 8s linear infinite;
+}
+@keyframes ants {
+  to {
+    background-position: 100%;
+  }
 }
 .editor {
   padding-top: 30px;

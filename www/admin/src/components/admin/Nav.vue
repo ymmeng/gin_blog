@@ -1,7 +1,7 @@
 <template>
   <a-layout-sider breakpoint="lg" v-model="collapsed">
     <div class="log">
-      <span>{{ collapsed ? 'Blog' : 'My Blog' }}</span>
+      <span>{{ collapsed ? '幽' : '幽梦 Blog' }}</span>
     </div>
 
     <a-menu theme="dark" mode="inline" @click="goToPage">
@@ -50,5 +50,15 @@ export default {
   justify-content: center;
   align-items: center;
   font-size: 18px;
+  border: 1px solid transparent;
+  background: linear-gradient( white,rgb(24, 149, 221)) padding-box,
+    repeating-linear-gradient(-45deg, black 0, black 25%, white 0, white 50%) 0 /
+      0.6em 0.6em;
+  animation: ants 12s linear infinite;
+}
+@keyframes ants {
+  to {
+    background-position: 100%;
+  }
 }
 </style>
