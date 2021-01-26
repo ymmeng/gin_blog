@@ -2,7 +2,7 @@ import colors from 'vuetify/lib/util/colors'
 
 export default {
   primary: {
-    base: "#0ca0f0",
+    base: "#00aaee",
     darken1: colors.purple.darken2,
   },
   secondary: colors.indigo,

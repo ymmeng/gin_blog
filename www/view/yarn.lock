@@ -9330,7 +9330,12 @@ vue@^2.6.11:
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha1-9evU+mvShpQD4pqJau1JBEVskSM=
 
-vuetify-loader@^1.3.0:
+vuelidate@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.npm.taobao.org/vuelidate/download/vuelidate-0.7.6.tgz?cache=0&sync_timestamp=1603442724464&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvuelidate%2Fdownload%2Fvuelidate-0.7.6.tgz#84100c13b943470660d0416642845cd2a1edf4b2"
+  integrity sha1-hBAME7lDRwZg0EFmQoRc0qHt9LI=
+
+vuetify-loader@^1.6.0:
   version "1.6.0"
   resolved "https://registry.npm.taobao.org/vuetify-loader/download/vuetify-loader-1.6.0.tgz#05df0805b3ab2ff0de198109d34f9da3f69da667"
   integrity sha1-Bd8IBbOrL/DeGYEJ00+do/adpmc=
@@ -9338,10 +9343,10 @@ vuetify-loader@^1.3.0:
     file-loader "^4.0.0"
     loader-utils "^1.2.0"
 
-vuetify@^2.4.2:
-  version "2.4.2"
-  resolved "https://registry.npm.taobao.org/vuetify/download/vuetify-2.4.2.tgz#d37d160c1fc6b241fc166a32980b34590a017d6e"
-  integrity sha1-030WDB/GskH8FmoymAs0WQoBfW4=
+vuetify@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.npm.taobao.org/vuetify/download/vuetify-2.4.3.tgz#8d6f15dde396e81f64e130d8ac0bc272e030879c"
+  integrity sha1-jW8V3eOW6B9k4TDYrAvCcuAwh5w=
 
 vuex@^3.6.0:
   version "3.6.0"

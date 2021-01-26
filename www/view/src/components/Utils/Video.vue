@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import DPlayer from "dplayer";
 export default {
   mounted() {
     this.dplayer();

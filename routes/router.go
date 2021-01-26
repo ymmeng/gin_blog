@@ -10,70 +10,29 @@ import (
 	// _ "github.com/swaggo/gin-swagger/example/docs"
 	// _ "github.com/molefuckgo/gin-blog/docs"
 
+	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
 	ginSwagger "github.com/swaggo/gin-swagger"   // gin-swagger middleware
 	"github.com/swaggo/gin-swagger/swaggerFiles" // swagger embed files
 )
 
-// @title Swagger Example API
-// @version 1.0
-// @description This is a sample server celler server.
-// @termsOfService http://swagger.io/terms/
-
-// @contact.name API Support
-// @contact.url http://www.swagger.io/support
-// @contact.email support@swagger.io
-
-// @license.name Apache 2.0
-// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
-
-// @host localhost:8080
-// @BasePath /api/v1
-// @query.collection.format multi
-
-// @securityDefinitions.basic BasicAuth
-
-// @securityDefinitions.apikey ApiKeyAuth
-// @in header
-// @name Authorization
-
-// @securitydefinitions.oauth2.application OAuth2Application
-// @tokenUrl https://example.com/oauth/token
-// @scope.write Grants write access
-// @scope.admin Grants read and write access to administrative information
-
-// @securitydefinitions.oauth2.implicit OAuth2Implicit
-// @authorizationurl https://example.com/oauth/authorize
-// @scope.write Grants write access
-// @scope.admin Grants read and write access to administrative information
-
-// @securitydefinitions.oauth2.password OAuth2Password
-// @tokenUrl https://example.com/oauth/token
-// @scope.read Grants read access
-// @scope.write Grants write access
-// @scope.admin Grants read and write access to administrative information
-
-// @securitydefinitions.oauth2.accessCode OAuth2AccessCode
-// @tokenUrl https://example.com/oauth/token
-// @authorizationurl https://example.com/oauth/authorize
-// @scope.admin Grants read and write access to administrative information
-
-// @x-extension-openapi {"example": "value on a json format"}
+func createMyRender() multitemplate.Renderer {
+	p := multitemplate.NewRenderer()
+	p.AddFromFiles("admin", "static/admin/index.html")
+	return p
+}
 
 // InitRouter 初始化路由
 func InitRouter() {
 	gin.SetMode(utils.AppMode)
 	r := gin.New()
+	r.HTMLRender = createMyRender()
 	r.Use(middleware.Loggoer())
 	r.Use(gin.Recovery())
 	r.Use(middleware.Cors())
 
-	// r.LoadHTMLGlob("static/admin/index.html")
-	// r.Static("admin/static", "static/admin/static")
-	// r.GET("admin", func(c *gin.Context) { c.HTML(200, "index.html", nil) })
-	// r.GET("admin", func(c *gin.Context) {
-	// 	c.HTML(200, "index.html", nil)
-	// })
+	r.Static("/admin", "./static/admin")
+	r.StaticFile("/favicon.ico", "static/front/favicon.ico")
 
 	auth := r.Group("api/v1")
 	auth.Use(middleware.JwtToken())

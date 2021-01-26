@@ -12,7 +12,7 @@
           <ul>
             <span>标签云:</span>
             <li v-for="itme in Catelist" :key="itme.id" value="itme.name">
-              <a-button>{{ itme.name }}</a-button>
+              <v-btn>{{ itme.name }}</v-btn>
             </li>
           </ul>
         </div>

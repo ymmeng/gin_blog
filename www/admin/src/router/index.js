@@ -23,7 +23,7 @@ const routes = [
     path: '/',
     name: 'admin',
     meta: {
-      title: 'GinBlog 后台管理页面'
+      title: '后台管理页面'
     },
     component: Admin,
 
@@ -31,7 +31,7 @@ const routes = [
       path: '/admin/index',
       component: AdminIndex,
       meta: {
-        title: 'GinBlog 后台管理页面'
+        title: '仪表盘'
       }
     },
     {

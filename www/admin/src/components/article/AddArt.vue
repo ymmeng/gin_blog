@@ -71,7 +71,7 @@
             v-if="editValue == 'v-md-editor'"
             v-model="artInfo.content"
             :disabled-menus="[]"
-            :include-level="[2, 3, 4]"
+            :include-level="[2, 3, 4, 5]"
             @upload-image="handleUploadImage"
             height="700px"
           ></v-md-editor>

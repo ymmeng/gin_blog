@@ -1,27 +1,19 @@
 <template>
-  <!-- <div>
-    <div class="header">
-      <div id="logo"><a href="/">幽梦Blog</a></div>
-      <div class="button">
-        <a-button type="primary" style="margin-right: 20px" @click="login"
-          >登录</a-button
-        >
-        <a-button type="info" @click="registered">注册</a-button>
-      </div>
-    </div>
-  </div> -->
   <v-container class="py-0 fill-height">
     <div class="header">
       <div id="logo"><a href="/">幽梦Blog</a></div>
     </div>
-    <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
+    <v-avatar class="mr-10" color="teal" size="42">1</v-avatar>
 
     <v-spacer>
-      <a-button type="primary" style="margin-right: 20px" @click="login"
-        >登录</a-button
-      >
-      <a-button type="info" @click="registered">注册</a-button>
+      <v-btn color="primary" @click="login" class="mr-5">
+        登录
+      </v-btn>
+
+      <v-btn @click="registered"> 注册 </v-btn>
     </v-spacer>
+
+    <v-spacer> </v-spacer>
 
     <v-responsive max-width="260" id="search">
       <v-text-field dense flat hide-details rounded solo-inverted>

@@ -1,7 +1,6 @@
 
 <template>
   <v-app id="inspire">
-
     <v-app-bar app color="white" flat>
       <Header></Header>
     </v-app-bar>
@@ -30,7 +29,7 @@
           </v-col>
 
           <v-col>
-            <v-sheet min-height="70vh" rounded="lg" id="content">
+            <v-sheet min-height="70vh" rounded="lg">
               <Content></Content>
             </v-sheet>
           </v-col>
@@ -40,7 +39,7 @@
               <v-list color="transparent">
                 <v-list-item link color="grey lighten-4">
                   <v-list-item-content>
-                    <v-list-item-title> <Nav></Nav> </v-list-item-title>
+                    <v-list-item-title> <Nav></Nav></v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
 
@@ -59,7 +58,9 @@
     </v-main>
 
     <ToTop></ToTop>
-    <Footer></Footer>
+    <v-footer color="primary lighten-1" padless>
+      <Footer></Footer>
+    </v-footer>
   </v-app>
 </template>
 
@@ -78,7 +79,6 @@ export default {
     Header,
     Nav,
   },
-
 };
 </script>
 
@@ -86,15 +86,10 @@ export default {
 #inspire {
   height: 100%;
   width: 100%;
-  background: url("../assets/img/bg.jpg");
-  background-size: cover;
+  min-height: 1500px;
 }
 .header {
   background-color: rgba(255, 255, 255, 0.6);
-}
-
-#content {
-  text-align: center;
 }
 </style>
 

@@ -1,42 +1,41 @@
 <template>
-  <div class="article">
-    <Video></Video>
-    <!-- 文章列表 -->
-    <section>
-      <article id="art" v-for="itme in Artlist" :key="itme.ID">
-        <a @click="art(itme.ID)">
-          <div class="artInfo">
-            <h2>{{ itme.title }}</h2>
-            <span>{{ itme.CreatedAt }}</span>
-            <p>{{ itme.desc }}</p>
-          </div>
-          <div class="img" v-if="itme.img">
-            <img src="itme.img" alt="正在加载图片..." />
-          </div>
-        </a>
-      </article>
-    </section>
-    <!-- 分页 -->
-    <div class="page">
-      <a-pagination
-        show-quick-jumper
-        show-size-changer
-        :page-size-options="pageSizeOptions"
-        :page-size="queryParam.PageSize"
-        :total="queryParam.total"
-        @change="pagChange"
-        @showSizeChange="onShowSizeChange"
-      >
-      </a-pagination>
+  <div>
+    <div class="article">
+      <!-- 文章列表 -->
+      <section>
+        <article id="art" v-for="itme in Artlist" :key="itme.ID">
+          <a @click="art(itme.ID)">
+            <div class="artInfo">
+              <h2>{{ itme.title }}</h2>
+              <span>{{ itme.CreatedAt }}</span>
+              <p>{{ itme.desc }}</p>
+            </div>
+            <div class="img" v-if="itme.img">
+              <img src="itme.img" alt="正在加载图片..." />
+            </div>
+          </a>
+        </article>
+      </section>
+      <!-- 分页 -->
+      <div class="page">
+        <a-pagination
+          show-quick-jumper
+          show-size-changer
+          :page-size-options="pageSizeOptions"
+          :page-size="queryParam.PageSize"
+          :total="queryParam.total"
+          @change="pagChange"
+          @showSizeChange="onShowSizeChange"
+        >
+        </a-pagination>
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
-import Video from "../Utils/Video";
 export default {
-  components: { Video },
   data() {
     return {
       Artlist: undefined,
@@ -88,7 +87,7 @@ export default {
 .article {
   width: 88%;
   margin: 0 auto;
-  padding-top: 1rem;
+  padding:  2rem 0rem;
   #art {
     width: 100%;
     height: 200px;
@@ -111,7 +110,7 @@ export default {
   .page {
     display: flex;
     justify-content: center;
-    padding-bottom: 30px;
+    margin-bottom: 15px;
   }
 }
 </style>
