@@ -40,7 +40,11 @@
             </a-select>
           </a-form-model-item>
           <a-form-model-item label="文章描述" prop="desc">
-            <v-text-field label="文章描述" type="textarea" v-model="artInfo.desc"></v-text-field>
+            <v-text-field
+              label="文章描述"
+              type="textarea"
+              v-model="artInfo.desc"
+            ></v-text-field>
           </a-form-model-item>
           <!-- 文章缩略图 -->
           <a-form-model-item label="文章缩略图"

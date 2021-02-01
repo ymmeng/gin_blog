@@ -1,23 +1,9 @@
-import Vue from 'vue'
+// import Vue from 'vue'
+import Vue from 'vue';
 
 // v-md-editor 编辑器
 import VMdEditor from '@kangc/v-md-editor/lib/base-editor';
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css';
-
-// codemirror 编辑器的相关资源
-import Codemirror from 'codemirror';
-// mode
-import 'codemirror/mode/markdown/markdown';
-// placeholder
-import 'codemirror/addon/display/placeholder';
-// active-line
-import 'codemirror/addon/selection/active-line';
-// scrollbar
-import 'codemirror/addon/scroll/simplescrollbars';
-import 'codemirror/addon/scroll/simplescrollbars.css';
-// style
-import 'codemirror/lib/codemirror.css';
-
 // githubTheme 代码高亮
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
 import '@kangc/v-md-editor/lib/theme/style/github.css';
@@ -38,8 +24,9 @@ import dockerfile from 'highlight.js/lib/languages/dockerfile';
 VMdEditor.use(githubTheme, {
     codeHighlightExtensionMap: {
         vue: 'xml',
+        sh: 'shell',
     },
-    extend(md, hljs) {
+    extend(rm, hljs) {
         // 注册语言包
         hljs.registerLanguage('json', json);
         hljs.registerLanguage('python', python);
@@ -65,24 +52,32 @@ import '@kangc/v-md-editor/lib/theme/style/vuepress.css';
 // 直接按需引入 prism 的语言包即可，此处以 json 为例
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-go';
-import 'prismjs/components/prism-al';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-http';
+// import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-sql';
+import 'prismjs/components/prism-sass';
 import 'prismjs/components/prism-docker';
-import 'prismjs/components/prism-php';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-protobuf';
-import 'prismjs/components/prism-c';
-import 'prismjs/components/prism-sass';
-import 'prismjs/components/prism-shell-session';
-import 'prismjs/components/prism-powershell';
-import 'prismjs/components/prism-bash';
-
 VMdEditor.use(vuepressTheme);
+
+// codemirror 编辑器的相关资源
+import Codemirror from 'codemirror';
+// mode
+import 'codemirror/mode/markdown/markdown';
+// placeholder
+import 'codemirror/addon/display/placeholder';
+// active-line
+import 'codemirror/addon/selection/active-line';
+// scrollbar
+import 'codemirror/addon/scroll/simplescrollbars';
+import 'codemirror/addon/scroll/simplescrollbars.css';
+// style
+import 'codemirror/lib/codemirror.css';
 
 // 插件/扩展
 import createEmojiPlugin from '@kangc/v-md-editor/lib/plugins/emoji/index';
@@ -116,15 +111,9 @@ VMdEditor.xss.extend({
     },
 });
 
+
 Vue.use(VMdEditor);
 
-
-// mavonEditor 编辑器
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
-
-
-// vue-md-editor 编辑器
-import VueEditor from 'vue-md-editor'
-Vue.use(VueEditor)

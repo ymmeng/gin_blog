@@ -1,61 +1,45 @@
 <template>
-  <v-app>
+  <v-app app>
     <div class="container">
       <div class="loginBox">
         <h1 class="title">登录</h1>
-        <a-form-model
-          class="loginForm"
-          :model="formdata"
-          :rules="rules"
-          ref="loginFormRef"
-        >
+        <a-form-model class="loginForm" :model="formdata" ref="loginFormRef">
           <!-- 用户名 -->
-          <a-form-model-item prop="username">
-            <a-input placeholder="请输入用户名" v-model="formdata.username">
-              <a-icon
-                slot="prefix"
-                type="user"
-                style="color: rgba(0, 0, 0, 0.25)"
-              />
-            </a-input>
-          </a-form-model-item>
+          <v-text-field
+            label="用户名"
+            placeholder="请输入用户名"
+            counter
+            style="width: 600px"
+            v-model="formdata.username"
+            prepend-inner-icon="mdi-account"
+          >
+          </v-text-field>
           <!-- 密码 -->
-          <a-form-model-item prop="password">
-            <a-input-password
-              placeholder="请输入密码"
-              type="password"
-              @keyup.enter="login"
-              v-model="formdata.password"
-            >
-              <a-icon
-                slot="prefix"
-                type="lock"
-                style="color: rgba(0, 0, 0, 0.25)"
-              />
-            </a-input-password>
-          </a-form-model-item>
-          <div>
-            <v-checkbox
-              hide-details
-              v-model="checkbox"
-              label="jizhuwo"
-            ></v-checkbox>
-          </div>
+          <v-text-field
+            label="密码"
+            placeholder="请输入密码"
+            counter
+            style="width: 600px"
+            type="password"
+            v-model="formdata.password"
+            prepend-inner-icon="mdi-donkey"
+          >
+          </v-text-field>
+          <v-checkbox
+            hide-details
+            v-model="formdata.checkbox"
+            label="记住我"
+          ></v-checkbox>
           <!-- 按钮 -->
           <div class="loginBtn">
-            <v-btn color="primary" style="margin: 10px" @click="login"
-              >登录</v-btn
-            >
-            <v-btn color="error" style="margin: 10px" @click="resetForm"
-              >clear</v-btn
-            >
+            <v-btn color="primary" style="margin: 10px" @click="login">登录</v-btn>
+            <v-btn color="error" style="margin: 10px" @click="resetForm">清空</v-btn>
           </div>
         </a-form-model>
       </div>
     </div>
   </v-app>
 </template>
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 
 <script>
 export default {
@@ -66,32 +50,13 @@ export default {
         password: "",
         checkbox: false,
       },
-      checkbox: true,
-      rules: {
-        username: [
-          { required: true, message: "请输入用户名...", trigger: "blur" },
-          {
-            min: 4,
-            max: 12,
-            message: "用户名在4-12位字符之间...",
-            trigger: "blur",
-          },
-        ],
-        password: [
-          { required: true, message: "请输入密码...", trigger: "blur" },
-          {
-            min: 3,
-            max: 20,
-            message: "密码在3-20位字符之间...",
-            trigger: "blur",
-          },
-        ],
-      },
     };
   },
   methods: {
     resetForm() {
-      this.$refs.loginFormRef.resetFields();
+      this.formdata.username = "";
+      this.formdata.password = "";
+      this.formdata.checkbox = null;
     },
     login() {
       this.$refs.loginFormRef.validate(async (valid) => {
@@ -101,12 +66,9 @@ export default {
         if (res.status != 200 && res.status != 201) {
           return this.$message.error(res.message);
         }
-        if (this.checkbox) {
+        if (this.formdata.checkbox) {
           window.sessionStorage.setItem("token", res.token);
         }
-        
-        console.log(window.sessionStorage);
-        console.log(window.localStorage);
         this.$message.success(this.formdata.username + " 欢迎");
         this.$router.push("/");
       });
@@ -117,7 +79,7 @@ export default {
 
 <style scoped>
 .container {
-  min-width: 1024px;
+  min-width: 180024px;
   height: 100%;
   background-color: #8a8a8a;
 }
@@ -142,8 +104,8 @@ export default {
   display: flex;
   justify-content: flex-end;
 }
-.title{
+.title {
   text-align: center;
-  padding-top: .5rem;
+  padding-top: 0.5rem;
 }
 </style>

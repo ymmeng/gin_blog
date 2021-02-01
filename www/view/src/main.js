@@ -9,7 +9,7 @@ import './assets/css/style.css'
 import './plugins/editArt'
 import './plugins/http'
 import './plugins/antUi'
-import './plugins/vuelidata'
+import './plugins/veelidata'
 
 Vue.filter('dataFormat',function(indata,outdata){
   return moment(indata).format(outdata)
