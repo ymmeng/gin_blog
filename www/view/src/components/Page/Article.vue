@@ -1,65 +1,54 @@
 <template>
-  <div>
-    <ToTop></ToTop>
-    <Header ></Header>
-    <link
-      href="https://cdn.bootcss.com/font-awesome/5.8.0/css/all.css"
-      rel="stylesheet"
-    />
-    <a-layout>
-      <div class="Cates">
-        <div class="artInfo">
+  <v-app>
+    <Header></Header>
+    <div class="Cates">
+      <div class="artInfo">
+        <v-alert>
           <h1>{{ artInfo.title }}</h1>
-          <span>发布时间：{{ artInfo.CreatedAt }}</span>
-          <a :href="artInfo.Category.name"
-            ><span>分类：{{ artInfo.Category.name }}</span></a
-          >
+          <p>
+            发布时间：{{
+              artInfo.CreatedAt | dataFormat("YYYY-MM-DD HH:SS:mm")
+            }}
+          </p>
+          <v-btn text>分类：{{ artInfo.Category.name }}</v-btn>
           <span>浏览量：0</span>
           <p>文章描述：{{ artInfo.desc }}</p>
-          <img v-if="artInfo.img" :src="artInfo.img" alt="正在加载图片..." />
-        </div>
+        </v-alert>
+        <img v-if="artInfo.img" :src="artInfo.img" alt="正在加载图片..." />
       </div>
-
-      <v-app>
-        <a-layout-content>
-          <div class="art">
-            <div>
-              <v-md-editor 
+    </div>
+    <div id="main">
+      <v-container class="my-3">
+        <v-row>
+          <v-col cols="2"> <NavL></NavL></v-col>
+          <v-col>
+            <div class="art">
+              <v-md-editor
                 class="artContent"
                 v-model="artInfo.content"
                 mode="preview"
-              ></v-md-editor>
+              >{{artInfo.content}}</v-md-editor>
             </div>
-          </div>
-        </a-layout-content>
-        <Footer></Footer>
-      </v-app>
-    </a-layout>
-  </div>
+          </v-col>
+          <v-col cols="2"> <NavR></NavR></v-col>
+        </v-row>
+      </v-container>
+    </div>
+    <Footer></Footer>
+  </v-app>
 </template>
 <script>
 import ToTop from "../Utils/GotoTop";
 import Header from "../Index/Header";
 import Footer from "../Index/Footer";
-
+import NavR from "../../components/Index/NavR";
+import NavL from "../../components/Index/NavL";
 export default {
-  components: { ToTop, Header, Footer },
+  components: { ToTop, Header, Footer, NavR, NavL },
   props: ["id"],
   data() {
     return {
-      artInfo: {
-        id: 0,
-        title: "",
-        cid: undefined,
-        desc: "",
-        content: "",
-        img: "",
-        CreatedAt: "",
-        Category: {
-          id: 0,
-          name: "",
-        },
-      },
+      artInfo: { Category: {} },
     };
   },
   created() {
@@ -73,25 +62,22 @@ export default {
       const { data: res } = await this.$http.get(`article/info/${id}`);
       if (res.status != 200) return this.$message.error(res.message);
       this.artInfo = res.data;
-
-      let data = this.artInfo["CreatedAt"].substring(0, 10);
-      let time = this.artInfo["CreatedAt"].substring(11, 19);
-      this.artInfo["CreatedAt"] = data + " " + time;
     },
   },
 };
 </script>
 
 <style lang="less" scoped >
+#main {
+  background-color: rgb(156, 109, 88);
+  width: 100%;
+}
 .art {
   margin-left: 50%;
   transform: translatex(-50%);
-  background-color: rgb(237, 240, 228);
-  min-width: 521px;
-  max-width: 1200px;
-
+  width: 100%;
   .artContent {
-    background-color: rgb(237, 240, 228);
+    background-color: rgb(240, 240, 240);
   }
 }
 .Cates {
@@ -99,7 +85,8 @@ export default {
   justify-content: space-around;
   align-items: center;
   height: 520px;
-  background-size: cover;
+  background-image: url("https://s3.ax1x.com/2021/02/01/yZeMCT.jpg");
+  background-size: 100%;
   .artInfo {
     margin-top: 20px;
     text-align: center;

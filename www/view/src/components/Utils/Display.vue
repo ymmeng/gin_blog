@@ -8,7 +8,6 @@
   justify-content: space-around;
   align-items: center;
   height: 520px;
-  // background: url('../assets/img/bg.jpg');
   background-size: cover;
 }
 </style>

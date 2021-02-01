@@ -38,7 +38,7 @@
               <v-list color="transparent">
                 <v-list-item link color="grey lighten-4">
                   <v-list-item-content>
-                    <v-list-item-title> <Nav></Nav> </v-list-item-title>
+                    <v-list-item-title> <NavR></NavR> </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list>
@@ -58,13 +58,13 @@ import ToTop from "../Utils/GotoTop";
 import Footer from "../Index/Footer";
 import Header from "../Index/Header";
 import MyArt from "./MyArt";
-import Nav from "../Index/Nav";
+import NavR from "../Index/NavR";
 export default {
   components: {
     ToTop,
     Footer,
     Header,
-    Nav,
+    NavR,
     MyArt,
   },
 };

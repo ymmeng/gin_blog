@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import DPlayer from "dplayer";
 export default {
   mounted() {
     this.dplayer();
@@ -10,13 +11,17 @@ export default {
   data() {
     return { inputValue: 0 };
   },
+  created() {
+        this.dplayer();
+  },
+
   methods: {
-    dplayer(tmp) {
+    dplayer() {
       const dp = new DPlayer({
         container: document.getElementById("dplayer"),
         video: {
           // 视频封面
-          pic: "https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg",
+          pic: "https://s3.ax1x.com/2021/02/01/yZeMCT.jpg",
           // 视频流畅度
           quality: [
             {
@@ -39,11 +44,11 @@ export default {
           // 视频缩略图
           thumbnails: "https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg",
         },
-        theme: "#3498db",
+        theme: "bleak",
         lang: navigator.language.toLowerCase("zh-cn"),
         playbackSpeed: [2, 1.75, 1.5, 1.25, 1, 0.75, 0.5],
         // 视频logo
-        logo: "https://s3.ax1x.com/2020/12/07/Dz8MjO.jpg",
+        logo: "https://s3.ax1x.com/2020/12/06/DXI3B4.jpg",
         // 右键菜单
         contextmenu: [
           {
@@ -75,6 +80,7 @@ export default {
 
 <style lang="less" scoped>
 #dplayer {
-  border-radius: 0.5rem;
+  border-radius: 10px;
+  max-width:1400px;
 }
 </style>

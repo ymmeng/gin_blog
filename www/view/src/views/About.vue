@@ -1,5 +1,13 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <v-app>
+    <h1>关于页面</h1>
+    <Video></Video>
+  </v-app>
 </template>
+
+<script>
+import Video from "../components/Utils/Video";
+export default {
+  components: { Video },
+};
+</script>

@@ -81,7 +81,6 @@ import 'prismjs/components/prism-sass';
 import 'prismjs/components/prism-shell-session';
 import 'prismjs/components/prism-powershell';
 import 'prismjs/components/prism-bash';
-import 'prismjs/components/index';
 
 VMdEditor.use(vuepressTheme);
 
@@ -107,7 +106,6 @@ VMdEditor.use(createTodoListPlugin());
 VMdEditor.use(createEmojiPlugin());
 VMdEditor.use(createKatexPlugin());
 VMdEditor.Codemirror = Codemirror;
-
 
 VMdEditor.xss.extend({
     // 扩展白名单

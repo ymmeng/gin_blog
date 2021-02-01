@@ -92,7 +92,7 @@ export default {
     width: 100%;
     height: 200px;
     background: rgb(237, 240, 228);
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 20px 0;
     padding: 30px;
     .img {

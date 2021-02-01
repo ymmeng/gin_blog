@@ -20,6 +20,7 @@ import Footer from '../components/admin/Footer'
 import Header from '../components/admin/Hearde'
 export default {
   components: { Nav, Footer, Header },
+
 }
 </script>
 

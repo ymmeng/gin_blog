@@ -1,27 +1,21 @@
 <template>
-  <a-card hoverable style="margin-bottom: 20px">
-    <template #cover>
-      <img
-        alt="example"
-        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-      />
-    </template>
-    <template class="ant-card-actions" #actions>
-      <!-- <setting-outlined key="setting" />
-      <edit-outlined key="edit" />
-      <ellipsis-outlined key="ellipsis" /> -->
-    </template>
-    <a-card-meta title="Card title" description="This is the description">
-      <template #avatar>
-        <a-avatar
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-        />
-      </template>
-    </a-card-meta>
-  </a-card>
+  <v-card>
+    <v-img src="https://s3.ax1x.com/2021/02/01/yZetV1.jpg">
+      <v-card-title>
+        <v-col align="center">
+          <v-avatar size="96" color="grey">
+            <img src="https://s3.ax1x.com/2020/12/06/DXIQjU.jpg" alt="" />
+          </v-avatar>
+          <div class="ma-4 bleak--text">ymmeng</div>
+        </v-col>
+      </v-card-title>
+    </v-img>
+    <v-divider class="primary ma-3" />
+    <v-list nav>
+      <v-icon light>{{ "mdi-wechat" }}</v-icon>
+      <v-icon color="blue darken-2">{{ "mdi-github" }}</v-icon>
+      <v-icon>{{ "mdi-youtube" }}</v-icon>
+      <v-icon>{{ "mdi-email" }}</v-icon>
+    </v-list>
+  </v-card>
 </template>
-
-<script>
-
-
-</script>

@@ -1,13 +1,12 @@
 <template>
   <div class="article">
-    <Video></Video>
     <!-- 文章列表 -->
     <section>
       <article id="art" v-for="itme in Artlist" :key="itme.ID">
         <a @click="art(itme.ID)">
-          <div class="artInfo">
-            <h2>{{ itme.title }}</h2>
-            <span>{{ itme.CreatedAt }}</span>
+          <div class="artInfo" :title="itme.title">
+            <h1>{{ itme.title }}</h1>
+            <span>{{ itme.CreatedAt | dataFormat('YYYY-MM-DD HH:SS:mm') }}</span>
             <p>{{ itme.desc }}</p>
           </div>
           <div class="img" v-if="itme.img">
@@ -34,14 +33,13 @@
 
 
 <script>
-import Video from "../Utils/Video";
 export default {
-  components: { Video },
+
   data() {
     return {
       Artlist: undefined,
       pageSizeOptions: ["1", "3", "5", "7", "10", "15"],
-      queryParam: { title: "", PageSize: 3, Current: 1, total: 0 },
+      queryParam: { title: "", PageSize: 7, Current: 1, total: 0 },
     };
   },
   props: ["id"],
@@ -86,16 +84,15 @@ export default {
 
 <style lang="less" scoped>
 .article {
-  width: 88%;
+  width: 100%;
   margin: 0 auto;
-  padding-top: 1rem;
   #art {
     width: 100%;
     height: 200px;
     background: rgb(237, 240, 228);
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 20px 0;
-    padding: 30px;
+    padding: 20px;
     .img {
       height: 100px;
       width: 100%;
@@ -104,7 +101,7 @@ export default {
       padding-bottom: 10px;
       text-align: center;
       h1 {
-        font-size: 34px;
+        font-size: 30px;
       }
     }
   }

@@ -1,30 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 页面路由组件
-import Index from '../views/Home.vue'
+import Home from '../views/Home.vue'
 import Registered from '../components/Page/registered.vue'
 import Login from '../components/Page/Login.vue'
 import Article from '../components/Page/Article.vue'
 import About from '../views/About.vue'
 import MyOnly from '../components/Page/MyOnly.vue'
+import AddArt from '../components/Page/AddArt.vue'
 
-let name = "幽梦-";
+let name = " - 幽梦";
 
 Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'index',
+    name: 'Home',
     meta: {
-      title: name + '首页'
+      title: '首页' + name
     },
-    component: Index,
+    component: Home,
   },
   {
     path: '/about',
     name: 'about',
     meta: {
-      title:  name + '关于'
+      title: '关于' + name
     },
     component: About,
   },
@@ -32,7 +33,7 @@ const routes = [
     path: '/article/:id',
     component: Article,
     meta: {
-      title:  name + '文章详情:id'
+      title: `文章详情` + name
     },
     props: true
   },
@@ -40,7 +41,7 @@ const routes = [
     path: '/registered',
     name: 'registered',
     meta: {
-      title: name + '注册'
+      title: '注册' + name
     },
     component: Registered
   },
@@ -48,18 +49,27 @@ const routes = [
     path: '/login',
     name: 'login',
     meta: {
-      title: name + '登录'
+      title: '登录' + name
     },
     component: Login
+  },
+  {
+    path: '/addArt',
+    name: 'addArt',
+    meta: {
+      title: '写文章' + name
+    },
+    component: AddArt,
   },
   {
     path: '/my',
     name: '个人主页',
     meta: {
-      title: name + '个人主页'
+      title: '个人主页' + name
     },
-    component: MyOnly
+    component: MyOnly,
   },
+
 ]
 
 const router = new VueRouter({
@@ -67,6 +77,10 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+
   const token = window.sessionStorage.getItem('token')
   if (to.path == '/login') return next()
   if (!token && to.path == '/admin/' || to.path == 'admin/*') {

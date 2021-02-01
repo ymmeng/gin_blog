@@ -139,7 +139,7 @@ export default {
   top: 50%;
   left: 30%;
   transform: translate(-50%, -50%);
-  border-radius: 4px;
+  border-radius: 10px;
   text-align: center;
   h1 {
     margin-top: 10px;

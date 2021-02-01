@@ -1,25 +1,24 @@
 <template>
-  <v-container class="py-0 fill-height">
-    <div class="header">
-      <div id="logo"><a href="/">幽梦Blog</a></div>
-    </div>
-    <v-avatar class="mr-10" color="teal" size="42">1</v-avatar>
+  <!-- <v-app-bar app color="#fff" flat> -->
+  <v-app-bar app color="#123456">
+    <v-container class="py-0 fill-height">
+      <div class="header">
+        <div id="logo"><a href="/">幽梦Blog</a></div>
+      </div>
+      <v-avatar class="mr-10" color="teal" size="42">1</v-avatar>
 
-    <v-spacer>
-      <v-btn color="primary" @click="login" class="mr-5">
-        登录
-      </v-btn>
+      <v-spacer>
+        <v-btn color="primary" @click="login" class="mr-5"> 登录 </v-btn>
+        <v-btn @click="registered" class="mr-5"> 注册 </v-btn>
+        <v-btn color="primary" @click="addArt"> 写文章 </v-btn>
+      </v-spacer>
 
-      <v-btn @click="registered"> 注册 </v-btn>
-    </v-spacer>
-
-    <v-spacer> </v-spacer>
-
-    <v-responsive max-width="260" id="search">
-      <v-text-field dense flat hide-details rounded solo-inverted>
-      </v-text-field>
-    </v-responsive>
-  </v-container>
+      <v-responsive max-width="260" id="search">
+        <v-text-field dense flat hide-details rounded solo-inverted>
+        </v-text-field>
+      </v-responsive>
+    </v-container>
+  </v-app-bar>
 </template>
 
 <script>
@@ -33,6 +32,9 @@ export default {
     },
     registered() {
       this.$router.push("/registered");
+    },
+    addArt() {
+      this.$router.push("/addArt");
     },
   },
 };
