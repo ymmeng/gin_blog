@@ -12,10 +12,7 @@ import (
 )
 
 // UpLoad 文件上传
-func UpLoad(c *gin.Context, file *multipart.FileHeader, fileSize int64) (int, string) {
-	if fileSize > 1024*1024*5 {
-		return 4001, ""
-	}
+func UpLoad(c *gin.Context, file *multipart.FileHeader) (int, string) {
 
 	randFileName := uuid.New()
 	ext := path.Ext(file.Filename)

@@ -34,6 +34,11 @@
         ><p style="color: #999">
           图片大小5M以内(支持jpg、png、gif、jpeg、swf、svg格式)
         </p>
+
+        <template v-if="id">
+          <img :src="artInfo.img" style="width: 256px" />
+        </template>
+        
         <a-upload
           :multiple="true"
           :action="upUrl"
@@ -46,13 +51,6 @@
           <a-button name="file">
             <a-icon type="upload" /> 点击上传缩略图
           </a-button>
-
-          <template v-if="id">
-            <img
-              :src="artInfo.img"
-              style="width: 120px"
-            />
-          </template>
         </a-upload>
       </a-form-model-item>
       <!-- 文章内容 -->

@@ -1,8 +1,8 @@
 <template>
-  <v-app>
-    <h1>关于页面</h1>
+  <v-sheet rounded="lg">
+    <h1 class="d-flex py-5 justify-center">关于 My</h1>
     <Video></Video>
-  </v-app>
+  </v-sheet>
 </template>
 
 <script>

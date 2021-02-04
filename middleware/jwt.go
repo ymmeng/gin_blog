@@ -20,7 +20,7 @@ type MyClaims struct {
 
 // SetToken 生产token
 func SetToken(role int, username string) (string, int) {
-	expireTime := time.Now().Add(10 * time.Hour)
+	expireTime := time.Now().Add(7 * 24 * time.Hour)
 	SetClaims := MyClaims{
 		username,
 		jwt.StandardClaims{
@@ -34,7 +34,7 @@ func SetToken(role int, username string) (string, int) {
 		return "", errmsg.ERROR
 	}
 	if role != 1 {
-		return token, errmsg.SUCCES
+		return token, errmsg.SUCCSE
 	}
 	return token, errmsg.ADMIN_USER
 }
@@ -61,7 +61,7 @@ func CheckToken(token string) (*MyClaims, int) {
 
 	if setToken != nil {
 		if key, ok := setToken.Claims.(*MyClaims); ok && setToken.Valid {
-			return key, errmsg.SUCCES
+			return key, errmsg.SUCCSE
 		} else {
 			return nil, errmsg.ERROR_TOKEN_WRONG
 		}
@@ -79,7 +79,7 @@ func JwtToken() gin.HandlerFunc {
 		if tokenHerder == "" {
 			code = errmsg.ERROR_TOKEN_EXIST
 			c.JSON(200, gin.H{
-				"code":    code,
+				"status":  code,
 				"message": errmsg.GetErrMsg(code),
 			})
 			c.Abort()
@@ -90,7 +90,7 @@ func JwtToken() gin.HandlerFunc {
 		if len(checkToken) == 0 {
 			code = errmsg.ERROR_TOKEN_TYPE_WRONG
 			c.JSON(http.StatusOK, gin.H{
-				"code":    code,
+				"status":  code,
 				"message": errmsg.GetErrMsg(code),
 			})
 			c.Abort()
@@ -100,7 +100,7 @@ func JwtToken() gin.HandlerFunc {
 		if len(checkToken) != 2 && checkToken[0] != "Bearer" {
 			code = errmsg.ERROR_TOKEN_TYPE_WRONG
 			c.JSON(200, gin.H{
-				"code":    code,
+				"status":  code,
 				"message": errmsg.GetErrMsg(code),
 			})
 			c.Abort()
@@ -112,17 +112,7 @@ func JwtToken() gin.HandlerFunc {
 		if TCode == errmsg.ERROR {
 			code = errmsg.ERROR_TOKEN_WRONG
 			c.JSON(200, gin.H{
-				"code":    code,
-				"message": errmsg.GetErrMsg(code),
-			})
-			c.Abort()
-			return
-		}
-
-		if time.Now().Unix() > key.ExpiresAt {
-			code = errmsg.ERROR_TOKEN_RUNTIME
-			c.JSON(200, gin.H{
-				"code":    code,
+				"status":  code,
 				"message": errmsg.GetErrMsg(code),
 			})
 			c.Abort()

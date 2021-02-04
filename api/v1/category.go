@@ -14,7 +14,7 @@ func AddCategory(c *gin.Context) {
 	var data model.Category
 	_ = c.ShouldBindJSON(&data)
 	code = model.CheckCategory(data.Name)
-	if code == errmsg.SUCCES {
+	if code == errmsg.SUCCSE {
 		model.CreateCategory(&data)
 	}
 	c.JSON(
@@ -48,7 +48,7 @@ func GetCategorys(c *gin.Context) {
 		pageNum = -1
 	}
 	data, total := model.GetCategorys(pageSize, pageNum)
-	code = errmsg.SUCCES
+	code = errmsg.SUCCSE
 	c.JSON(200, gin.H{
 		"status":  code,
 		"data":    data,
@@ -63,7 +63,7 @@ func EditCategory(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	c.ShouldBindJSON(&data)
 	code = model.CheckCategory(data.Name)
-	if code == errmsg.SUCCES {
+	if code == errmsg.SUCCSE {
 		model.EditCategory(id, &data)
 	}
 	if code == errmsg.ERROR_Category_EXIST {

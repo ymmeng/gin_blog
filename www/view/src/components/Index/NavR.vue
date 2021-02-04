@@ -72,19 +72,19 @@ v-sheet {
 .cateInfo > {
   .ontime {
     background: #b6eebf;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid;
     padding: 10px 0;
   }
   .onview {
     background: #e9b6ee;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid;
     padding: 10px 0;
   }
   .bq {
     background: #b6d8ee;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid;
     padding: 10px 0;
     .btn {

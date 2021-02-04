@@ -15,7 +15,7 @@ func Login(c *gin.Context) {
 	var token string
 	c.ShouldBindJSON(&data)
 	code = model.CheckLogin(data.Username, data.Password)
-	if code == errmsg.SUCCES {
+	if code == errmsg.SUCCSE {
 		token, code = middleware.SetToken(2, data.Username)
 	}
 	if code == errmsg.ADMIN_USER {

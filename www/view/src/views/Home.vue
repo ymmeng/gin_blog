@@ -8,7 +8,7 @@
         <v-row>
           <v-col cols="2"><NavL></NavL> </v-col>
           <v-col>
-            <Content></Content>
+            <router-view :key="$route.path"></router-view>
           </v-col>
           <v-col cols="2"><NavR></NavR></v-col>
         </v-row>
@@ -19,7 +19,6 @@
 </template>
 
 <script>
-import Content from "../components/Index/Content";
 import NavR from "../components/Index/NavR";
 import NavL from "../components/Index/NavL";
 import Header from "../components/Index/Header";
@@ -27,7 +26,6 @@ import Footer from "../components/Index/Footer";
 import Carousel from "../components/Utils/Carousel";
 export default {
   components: {
-    Content,
     NavR,
     NavL,
     Header,
@@ -41,4 +39,5 @@ export default {
 #main {
   background: #ddd;
 }
+
 </style>

@@ -23,6 +23,7 @@
             >
             </v-text-field>
           </a-form-model-item>
+
           <!-- 文章分类 -->
           <a-form-model-item label="文章分类" prop="cid">
             <a-select
@@ -39,6 +40,7 @@
               >
             </a-select>
           </a-form-model-item>
+
           <a-form-model-item label="文章描述" prop="desc">
             <v-text-field
               label="文章描述"
@@ -47,10 +49,12 @@
               v-model="artInfo.desc"
             ></v-text-field>
           </a-form-model-item>
+
           <!-- 文章缩略图 -->
           <a-form-model-item label="文章缩略图"
             ><p style="color: #999">
-              图片大小5M以内(支持jpg、png、gif、jpeg、swf、svg格式)
+              图片大小5M以内(支持jpg、png、gif、jpeg、swf、svg格式) <br />
+              封面只能为一张,后来添加的将会覆盖之前的.
             </p>
             <a-upload
               :multiple="true"
@@ -66,7 +70,6 @@
               </a-button>
             </a-upload>
           </a-form-model-item>
-          <!-- 文章内容 -->
           <!-- 文章内容 -->
           <a-form-model-item label="文章内容" prop="content">
             <!-- 选择编辑器 -->
@@ -129,6 +132,7 @@ export default {
   props: ["id"],
   data() {
     return {
+      test: "",
       editValue: "v-md-editor",
       artInfo: {
         id: 0,
@@ -168,14 +172,11 @@ export default {
     }
   },
   methods: {
-    changeRTL() {
-      this.$vuetify.rtl = true;
-    },
-    // 枚举选择
+    // 枚举选择编辑器
     SelectEditChange(value) {
       this.editValue = `${value}`;
     },
-    // 绑定@imgAdd event
+    // mavon-editor上传
     $imgAdd(pos, $file) {
       // 第一步.将图片上传到服务器.
       var formdata = new FormData();
@@ -195,24 +196,17 @@ export default {
         $vm.$img2Url(pos, url);
       });
     },
-    handleUploadImage(event, insertImage, files) {
-      // 拿到 files 之后上传到文件服务器，然后向编辑框中插入对应的内容
+
+    // v-md-editor上传
+    async handleUploadImage(event, insertImage, files) {
       insertImage({
-        url:
-          "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1269952892,3525182336&fm=26&gp=0.jpg",
+        url: this.test,
         desc: files[0].name,
+        // width: 'auto',
+        // height: 'auto',
       });
     },
-    // 图片上传
-    async beforeUpload(file) {
-      const isLt5M = (await file.size) / 1024 < 1024;
-      if (!isLt5M) {
-        message.error(file.name + "文件大小超出限制，请重新上传", 2);
-        return false;
-      } else {
-        return true;
-      }
-    },
+
     // 查询文章信息
     async getCateInfo(id) {
       const { data: res } = await this.$http.get(`article/info/${id}`);
@@ -231,13 +225,17 @@ export default {
       this.artInfo.cid = value;
     },
     // 上传
-    upChange(info) {
-      if (info.file.status !== "uploading") {
+    async upChange(info) {
+      const isLt5M = (await info.file.size) / 1024 / 1024 < 5;
+      if (!isLt5M) {
+        this.$message.error(info.file.name + "文件大小超出限制，请重新上传");
+        return false;
       }
       if (info.file.status === "done") {
         this.$message.success(info.file.response.message);
         const imgUrl = info.file.response.url;
         this.artInfo.img = imgUrl;
+        this.test= imgUrl;
       } else if (info.file.status === "error") {
         this.$message.error(info.file.response.message);
       }

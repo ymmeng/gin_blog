@@ -1,7 +1,7 @@
 package errmsg
 
 const (
-	SUCCES     = 200
+	SUCCSE     = 200
 	ADMIN_USER = 201
 	ERROR      = 401
 
@@ -25,7 +25,7 @@ const (
 )
 
 var codeMsg = map[int]string{
-	SUCCES: "OK",
+	SUCCSE: "OK",
 	ERROR:  "FAIL",
 
 	ERROR_USERNAME_EXIST:   "用户名已存在",

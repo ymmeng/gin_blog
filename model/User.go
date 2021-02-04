@@ -25,7 +25,7 @@ func CheckUser(name string) (code int) {
 	if user.ID > 0 {
 		return errmsg.ERROR_USERNAME_EXIST //1001
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // CheckUpUser 查询用户是否存在
@@ -33,12 +33,12 @@ func CheckUpUser(id int) (code int) {
 	var user User
 	db.Select("id,username").Where("id = ?", id).First(&user)
 	if user.ID == uint(id) {
-		return errmsg.SUCCES
+		return errmsg.SUCCSE
 	}
 	if user.ID > 0 {
 		return errmsg.ERROR_USERNAME_EXIST //1001
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // CreateUser 增加用户
@@ -47,7 +47,7 @@ func CreateUser(data *User) int {
 	if err != nil {
 		return errmsg.ERROR // 500
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // GetUser 获取单个用户
@@ -57,7 +57,7 @@ func GetUser(id int) (User, int) {
 	if err != nil {
 		return user, errmsg.ERROR_USER_NOT_EXIST
 	}
-	return user, errmsg.SUCCES
+	return user, errmsg.SUCCSE
 }
 
 // GetUsers 获取用户列表
@@ -70,14 +70,14 @@ func GetUsers(username string, pageSize int, pageNum int) ([]*User, int, int) {
 		if err != nil && err != gorm.ErrRecordNotFound {
 			return nil, errmsg.ERROR, 0
 		}
-		return users, errmsg.SUCCES, total
+		return users, errmsg.SUCCSE, total
 	}
 	err = db.Order("Updated_At DESC").Where("username LIKE ?", "%"+username+"%").Find(&users).Limit(pageSize).Offset((pageNum - 1) * pageSize).Error
 	db.Model(&users).Where("username LIKE ?", "%"+username+"%").Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, errmsg.ERROR, 0
 	}
-	return users, errmsg.SUCCES, total
+	return users, errmsg.SUCCSE, total
 }
 
 // EditUser 编辑用户信息
@@ -90,7 +90,7 @@ func EditUser(id int, data *User) int {
 	if err != nil {
 		return errmsg.ERROR
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // DeleteUserinfo 删除用户
@@ -100,7 +100,7 @@ func DeleteUserinfo(id int) int {
 	if err != nil {
 		return errmsg.ERROR
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // BeforeSave 加密密码
@@ -132,7 +132,7 @@ func CheckLogin(username, password string) int {
 		return errmsg.ERROR_PASSWORD_WRONG
 	}
 	if user.Role != 1 {
-		return errmsg.SUCCES
+		return errmsg.SUCCSE
 	}
 	return errmsg.ADMIN_USER
 }

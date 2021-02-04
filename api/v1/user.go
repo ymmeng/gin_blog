@@ -27,7 +27,7 @@ func (u *UserController) AddUser(c *gin.Context) {
 	// var msg string
 	c.ShouldBindJSON(&data)
 	// msg, code = validator.Validate(&data)
-	// if code != errmsg.SUCCES {
+	// if code != errmsg.SUCCSE {
 	// 	c.JSON(200, gin.H{
 	// 		"status":  code,
 	// 		"message": msg,
@@ -36,7 +36,7 @@ func (u *UserController) AddUser(c *gin.Context) {
 	// }
 
 	code = model.CheckUser(data.Username)
-	if code == errmsg.SUCCES {
+	if code == errmsg.SUCCSE {
 		model.CreateUser(&data)
 	}
 	c.JSON(200, gin.H{
@@ -96,7 +96,7 @@ func EditUser(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	c.ShouldBindJSON(&data)
 	code = model.CheckUpUser(id)
-	if code == errmsg.SUCCES {
+	if code == errmsg.SUCCSE {
 		model.EditUser(id, &data)
 	}
 	if code == errmsg.ERROR_Category_EXIST {

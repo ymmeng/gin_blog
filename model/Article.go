@@ -22,7 +22,7 @@ func CreateArticle(data *Article) int {
 	if err := db.Create(&data).Error; err != nil {
 		return errmsg.ERROR //401
 	}
-	return errmsg.SUCCES //200
+	return errmsg.SUCCSE //200
 }
 
 // GetArticle 获取单个文章
@@ -32,7 +32,7 @@ func GetArticle(id int) (Article, int) {
 	if err != nil {
 		return art, errmsg.ERROR_ART_NOT_EXIST
 	}
-	return art, errmsg.SUCCES
+	return art, errmsg.SUCCSE
 }
 
 // GetCatArt 查询分类所有文章
@@ -43,7 +43,7 @@ func GetCatArt(cid int, pageSize int, pageNum int) ([]Article, int, int) {
 	if err != nil {
 		return nil, errmsg.ERROR_Category_NOT_EXIST, 0
 	}
-	return actArtList, errmsg.SUCCES, total
+	return actArtList, errmsg.SUCCSE, total
 }
 
 // GetArticles 获取文章列表
@@ -56,14 +56,14 @@ func GetArticles(title string, pageSize int, pageNum int) ([]*Article, int, int)
 		if err != nil && err != gorm.ErrRecordNotFound {
 			return nil, errmsg.ERROR, 0
 		}
-		return actList, errmsg.SUCCES, total
+		return actList, errmsg.SUCCSE, total
 	}
 	err = db.Order("Updated_At DESC").Preload("Category").Where("title LIKE ?", "%"+title+"%").Limit(pageSize).Offset((pageNum - 1) * pageSize).Find(&actList).Error
 	db.Model(&actList).Where("title LIKE ？", "%"+title+"%").Count(&total)
 	if err != nil && err != gorm.ErrRecordNotFound {
 		return nil, errmsg.ERROR, 0
 	}
-	return actList, errmsg.SUCCES, total
+	return actList, errmsg.SUCCSE, total
 }
 
 // EditArticle 编辑文章信息
@@ -76,7 +76,7 @@ func EditArticle(id int, data *Article) int {
 		return errmsg.ERROR
 	}
 
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // DeleteArticle 删除文章
@@ -86,5 +86,5 @@ func DeleteArticle(id int) int {
 	if err != nil {
 		return errmsg.ERROR
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }

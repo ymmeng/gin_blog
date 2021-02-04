@@ -33,5 +33,5 @@ func Validate(data interface{}) (string, int) {
 			return v.Translate(trans), errmsg.ERROR
 		}
 	}
-	return "", errmsg.SUCCES
+	return "", errmsg.SUCCSE
 }

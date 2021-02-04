@@ -14,7 +14,7 @@
         {{ link.name }}
       </v-btn>
       <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
-        {{ new Date().getFullYear() }} ~_~ <strong>Ymmeng Blog</strong>
+        {{ new Date().getFullYear() }} - <strong>Ymmeng Blog</strong>
       </v-col>
     </v-row>
   </v-footer>

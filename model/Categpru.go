@@ -19,7 +19,7 @@ func CheckCategory(name string) (code int) {
 	if cate.ID > 0 {
 		return errmsg.ERROR_Category_EXIST //1001
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // CreateCategory 增加分类
@@ -27,7 +27,7 @@ func CreateCategory(data *Category) int {
 	if err := db.Create(&data).Error; err != nil {
 		return errmsg.ERROR //401
 	}
-	return errmsg.SUCCES //200
+	return errmsg.SUCCSE //200
 }
 
 // GetCategory 查询分类下单个分类
@@ -37,7 +37,7 @@ func GetCategory(id int) ([]Category, int) {
 	if err != nil {
 		return nil, errmsg.ERROR //401
 	}
-	return cate, errmsg.SUCCES
+	return cate, errmsg.SUCCSE
 }
 
 // GetCategorys 获取分类列表
@@ -61,7 +61,7 @@ func EditCategory(id int, data *Category) int {
 	if err != nil {
 		return errmsg.ERROR
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }
 
 // DeleteCategory 删除分类
@@ -71,5 +71,5 @@ func DeleteCategory(id int) int {
 	if err != nil {
 		return errmsg.ERROR
 	}
-	return errmsg.SUCCES
+	return errmsg.SUCCSE
 }

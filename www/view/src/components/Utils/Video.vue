@@ -80,7 +80,7 @@ export default {
 
 <style lang="less" scoped>
 #dplayer {
-  border-radius: 10px;
+  border-radius: 8px;
   max-width:1400px;
 }
 </style>

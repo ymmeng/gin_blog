@@ -150,7 +150,7 @@ export default {
   top: 50%;
   left: 70%;
   transform: translate(-50%, -50%);
-  border-radius: 10px;
+  border-radius: 8px;
 }
 .loginForm {
   width: 100%;

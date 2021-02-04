@@ -10,7 +10,7 @@ import (
 
 // UpLoad 文件上传
 func UpLoad(c *gin.Context) {
-	_, headers, err := c.Request.FormFile("file")
+	_, _, err := c.Request.FormFile("file")
 	if err != nil {
 		c.JSON(500, gin.H{
 			"message": errmsg.GetErrMsg(401),
@@ -28,7 +28,7 @@ func UpLoad(c *gin.Context) {
 
 	for _, file := range form.File["file"] {
 		//上传文件并返回值
-		code, url := model.UpLoad(c, file, headers.Size)
+		code, url := model.UpLoad(c, file)
 
 		c.JSON(200, gin.H{
 			"message": errmsg.GetErrMsg(code),
