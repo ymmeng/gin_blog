@@ -17,6 +17,8 @@ var (
 	DbUser     string
 	DbPassword string
 	DbName     string
+
+	UploadAddress string
 )
 
 func init() {
@@ -32,7 +34,8 @@ func init() {
 func LoadServer(file *ini.File) {
 	AppMode = file.Section("server").Key("AppMode").MustString("debug")
 	HttpPort = file.Section("server").Key("HttpPort").MustString(":3000")
-	JwyKey = file.Section("server").Key("HttpPort").MustString("administrator")
+	JwyKey = file.Section("server").Key("JwyKey").MustString("administrator")
+	UploadAddress = file.Section("server").Key("UploadAddress").String()
 }
 
 func LoadData(file *ini.File) {

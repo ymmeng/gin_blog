@@ -2,7 +2,10 @@
   <v-app app>
     <div class="container">
       <div class="loginBox">
-        <h1 class="title">登录</h1>
+        <span class="my-4 justify-center d-flex text-h5">登录</span>
+        <span class="justify-center d-flex"
+          >没有帐号?进行<a href="/#/registered">注册</a></span
+        >
         <a-form-model class="loginForm" :model="formdata" ref="loginFormRef">
           <!-- 用户名 -->
           <v-text-field
@@ -23,6 +26,7 @@
             type="password"
             v-model="formdata.password"
             prepend-inner-icon="mdi-donkey"
+            @keyup.enter="login"
           >
           </v-text-field>
           <v-checkbox
@@ -32,9 +36,18 @@
           ></v-checkbox>
           <!-- 按钮 -->
           <div class="loginBtn">
-            <v-btn color="primary" style="margin: 10px" @click="login">登录</v-btn>
-            <v-btn color="error" style="margin: 10px" @click="resetForm">清空</v-btn>
+            <v-btn
+              color="primary"
+              style="margin: 10px"
+              @click="login"
+              >登录</v-btn
+            >
+            <v-btn color="error" style="margin: 10px" @click="resetForm"
+              >清空</v-btn
+            >
           </div>
+              <div id="box">
+    </div>
         </a-form-model>
       </div>
     </div>
@@ -53,6 +66,11 @@ export default {
     };
   },
   methods: {
+    show(ev) {
+      if (ev.keyCode == 13) {
+        alert("你按回车键了");
+      }
+    },
     resetForm() {
       this.formdata.username = "";
       this.formdata.password = "";
@@ -73,19 +91,22 @@ export default {
         this.$router.push("/");
       });
     },
+    toRegistered() {
+      this.$router.push("/registered");
+    },
   },
 };
 </script>
 
-<style scoped>
+<style lang='less' scoped>
 .container {
   min-width: 180024px;
   height: 100%;
   background-color: #8a8a8a;
 }
 .loginBox {
-  width: 450px;
-  height: 300px;
+  width: 500px;
+  height: 350px;
   background-image: linear-gradient(72deg, #c5c5c5 0%, #9195a5 90%);
   position: absolute;
   top: 50%;
@@ -103,9 +124,5 @@ export default {
 .loginBtn {
   display: flex;
   justify-content: flex-end;
-}
-.title {
-  text-align: center;
-  padding-top: 0.5rem;
 }
 </style>

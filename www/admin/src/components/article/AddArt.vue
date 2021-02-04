@@ -46,6 +46,13 @@
           <a-button name="file">
             <a-icon type="upload" /> 点击上传缩略图
           </a-button>
+
+          <template v-if="id">
+            <img
+              :src="artInfo.img"
+              style="width: 120px"
+            />
+          </template>
         </a-upload>
       </a-form-model-item>
       <!-- 文章内容 -->
@@ -201,6 +208,7 @@ export default {
         return true
       }
     },
+
     // 查询文章信息
     async getCateInfo(id) {
       const { data: res } = await this.$http.get(`article/info/${id}`)
@@ -218,6 +226,7 @@ export default {
     cateChange(value) {
       this.artInfo.cid = value
     },
+
     // 上传
     upChange(info) {
       if (info.file.status !== 'uploading') {

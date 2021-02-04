@@ -51,12 +51,13 @@ func InitRouter() {
 		auth.PUT("article/:id", v1.EditArticle)
 		auth.DELETE("article/:id", v1.DeleteArticle)
 
+		// 文件上传
+		auth.POST("upload", v1.UpLoad)
+
 	}
 	routerV1 := r.Group("api/v1")
 	{
 		routerV1.POST("article/add", v1.AddArticle)
-		// 文件上传
-		routerV1.POST("upload", v1.UpLoad)
 		// 用户 模块的路由接口
 		v1.UserRegister(routerV1)
 		// 分类 模块的路由接口

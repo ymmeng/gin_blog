@@ -1,18 +1,13 @@
 <template>
-  <v-carousel
-    cycle
-    height="400"
-    progress
-    hide-delimiter-background
-    show-arrows-on-hover
-  >
+  <v-carousel cycle height="360" hide-delimiter-background show-arrows-on-hover>
     <v-carousel-item
       v-for="slide in slides"
-      :key="slide.slide"
+      :key="slide.title"
       :src="slide.src"
+      :href="slide.url"
     >
       <v-row class="fill-height align-center justify-center">
-        <div class="display-2">第 {{ slide.slide }} 页</div>
+        <div class="display-2">{{ slide.title }}</div>
       </v-row>
     </v-carousel-item>
   </v-carousel>
@@ -24,29 +19,19 @@ export default {
     return {
       slides: [
         {
-          slide: "1",
+          title: "百度",
           src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
-          url: "",
+          url: "https://baidu.com",
         },
         {
-          slide: "2",
+          title: "bilibili",
           src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
-          url: "",
+          url: "https://bilibili.com",
         },
         {
-          slide: "1",
+          title: "Github",
           src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
-          url: "",
-        },
-        {
-          slide: "2",
-          src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
-          url: "",
-        },
-        {
-          slide: "1",
-          src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
-          url: "",
+          url: "https://github.com",
         },
       ],
     };

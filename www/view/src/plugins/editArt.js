@@ -56,6 +56,7 @@ import 'prismjs/components/prism-go';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-http';
 // import 'prismjs/components/prism-php';
+import 'prismjs/components/prism-rust';
 import 'prismjs/components/prism-sql';
 import 'prismjs/components/prism-sass';
 import 'prismjs/components/prism-docker';
@@ -64,6 +65,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-python';
 import 'prismjs/components/prism-protobuf';
+import 'prismjs/components/prism-yaml';
 VMdEditor.use(vuepressTheme);
 
 // codemirror 编辑器的相关资源

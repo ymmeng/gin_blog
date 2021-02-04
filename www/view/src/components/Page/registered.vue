@@ -8,6 +8,8 @@
         ref="loginFormRef"
       >
         <h1>注册面板</h1>
+        <span>已有帐号?进行<a href="/#/login">登录</a></span>
+        
         <!-- 用户名 -->
         <a-form-model-item prop="username" has-feedback>
           <a-input placeholder="请输入用户名" v-model="userInfo.username">
