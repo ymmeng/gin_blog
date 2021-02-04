@@ -16,7 +16,7 @@
               label="文章标题"
               placeholder="文章标题"
               counter
-              maxlength="50"
+              maxlength="100"
               style="width: 600px"
               v-model="artInfo.title"
               prepend-inner-icon="mdi-home"
@@ -42,7 +42,8 @@
           <a-form-model-item label="文章描述" prop="desc">
             <v-text-field
               label="文章描述"
-              type="textarea"
+              counter
+              maxlength="1000"
               v-model="artInfo.desc"
             ></v-text-field>
           </a-form-model-item>
@@ -65,6 +66,7 @@
               </a-button>
             </a-upload>
           </a-form-model-item>
+          <!-- 文章内容 -->
           <!-- 文章内容 -->
           <a-form-model-item label="文章内容" prop="content">
             <!-- 选择编辑器 -->
@@ -140,24 +142,10 @@ export default {
       upUrl: Url + "/upload",
       headers: {},
       artInfoRules: {
-        title: [
-          { required: true, message: "请输入文章标题", trigger: "blur" },
-          {
-            min: 1,
-            max: 50,
-            message: "文章题目在1~50个字符之间",
-            trigger: "blur",
-          },
-        ],
+        title: [{ required: true, message: "请输入文章标题", trigger: "blur" }],
         cid: [{ required: true, message: "请选择文章分类", trigger: "blur" }],
         desc: [
           { required: true, message: "请对该文章进行描述", trigger: "blur" },
-          {
-            min: 4,
-            max: 1000,
-            message: "文章描述在4~1000个字符之间",
-            trigger: "blur",
-          },
         ],
         content: [
           { required: true, message: "请输入文章内容", trigger: "blur" },
@@ -265,7 +253,7 @@ export default {
             this.artInfo
           );
           if (res.status != 200) return this.$message.error(res.message);
-          this.$router.push("/admin/artlist");
+          this.$router.push("/");
           this.$message.success("添加文章成功");
         } else {
           const { data: res } = await this.$http.put(
@@ -273,9 +261,8 @@ export default {
             this.artInfo
           );
           if (res.status != 200) return this.$message.error(res.message);
-          this.$router.push("/admin/artlist");
-          this.$message.success("更新文章成功");
           this.$router.push("/");
+          this.$message.success("更新文章成功");
         }
       });
     },

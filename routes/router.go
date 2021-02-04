@@ -32,7 +32,10 @@ func InitRouter() {
 	r.Use(middleware.Cors())
 
 	r.Static("/admin", "./static/admin")
-	r.StaticFile("/favicon.ico", "static/front/favicon.ico")
+
+	r.GET("/admin", func(c *gin.Context) {
+		c.HTML(200, "admin", nil)
+	})
 
 	auth := r.Group("api/v1")
 	auth.Use(middleware.JwtToken())

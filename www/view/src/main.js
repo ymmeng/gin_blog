@@ -11,6 +11,7 @@ import './plugins/http'
 import './plugins/antUi'
 import './plugins/veelidata'
 
+// 日期格式化
 Vue.filter('dataFormat',function(indata,outdata){
   return moment(indata).format(outdata)
 })

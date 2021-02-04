@@ -4,20 +4,18 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
-	"math/rand"
 	"net/http"
-	"time"
+	"path"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
-
-var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 // UpLoad 文件上传
 func UpLoad(c *gin.Context) {
 	_, headers, err := c.Request.FormFile("file")
 	if err != nil {
-		log.Printf("Error when try to get file: %v", err)
+		log.Printf("尝试获取文件时出错: %v", err)
 	}
 
 	if headers.Size > 1024*1024*5 {
@@ -35,14 +33,17 @@ func UpLoad(c *gin.Context) {
 		return
 	}
 	files := form.File["file"]
-	randFileName := randSeq(8)
+	randFileName := uuid.New()
+	var dst string
 	for _, file := range files {
-		dst := fmt.Sprintf("./static/uploadFile/%s_%s", randFileName, file.Filename)
+		ext := path.Ext(file.Filename)
+		dst = fmt.Sprintf("./blogdock/nginx/www/upload/%s%s", randFileName, ext)
 		c.SaveUploadedFile(file, dst)
+		c.JSON(200, gin.H{
+			"message": fmt.Sprintf("%s上传成功", file.Filename),
+		})
 	}
-	c.JSON(200, gin.H{
-		"message": fmt.Sprintf("上传成功，'%d' uploaded!", len(files)),
-	})
+	return
 }
 
 // process 显示上传文件的内容
@@ -54,15 +55,4 @@ func process(w http.ResponseWriter, r *http.Request) {
 			fmt.Fprintln(w, string(data))
 		}
 	}
-}
-
-// 生成随机文件名
-func randSeq(n int) string {
-	now := time.Now()
-	nowtime := now.Format("2006-01-02_15:04:05")
-	b := make([]rune, n)
-	for i := range b {
-		b[i] = letters[rand.Intn(len(letters))]
-	}
-	return nowtime + "_" + string(b)
 }

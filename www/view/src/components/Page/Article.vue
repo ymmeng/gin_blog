@@ -7,7 +7,7 @@
           <h1>{{ artInfo.title }}</h1>
           <p>
             发布时间：{{
-              artInfo.CreatedAt | dataFormat("YYYY-MM-DD HH:SS:mm")
+              artInfo.CreatedAt | dataFormat("YYYY-MM-DD HH:mm:ss")
             }}
           </p>
           <v-btn text>分类：{{ artInfo.Category.name }}</v-btn>
@@ -27,7 +27,8 @@
                 class="artContent"
                 v-model="artInfo.content"
                 mode="preview"
-              >{{artInfo.content}}</v-md-editor>
+                >{{ artInfo.content }}</v-md-editor
+              >
             </div>
           </v-col>
           <v-col cols="2"> <NavR></NavR></v-col>

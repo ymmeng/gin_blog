@@ -1,6 +1,6 @@
 <template>
   <!-- <v-app-bar app color="#fff" flat> -->
-  <v-app-bar app color="#123456">
+  <v-app-bar color="#123456">
     <v-container class="py-0 fill-height">
       <div class="header">
         <div title="返回首页" id="logo"><a href="/">幽梦Blog</a></div>

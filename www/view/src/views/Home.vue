@@ -2,6 +2,7 @@
 <template>
   <v-app app>
     <Header></Header>
+    <Carousel></Carousel>
     <v-main id="main">
       <v-container>
         <v-row>
@@ -23,6 +24,7 @@ import NavR from "../components/Index/NavR";
 import NavL from "../components/Index/NavL";
 import Header from "../components/Index/Header";
 import Footer from "../components/Index/Footer";
+import Carousel from "../components/Utils/Carousel";
 export default {
   components: {
     Content,
@@ -30,6 +32,7 @@ export default {
     NavL,
     Header,
     Footer,
+    Carousel,
   },
 };
 </script>

@@ -3,16 +3,28 @@
     <!-- 文章列表 -->
     <section>
       <article id="art" v-for="itme in Artlist" :key="itme.ID">
-        <a @click="art(itme.ID)">
-          <div class="artInfo" :title="itme.title">
-            <h1>{{ itme.title }}</h1>
-            <span>{{ itme.CreatedAt | dataFormat('YYYY-MM-DD HH:SS:mm') }}</span>
-            <p>{{ itme.desc }}</p>
-          </div>
-          <div class="img" v-if="itme.img">
-            <img src="itme.img" alt="正在加载图片..." />
-          </div>
-        </a>
+        <v-row @click="art(itme.ID)" :title="itme.title">
+          <v-col class="col-4">
+            <v-img
+              src="https://s3.ax1x.com/2020/12/06/DXIR8P.jpg"
+              alt="正在加载图片"
+              :aspect-ratio="20 / 9"
+              max-height="260"
+            ></v-img>
+          </v-col>
+          <v-col>
+            <div class="artInfo">
+              <h1>{{ itme.title }}</h1>
+              <span>{{
+                itme.CreatedAt | dataFormat("YYYY-MM-DD HH:mm:ss")
+              }}</span>
+              <div>
+                <v-btn text> {{ itme.Category.name }}</v-btn>
+              </div>
+              <p>{{ itme.desc }}</p>
+            </div>
+          </v-col>
+        </v-row>
       </article>
     </section>
     <!-- 分页 -->
@@ -34,11 +46,10 @@
 
 <script>
 export default {
-
   data() {
     return {
-      Artlist: undefined,
-      pageSizeOptions: ["1", "3", "5", "7", "10", "15"],
+      Artlist: {},
+      pageSizeOptions: ["3", "5", "7", "10", "15"],
       queryParam: { title: "", PageSize: 7, Current: 1, total: 0 },
     };
   },
@@ -76,6 +87,7 @@ export default {
     // 跳转到指定文章页面
     art(id) {
       this.$router.push(`/article/${id}`);
+      
     },
   },
 };
@@ -91,17 +103,14 @@ export default {
     height: 200px;
     background: rgb(237, 240, 228);
     border-radius: 10px;
-    margin: 20px 0;
+    margin: 0 0 20px 0;
     padding: 20px;
-    .img {
-      height: 100px;
-      width: 100%;
-    }
+    cursor: pointer;
     .artInfo {
       padding-bottom: 10px;
-      text-align: center;
       h1 {
-        font-size: 30px;
+        font-size: 25px;
+        color: #007;
       }
     }
   }
