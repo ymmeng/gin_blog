@@ -6,10 +6,10 @@
         <v-row @click="art(itme.ID)" :title="itme.title">
           <v-col class="col-4">
             <v-img
-              src="https://s3.ax1x.com/2020/12/06/DXIR8P.jpg"
-              alt="正在加载图片"
+              :src="itme.img"
+              alt="正在加载图片..."
               :aspect-ratio="20 / 9"
-              max-height="260"
+              min-height="160"
             ></v-img>
           </v-col>
           <v-col>
