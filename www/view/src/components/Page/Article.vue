@@ -1,9 +1,9 @@
 <template>
   <v-app>
     <Header></Header>
-    <div class="Cates">
+    <v-img class="Cates" :src="artInfo.img">
       <div class="artInfo">
-        <v-alert>
+        <!-- <v-alert> -->
           <h1>{{ artInfo.title }}</h1>
           <p>
             发布时间：{{
@@ -13,10 +13,9 @@
           <v-btn text>分类：{{ artInfo.Category.name }}</v-btn>
           <span>浏览量：0</span>
           <p>文章描述：{{ artInfo.desc }}</p>
-        </v-alert>
-        <img v-if="artInfo.img" :src="artInfo.img" alt="正在加载图片..." />
+        <!-- </v-alert> -->
       </div>
-    </div>
+    </v-img>
     <div id="main">
       <v-container class="my-3">
         <v-row>

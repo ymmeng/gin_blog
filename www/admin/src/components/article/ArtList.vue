@@ -14,7 +14,7 @@
         </a-col>
 
         <a-col :span="2">
-          <a-button type="primary" @click="$router.push(`/admin/addart`)"
+          <a-button type="primary" @click="$router.push(`/addart`)"
             >写文章</a-button
           >
         </a-col>
@@ -54,7 +54,7 @@
             <a-button
               type="primary"
               style="margin-right: 20px"
-              @click="$router.push(`editart/${data.ID}`)"
+              @click="$router.push(`/editart/${data.ID}`)"
               icon="edit"
               >编辑</a-button
             >

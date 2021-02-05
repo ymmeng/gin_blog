@@ -5,21 +5,21 @@
     </div>
 
     <a-menu theme="dark" mode="inline" @click="goToPage">
-      <a-menu-item key="admin/index"
+      <a-menu-item key="index"
         ><a-icon type="dashboard" /><span>仪表盘</span></a-menu-item
       >
 
-      <a-menu-item key="admin/addart"
+      <a-menu-item key="addart"
         ><a-icon type="form" /><span>写文章</span></a-menu-item
       >
-      <a-menu-item key="admin/artlist"
+      <a-menu-item key="artlist"
         ><a-icon type="ordered-list" /><span>文章列表</span></a-menu-item
       >
 
-      <a-menu-item key="admin/catelist"
+      <a-menu-item key="catelist"
         ><a-icon type="book" /><span>分类列表</span></a-menu-item
       >
-      <a-menu-item key="admin/userlist"
+      <a-menu-item key="userlist"
         ><a-icon type="user" /><span>用户列表</span></a-menu-item
       >
     </a-menu>

@@ -97,7 +97,7 @@ export default {
           return this.$message.error('权限不足')
         window.sessionStorage.setItem('token', res.token)
         this.$message.success(res.message)
-        this.$router.push('/admin/index')
+        this.$router.push('/index')
       })
     },
   },

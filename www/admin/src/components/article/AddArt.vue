@@ -38,7 +38,7 @@
         <template v-if="id">
           <img :src="artInfo.img" style="width: 256px" />
         </template>
-        
+
         <a-upload
           :multiple="true"
           :action="upUrl"
@@ -248,7 +248,7 @@ export default {
             this.artInfo
           )
           if (res.status != 200) return this.$message.error(res.message)
-          this.$router.push('/admin/artlist')
+          this.$router.push('/artlist')
           this.$message.success('添加文章成功')
         } else {
           const { data: res } = await this.$http.put(
@@ -256,7 +256,7 @@ export default {
             this.artInfo
           )
           if (res.status != 200) return this.$message.error(res.message)
-          this.$router.push('/admin/artlist')
+          this.$router.push('/artlist')
           this.$message.success('更新文章成功')
         }
       })

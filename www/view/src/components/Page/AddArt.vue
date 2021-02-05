@@ -65,7 +65,7 @@
               data:{inputType="importValue}"
               accept=".jpg,.png,.gif,.jpeg,.swf,.svg"
             >
-              <a-button name="file">
+              <a-button name="不是file也行">
                 <a-icon type="upload" /> 点击上传缩略图
               </a-button>
             </a-upload>
@@ -127,12 +127,14 @@
 import Header from "../Index/Header";
 import Footer from "../Index/Footer";
 import { Url } from "../../plugins/http";
+import axios from 'axios';
 export default {
   components: { Header, Footer },
   props: ["id"],
   data() {
     return {
       test: "",
+      file: undefined,
       editValue: "v-md-editor",
       artInfo: {
         id: 0,
@@ -199,6 +201,9 @@ export default {
 
     // v-md-editor上传
     async handleUploadImage(event, insertImage, files) {
+      this.file = files[0]
+      const { data: res } = await this.$http.post("upload", this.file);
+      console.log(res);
       insertImage({
         url: this.test,
         desc: files[0].name,
@@ -235,7 +240,7 @@ export default {
         this.$message.success(info.file.response.message);
         const imgUrl = info.file.response.url;
         this.artInfo.img = imgUrl;
-        this.test= imgUrl;
+        this.test = imgUrl;
       } else if (info.file.status === "error") {
         this.$message.error(info.file.response.message);
       }

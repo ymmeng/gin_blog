@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 页面路由组件
-import AdminLogin from '../views/AdminLogin.vue'
+import Login from '../views/Login.vue'
 import Admin from '../views/Admin.vue'
 import AdminIndex from '../components/admin/AdminIndex.vue'
 import AddArt from '../components/article/AddArt.vue'
@@ -12,12 +12,12 @@ import UserList from '../components/user/UserList.vue'
 Vue.use(VueRouter)
 const routes = [
   {
-    path: '/adminLogin',
-    name: 'adminLogin',
+    path: '/Login',
+    name: 'Login',
     meta: {
       title: '请登录'
     },
-    component: AdminLogin
+    component: Login
   },
   {
     path: '/',
@@ -28,21 +28,21 @@ const routes = [
     component: Admin,
 
     children: [{
-      path: '/admin/index',
+      path: '/index',
       component: AdminIndex,
       meta: {
         title: '仪表盘'
       }
     },
     {
-      path: '/admin/addart',
+      path: '/addart',
       component: AddArt,
       meta: {
         title: '新增文章'
       }
     },
     {
-      path: '/admin/editart/:id',
+      path: '/editart/:id',
       component: AddArt,
       meta: {
         title: '编辑文章'
@@ -50,21 +50,21 @@ const routes = [
       props: true
     },
     {
-      path: '/admin/artlist',
+      path: '/artlist',
       component: ArtList,
       meta: {
         title: '文章列表'
       }
     },
     {
-      path: '/admin/catelist',
+      path: '/catelist',
       component: CateList,
       meta: {
         title: '分类列表'
       }
     },
     {
-      path: '/admin/userlist',
+      path: '/userlist',
       component: UserList,
       meta: {
         title: '用户列表'
@@ -83,9 +83,9 @@ router.beforeEach((to, from, next) => {
   next()
 
   const userToken = window.sessionStorage.getItem('token')
-  if (to.path === '/adminLogin') return next()
+  if (to.path === '/Login') return next()
   if (!userToken) {
-    next('/adminLogin')
+    next('/Login')
   } else {
     next()
   }
