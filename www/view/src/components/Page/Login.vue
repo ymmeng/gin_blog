@@ -4,7 +4,7 @@
       <div class="loginBox">
         <span class="my-4 justify-center d-flex text-h5">登录</span>
         <span class="justify-center d-flex"
-          >没有帐号?进行<a href="/#/registered">注册</a></span
+          >没有帐号?进行<a href="/registered">注册</a></span
         >
         <a-form-model class="loginForm" :model="formdata" ref="loginFormRef">
           <!-- 用户名 -->

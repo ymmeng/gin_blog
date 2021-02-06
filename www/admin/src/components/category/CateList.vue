@@ -3,9 +3,11 @@
     <!-- 显示分类 -->
     <a-card>
       <a-row>
-        <a-button type="primary" @click="addCateVisible = true"
-          >新增分类</a-button
-        >
+        <a-col>
+          <a-button type="primary" @click="addCateVisible = true"
+            >新增分类</a-button
+          >
+        </a-col>
       </a-row>
       <!-- 展示内容 -->
       <a-table
@@ -33,6 +35,7 @@
     </a-card>
     <!-- 新增分类 -->
     <a-modal
+      centered
       closable
       title="新增分类"
       :visible="addCateVisible"
@@ -54,7 +57,11 @@
       @ok="editCateOk"
       @cancel="editCateCancel"
     >
-      <a-form-model :model="editCateInfo" :rules="editCateRules" ref="editCateRef">
+      <a-form-model
+        :model="editCateInfo"
+        :rules="editCateRules"
+        ref="editCateRef"
+      >
         <a-form-model-item label="分类名" prop="name" has-feedback>
           <a-input v-model="editCateInfo.name"></a-input>
         </a-form-model-item>

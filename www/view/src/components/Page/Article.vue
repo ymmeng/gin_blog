@@ -4,15 +4,13 @@
     <v-img class="Cates" :src="artInfo.img">
       <div class="artInfo">
         <!-- <v-alert> -->
-          <h1>{{ artInfo.title }}</h1>
-          <p>
-            发布时间：{{
-              artInfo.CreatedAt | dataFormat("YYYY-MM-DD HH:mm:ss")
-            }}
-          </p>
-          <v-btn text>分类：{{ artInfo.Category.name }}</v-btn>
-          <span>浏览量：0</span>
-          <p>文章描述：{{ artInfo.desc }}</p>
+        <h1>{{ artInfo.title }}</h1>
+        <p>
+          发布时间：{{ artInfo.CreatedAt | dataFormat("YYYY-MM-DD HH:mm:ss") }}
+        </p>
+        <v-btn text>分类：{{ artInfo.Category.name }}</v-btn>
+        <span>浏览量：0</span>
+        <p>文章描述：{{ artInfo.desc }}</p>
         <!-- </v-alert> -->
       </div>
     </v-img>
@@ -21,15 +19,20 @@
         <v-row>
           <v-col cols="2"> <NavL></NavL></v-col>
           <v-col>
-            <div class="art">
-              <v-md-editor
-                class="artContent"
-                v-model="artInfo.content"
-                mode="preview"
-                >{{ artInfo.content }}</v-md-editor
-              >
-            </div>
+            <template>
+              <div class="art">
+                <v-md-editor
+                  class="artContent"
+                  v-model="artInfo.content"
+                  mode="preview"
+                  >{{ artInfo.content }}</v-md-editor
+                >
+                <v-divider></v-divider>
+                <Comment class="comment"> </Comment>
+              </div>
+            </template>
           </v-col>
+
           <v-col cols="2"> <NavR></NavR></v-col>
         </v-row>
       </v-container>
@@ -43,8 +46,9 @@ import Header from "../Index/Header";
 import Footer from "../Index/Footer";
 import NavR from "../../components/Index/NavR";
 import NavL from "../../components/Index/NavL";
+import Comment from "@/components/Utils/Comment";
 export default {
-  components: { ToTop, Header, Footer, NavR, NavL },
+  components: { ToTop, Header, Footer, NavR, NavL, Comment },
   props: ["id"],
   data() {
     return {
@@ -73,11 +77,16 @@ export default {
   width: 100%;
 }
 .art {
+  display: block;
   margin-left: 50%;
   transform: translatex(-50%);
   width: 100%;
+  background-color: rgb(240, 240, 240);
   .artContent {
     background-color: rgb(240, 240, 240);
+  }
+  .comment {
+    padding: 0 30px;
   }
 }
 .Cates {

@@ -19,16 +19,17 @@
           >
         </a-col>
 
-        <a-col :span="3">
+        <a-col :span="4">
           <a-select
+            mode="multiple"
             placeholder="请选择分类筛选文章"
-            style="width: 200px"
+            style="width: 260px"
             @change="cateChange"
           >
             <a-select-option
               v-for="item in Catelist"
               :key="item.id"
-              :value="item.id"
+              :model="item.id"
               >{{ item.name }}</a-select-option
             >
           </a-select>

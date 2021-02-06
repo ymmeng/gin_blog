@@ -17,6 +17,7 @@
             <a-icon
               slot="prefix"
               type="user"
+              @keyup.enter="login"
               style="color: rgba(0, 0, 0, 0.25)"
             />
           </a-input>

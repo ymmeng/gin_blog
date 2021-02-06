@@ -8,7 +8,7 @@
         <v-row>
           <v-col cols="2"><NavL></NavL> </v-col>
           <v-col>
-            <router-view :key="$route.path"></router-view>
+            <router-view :key="$router.path"></router-view>
           </v-col>
           <v-col cols="2"><NavR></NavR></v-col>
         </v-row>

@@ -19,19 +19,16 @@ export default {
     return {
       slides: [
         {
-          title: "百度",
-          src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
-          url: "https://baidu.com",
+          title: "Github",
+          src:
+            "http://192.168.58.111:6080/upload/2021-02-04/ffc58ab5-4955-4dca-bae3-0c1004d5de8e.png",
+          url: "https://github.com",
         },
         {
           title: "bilibili",
-          src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
+          src:
+            "http://192.168.58.111:6080/upload/2021-02-04/f03d7bb9-d91e-46ec-854f-5362983ffefa.jpg",
           url: "https://bilibili.com",
-        },
-        {
-          title: "Github",
-          src: "https://s3.ax1x.com/2020/12/06/DXIR8P.jpg",
-          url: "https://github.com",
         },
       ],
     };

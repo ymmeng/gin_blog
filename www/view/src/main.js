@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from './router/index'
 import vuetify from './plugins/vuetify';
 import aplayer from 'aplayer'
 import moment from 'moment'
@@ -12,8 +12,8 @@ import './plugins/antUi'
 import './plugins/veelidata'
 
 // 日期格式化
-Vue.filter('dataFormat',function(indata,outdata){
-  return moment(indata).format(outdata)
+Vue.filter('dataFormat',function(inData,outData){
+  return moment(inData).format(outData)
 })
 
 Vue.config.productionTip = false
