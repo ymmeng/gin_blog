@@ -13,7 +13,9 @@ func Login(c *gin.Context) {
 	var data model.User
 	var code int
 	var token string
-	c.ShouldBindJSON(&data)
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(200, gin.H{"status": errmsg.PARAM_ERROR, "message": errmsg.GetErrMsg(errmsg.PARAM_ERROR)})
+	}
 	code = model.CheckLogin(data.Username, data.Password)
 	if code == errmsg.SUCCSE {
 		token, code = middleware.SetToken(2, data.Username)

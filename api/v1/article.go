@@ -39,7 +39,9 @@ func convertData(req model.Article, rsp ArticleService) ArticleService {
 // AddArticle 添加文章
 func AddArticle(c *gin.Context) {
 	var data model.Article
-	c.ShouldBindJSON(&data)
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(200, gin.H{"status": errmsg.PARAM_ERROR, "message": errmsg.GetErrMsg(errmsg.PARAM_ERROR)})
+	}
 	code = model.CreateArticle(&data)
 	c.JSON(200, gin.H{
 		"status":  code,
@@ -115,7 +117,9 @@ func GetArticles(c *gin.Context) {
 func EditArticle(c *gin.Context) {
 	var data model.Article
 	id, _ := strconv.Atoi(c.Param("id"))
-	c.ShouldBindJSON(&data)
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(200, gin.H{"status": errmsg.PARAM_ERROR, "message": errmsg.GetErrMsg(errmsg.PARAM_ERROR)})
+	}
 	code = model.EditArticle(id, &data)
 	c.JSON(200, gin.H{
 		"status":  code,

@@ -30,7 +30,7 @@ func InitDb() {
 	db.SingularTable(true)
 
 	// 迁移数据
-	db.AutoMigrate(&User{}, &Article{}, &Category{})
+	db.AutoMigrate(&User{}, &Article{}, &Category{}, &DrawBed{})
 
 	// SetMaxIdleCons 设置连接池中的最大闲置连接数。
 	db.DB().SetMaxIdleConns(10)

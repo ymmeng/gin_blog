@@ -16,7 +16,7 @@ func UpLoad(c *gin.Context, file *multipart.FileHeader) (int, string) {
 
 	randFileName := uuid.New()
 	ext := path.Ext(file.Filename)
-	t := time.Now().Format("2006-01-02 01:50")
+	t := time.Now().Format("2006-01-02")
 
 	path := fmt.Sprintf("./blogdock/nginx/www/upload/%s/", t)
 

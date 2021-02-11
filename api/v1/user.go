@@ -25,7 +25,9 @@ func UserRegister(group *gin.RouterGroup) {
 func (u *UserController) AddUser(c *gin.Context) {
 	var data model.User
 	// var msg string
-	c.ShouldBindJSON(&data)
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(200, gin.H{"status": errmsg.PARAM_ERROR, "message": errmsg.GetErrMsg(errmsg.PARAM_ERROR)})
+	}
 	// msg, code = validator.Validate(&data)
 	// if code != errmsg.SUCCSE {
 	// 	c.JSON(200, gin.H{
@@ -94,7 +96,9 @@ func (u *UserController) GetUsers(c *gin.Context) {
 func EditUser(c *gin.Context) {
 	var data model.User
 	id, _ := strconv.Atoi(c.Param("id"))
-	c.ShouldBindJSON(&data)
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(200, gin.H{"status": errmsg.PARAM_ERROR, "message": errmsg.GetErrMsg(errmsg.PARAM_ERROR)})
+	}
 	code = model.CheckUpUser(id)
 	if code == errmsg.SUCCSE {
 		model.EditUser(id, &data)

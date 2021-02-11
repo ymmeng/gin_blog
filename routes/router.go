@@ -60,6 +60,8 @@ func InitRouter() {
 		routerV1.POST("article/add", v1.AddArticle)
 		// 用户 模块的路由接口
 		v1.UserRegister(routerV1)
+		// 图床 模块的路由接口
+		v1.DrawBedRegister(routerV1)
 		// 分类 模块的路由接口
 		routerV1.GET("categorys", v1.GetCategorys)
 		routerV1.GET("category/:id", v1.GetCategory)

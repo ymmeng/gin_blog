@@ -1,9 +1,10 @@
 package errmsg
 
 const (
-	SUCCSE     = 200
-	ADMIN_USER = 201
-	ERROR      = 401
+	SUCCSE      = 200
+	ADMIN_USER  = 201
+	ERROR       = 401
+	PARAM_ERROR = 501
 
 	// code = 1000...用户模块的错误
 	ERROR_USERNAME_EXIST   = 1001
@@ -25,8 +26,9 @@ const (
 )
 
 var codeMsg = map[int]string{
-	SUCCSE: "OK",
-	ERROR:  "FAIL",
+	SUCCSE:      "OK",
+	ERROR:       "FAIL",
+	PARAM_ERROR: "参数不正确",
 
 	ERROR_USERNAME_EXIST:   "用户名已存在",
 	ERROR_PASSWORD_WRONG:   "密码错误",

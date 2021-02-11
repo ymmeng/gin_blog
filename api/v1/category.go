@@ -12,7 +12,9 @@ import (
 // AddCategory 添加分类
 func AddCategory(c *gin.Context) {
 	var data model.Category
-	_ = c.ShouldBindJSON(&data)
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(200, gin.H{"status": errmsg.PARAM_ERROR, "message": errmsg.GetErrMsg(errmsg.PARAM_ERROR)})
+	}
 	code = model.CheckCategory(data.Name)
 	if code == errmsg.SUCCSE {
 		model.CreateCategory(&data)
@@ -61,7 +63,9 @@ func GetCategorys(c *gin.Context) {
 func EditCategory(c *gin.Context) {
 	var data model.Category
 	id, _ := strconv.Atoi(c.Param("id"))
-	c.ShouldBindJSON(&data)
+	if err := c.ShouldBindJSON(&data); err != nil {
+		c.JSON(200, gin.H{"status": errmsg.PARAM_ERROR, "message": errmsg.GetErrMsg(errmsg.PARAM_ERROR)})
+	}
 	code = model.CheckCategory(data.Name)
 	if code == errmsg.SUCCSE {
 		model.EditCategory(id, &data)
