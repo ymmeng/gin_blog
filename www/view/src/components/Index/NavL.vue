@@ -5,7 +5,7 @@
 </template>          
 
 <script>
-import UserInfo from "../Page/UserInfo";
+import UserInfo from "@/views/user/UserInfo";
 export default {
   components: {
     UserInfo,

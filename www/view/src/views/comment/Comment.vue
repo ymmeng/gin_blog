@@ -66,7 +66,7 @@
             <a-button>回复</a-button>
             <!-- <span key="comment-basic-reply-to">Reply to</span> -->
           </template>
-          <a slot="author">用户名</a>
+          <a slot="author">{{ authorInfo.name }}</a>
           <a-tooltip
             slot="datetime"
             :title="moment().format('YYYY-MM-DD HH:mm:ss')"
@@ -75,16 +75,26 @@
           </a-tooltip>
           <a-avatar
             slot="avatar"
-            src="http://192.168.58.111:6080/upload/2021-02-06%2002/d74e2a97-2680-495d-ab33-f4a94e9064f4.jpg"
-            alt="Han Solo"
+            :src="authorInfo.avatar"
+            :alt="authorInfo.name"
           />
         </a-comment>
       </a-list-item>
     </a-list>
+    <a-button v-on:click="$emit('enlarge-text', 0.1)"
+      >子组建调用父组建</a-button
+    >
   </div>
 </template>
 <script>
 import moment from "moment";
+
+const authorInfo = {
+  avatar:
+    "http://192.168.58.111:6080/upload/2021-02-06%2002/d74e2a97-2680-495d-ab33-f4a94e9064f4.jpg",
+  name: "username",
+};
+
 export default {
   data() {
     return {
@@ -96,6 +106,7 @@ export default {
       dislikes: 0,
       action: null,
       moment,
+      authorInfo,
     };
   },
   methods: {
@@ -120,9 +131,8 @@ export default {
         this.submitting = false;
         this.comments = [
           {
-            author: "Han Solo",
-            avatar:
-              "http://192.168.58.111:6080/upload/2021-02-06%2002/d74e2a97-2680-495d-ab33-f4a94e9064f4.jpg",
+            author: this.authorInfo.name,
+            avatar: this.authorInfo.avatar,
             content: this.value,
             datetime: moment().fromNow(),
           },

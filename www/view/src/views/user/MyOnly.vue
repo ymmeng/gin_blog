@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import ToTop from "../Utils/GotoTop";
-import Footer from "../Index/Footer";
-import Header from "../Index/Header";
+import ToTop from "@/components/Utils/GotoTop";
+import Footer from "@/components/Index/Footer";
+import Header from "@/components/Index/Header";
 import MyArt from "./MyArt";
-import NavR from "../Index/NavR";
+import NavR from "@/components/Index/NavR";
 export default {
   components: {
     ToTop,

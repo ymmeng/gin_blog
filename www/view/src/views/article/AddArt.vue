@@ -124,8 +124,8 @@
 </template>
 
 <script>
-import Header from "../Index/Header";
-import Footer from "../Index/Footer";
+import Header from "@/components/Index/Header";
+import Footer from "@/components/Index/Footer";
 import { Url } from "../../plugins/http";
 import axios from 'axios';
 export default {

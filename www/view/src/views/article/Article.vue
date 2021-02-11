@@ -28,7 +28,7 @@
                   >{{ artInfo.content }}</v-md-editor
                 >
                 <v-divider></v-divider>
-                <Comment class="comment"> </Comment>
+                <Comment class="comment" @enlarge-text="asd($event)"> </Comment>
               </div>
             </template>
           </v-col>
@@ -41,12 +41,12 @@
   </v-app>
 </template>
 <script>
-import ToTop from "../Utils/GotoTop";
-import Header from "../Index/Header";
-import Footer from "../Index/Footer";
-import NavR from "../../components/Index/NavR";
-import NavL from "../../components/Index/NavL";
-import Comment from "@/components/Utils/Comment";
+import ToTop from "@/components/Utils/GotoTop";
+import Header from "@/components/Index/Header";
+import Footer from "@/components/Index/Footer";
+import NavR from "@/components/Index/NavR";
+import NavL from "@/components/Index/NavL";
+import Comment from "@/views/comment/Comment";
 export default {
   components: { ToTop, Header, Footer, NavR, NavL, Comment },
   props: ["id"],
@@ -64,21 +64,28 @@ export default {
     // 获取文章
     async getArt(id) {
       const { data: res } = await this.$http.get(`article/info/${id}`);
-      if (res.status != 200) return this.$message.error(res.message);
+      if (res.status != 200) {
+        this.$router.push("/404");
+        return this.$message.error(res.message);
+      }
       this.artInfo = res.data;
+    },
+    asd() {
+      console.log("子组建调用父组建");
     },
   },
 };
 </script>
 
-<style lang="less" scoped >
+<style lang="scss" scoped >
 #main {
-  background-color: rgb(156, 109, 88);
+  background-color: rgb(88, 125, 156);
   width: 100%;
 }
 .art {
   display: block;
   margin-left: 50%;
+  border-radius: 10px;
   transform: translatex(-50%);
   width: 100%;
   background-color: rgb(240, 240, 240);

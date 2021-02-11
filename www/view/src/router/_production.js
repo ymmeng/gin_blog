@@ -7,7 +7,7 @@ const routes = [
     meta: {
       title: '注册' + name
     },
-    component: resolve => void (require(['@/components/Page/Registered.vue'], resolve)),
+    component: resolve => void (require(['@/views/auth/Registered.vue'], resolve)),
   },
   {
     path: '/login',
@@ -15,7 +15,7 @@ const routes = [
     meta: {
       title: '登录' + name
     },
-    component: () => import("@/components/Page/Login.vue")
+    component: () => import("@/views/auth/Login.vue")
   },
   {
     path: '/',
@@ -51,7 +51,7 @@ const routes = [
       title: `文章详情` + name
     },
     props: true,
-    component: resolve => void (require(['@/components/Page/Article.vue'], resolve)),
+    component: resolve => void (require(['@/views/article/Article.vue'], resolve)),
   },
   {
     path: '/addArt',
@@ -59,7 +59,7 @@ const routes = [
     meta: {
       title: '写文章' + name
     },
-    component: resolve => void (require(['@/components/Page/AddArt.vue'], resolve)),
+    component: resolve => void (require(['@/views/article/AddArt.vue'], resolve)),
   },
   {
     path: '/my',
@@ -67,12 +67,17 @@ const routes = [
     meta: {
       title: '个人主页' + name
     },
-    component: resolve => void (require(['@/components/Page/MyOnly.vue'], resolve)),
+    component: resolve => void (require(['@/views/user/MyOnly.vue'], resolve)),
   },
   {
+    path: "*",
+    redirect: "/404",
     path: '/404',
     name: '404',
-    component: resolve => void (require(['@/views/404'], resolve))
+    component: resolve => void (require(['@/views/404'], resolve)),
+    meta: {
+      title: '404' + name
+    },
   },
 ]
 

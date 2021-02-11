@@ -8,7 +8,7 @@
         text
         rounded
         class="my-2"
-        @click="test(link.link)"
+        @click="$router.push(link.link)"
       >
         <v-icon>{{ link.icon }}</v-icon>
         {{ link.name }}
@@ -28,10 +28,5 @@ export default {
       { name: "关于", link: "/about", icon: "mdi-account" },
     ],
   }),
-  methods: {
-    test(link) {
-      this.$router.push(link);
-    },
-  },
 };
 </script>
