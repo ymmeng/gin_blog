@@ -5,14 +5,21 @@
       <div class="header">
         <div title="返回首页" id="logo"><a href="/">幽梦Blog</a></div>
       </div>
-      <v-avatar class="mr-10" color="teal" size="42">1</v-avatar>
+      <v-avatar class="mr-10" color="teal" size="42"
+        ><a-icon type="user"
+      /></v-avatar>
 
       <v-spacer>
-        <v-btn title="登录" color="primary" @click="login" class="mr-5">
-          登录
+        <v-btn
+          :title="i.title"
+          :color="i.color"
+          @click="$router.push(i.link)"
+          class="mr-5"
+          v-for="i in links"
+          :key="i.title"
+        >
+          {{ i.title }}
         </v-btn>
-        <v-btn title="注册" @click="registered" class="mr-5"> 注册 </v-btn>
-        <v-btn title="写文章" color="primary" @click="addArt"> 写文章 </v-btn>
       </v-spacer>
 
       <v-responsive max-width="260" id="search">
@@ -26,19 +33,13 @@
 <script>
 export default {
   data: () => ({
-    links: ["首页", "关于", "博客", "更新"],
+    links: [
+      { title: "登录", link: "/login", color: "primary" },
+      { title: "注册", link: "/registered", color: "info" },
+      { title: "写文章", link: "/addArt", color: "waring" },
+      { title: "图床", link: "/drawBed", color: "#ffceff" },
+    ],
   }),
-  methods: {
-    login() {
-      this.$router.push("/login");
-    },
-    registered() {
-      this.$router.push("/registered");
-    },
-    addArt() {
-      this.$router.push("/addArt");
-    },
-  },
 };
 </script>
 

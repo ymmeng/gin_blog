@@ -6,6 +6,7 @@
         <v-row @click="$router.push(`/article/${itme.ID}`)" :title="itme.title">
           <v-col class="col-4">
             <v-img
+              class="art-img"
               :src="itme.img"
               alt="正在加载图片..."
               :aspect-ratio="20 / 9"
@@ -105,11 +106,14 @@ export default Vue.extend({
   #art {
     width: 100%;
     height: 200px;
-    background: rgb(237, 240, 228);
+    background: rgba(228, 233, 240, 0.6);
     border-radius: 8px;
     margin: 0 0 20px 0;
     padding: 20px;
     cursor: pointer;
+    .art-img {
+      max-height: 100px;
+    }
     .artInfo {
       padding-bottom: 10px;
       h1 {

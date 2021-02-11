@@ -2,6 +2,41 @@ let name = " - 幽梦";
 
 const routes = [
   {
+    path: '/',
+    name: 'home',
+    redirect: '/',
+    meta: {
+      title: ''
+    },
+    component: resolve => void (require(['@/views/Index.vue'], resolve)),
+    children: [
+      {
+        path: '/',
+        name: 'index',
+        meta: {
+          title: '首页' + name
+        },
+        component: resolve => void (require(['@/components/Index/Content.vue'], resolve)),
+      },
+      {
+        path: '/about',
+        name: 'about',
+        meta: {
+          title: '关于' + name
+        },
+        component: resolve => void (require(['@/views/About.vue'], resolve)),
+      },
+      {
+        path: '/drawBed',
+        name: 'drawBed',
+        meta: {
+          title: '图床' + name
+        },
+        component: resolve => void (require(['@/views/drawBed/DrawBed.vue'], resolve)),
+      },
+    ],
+  },
+  {
     path: '/registered',
     name: 'registered',
     meta: {
@@ -16,34 +51,6 @@ const routes = [
       title: '登录' + name
     },
     component: () => import("@/views/auth/Login.vue")
-  },
-  {
-    path: '/',
-    name: 'home',
-    redirect: '/app',
-    meta: {
-      title: ''
-    },
-    component: resolve => void (require(['@/views/Home.vue'], resolve)),
-
-    children: [
-      {
-        path: '/app',
-        name: 'about',
-        meta: {
-          title: '首页' + name
-        },
-        component: resolve => void (require(['@/components/Index/Content.vue'], resolve)),
-      },
-      {
-        path: '/about',
-        name: 'about',
-        meta: {
-          title: '关于' + name
-        },
-        component: resolve => void (require(['@/views/About.vue'], resolve)),
-      }
-    ],
   },
   {
     path: '/article/:id',
@@ -69,6 +76,7 @@ const routes = [
     },
     component: resolve => void (require(['@/views/user/MyOnly.vue'], resolve)),
   },
+
   {
     path: "*",
     redirect: "/404",

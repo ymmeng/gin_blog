@@ -2,7 +2,7 @@
 <template>
   <v-app app>
     <Header></Header>
-    <Carousel></Carousel>
+    <!--<Carousel></Carousel>
     <v-main id="main">
       <v-container>
         <v-row>
@@ -12,6 +12,11 @@
           </v-col>
           <v-col cols="2"><NavR></NavR></v-col>
         </v-row>
+      </v-container>
+    </v-main> -->
+    <v-main>
+      <v-container>
+        <router-view :key="$router.path"></router-view>
       </v-container>
     </v-main>
     <Footer></Footer>
@@ -39,5 +44,4 @@ export default {
 #main {
   background: #ddd;
 }
-
 </style>
