@@ -1,14 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 页面路由组件
-import Login from '../views/Login.vue'
-import Admin from '../views/Admin.vue'
-import AdminIndex from '../components/admin/AdminIndex.vue'
-import AddArt from '../components/article/AddArt.vue'
-import ArtList from '../components/article/ArtList.vue'
-import CateList from '../components/category/CateList.vue'
-import UserList from '../components/user/UserList.vue'
-
 Vue.use(VueRouter)
 const routes = [
   {
@@ -17,7 +9,7 @@ const routes = [
     meta: {
       title: '请登录'
     },
-    component: Login
+    component: () => import("@/views/Login.vue")
   },
   {
     path: '/',
@@ -25,63 +17,77 @@ const routes = [
     meta: {
       title: '后台管理页面'
     },
-    component: Admin,
-
-    children: [{
-      path: '/index',
-      component: AdminIndex,
-      meta: {
-        title: '仪表盘'
-      }
-    },
-    {
-      path: '/addart',
-      component: AddArt,
-      meta: {
-        title: '新增文章'
-      }
-    },
-    {
-      path: '/editart/:id',
-      component: AddArt,
-      meta: {
-        title: '编辑文章'
+    component: () => import("../views/Admin.vue"),
+    children: [
+      {
+        path: '/index',
+        component: () => import("../components/admin/AdminIndex.vue"),
+        meta: {
+          title: '仪表盘'
+        }
       },
-      props: true
-    },
-    {
-      path: '/artlist',
-      component: ArtList,
-      meta: {
-        title: '文章列表'
+      {
+        path: '/addart',
+        component: () => import("../components/article/AddArt.vue"),
+        meta: {
+          title: '新增文章'
+        }
+      },
+      {
+        path: '/editart/:id',
+        component: () => import("../components/article/AddArt.vue"),
+        meta: {
+          title: '编辑文章'
+        },
+        props: true
+      },
+      {
+        path: '/artlist',
+        component: () => import("../components/article/ArtList.vue"),
+        meta: {
+          title: '文章列表'
+        }
+      },
+      {
+        path: '/catelist',
+        component: () => import("../components/category/CateList.vue"),
+        meta: {
+          title: '分类列表'
+        }
+      },
+      {
+        path: '/userlist',
+        component: () => import("../components/user/UserList.vue"),
+        meta: {
+          title: '用户列表'
+        }
+      },
+      {
+        path: '/drawbed',
+        component: () => import("../components/drawBed/DrawBed.vue"),
+        meta: {
+          title: '图床列表'
+        }
       }
-    },
-    {
-      path: '/catelist',
-      component: CateList,
-      meta: {
-        title: '分类列表'
-      }
-    },
-    {
-      path: '/userlist',
-      component: UserList,
-      meta: {
-        title: '用户列表'
-      }
-    }]
+    ]
   }]
 
 const router = new VueRouter({
-  routes
+  // mode: 'history',
+  routes: routes,
 })
+
+// 解决路由重复报错问题
+const originalPush = VueRouter.prototype.push
+//修改原型对象中的push方法
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  next()
-
   const userToken = window.sessionStorage.getItem('token')
   if (to.path === '/Login') return next()
   if (!userToken) {

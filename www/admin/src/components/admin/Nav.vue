@@ -5,22 +5,8 @@
     </div>
 
     <a-menu theme="dark" mode="inline" @click="goToPage">
-      <a-menu-item key="index"
-        ><a-icon type="dashboard" /><span>仪表盘</span></a-menu-item
-      >
-
-      <a-menu-item key="addart"
-        ><a-icon type="form" /><span>写文章</span></a-menu-item
-      >
-      <a-menu-item key="artlist"
-        ><a-icon type="ordered-list" /><span>文章列表</span></a-menu-item
-      >
-
-      <a-menu-item key="catelist"
-        ><a-icon type="book" /><span>分类列表</span></a-menu-item
-      >
-      <a-menu-item key="userlist"
-        ><a-icon type="user" /><span>用户列表</span></a-menu-item
+      <a-menu-item :key="item.key" v-for="item in menuItems"
+        ><a-icon :type="item.icon" /><span>{{ item.name }}</span></a-menu-item
       >
     </a-menu>
   </a-layout-sider>
@@ -31,6 +17,38 @@ export default {
   data() {
     return {
       collapsed: false,
+      menuItems: [
+        {
+          key: 'index',
+          name: '仪表盘',
+          icon: 'dashboard',
+        },
+        {
+          key: 'addart',
+          name: '写文章',
+          icon: 'form',
+        },
+        {
+          key: 'artlist',
+          name: '文章列表',
+          icon: 'ordered-list',
+        },
+        {
+          key: 'catelist',
+          name: '分类列表',
+          icon: 'book',
+        },
+        {
+          key: 'userlist',
+          name: '用户列表',
+          icon: 'user',
+        },
+        {
+          key: 'drawbed',
+          name: '图床列表',
+          icon: 'picture',
+        },
+      ],
     }
   },
   methods: {

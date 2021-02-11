@@ -97,7 +97,7 @@
         <a-button type="primary" @click="artOk(artInfo.id)" id="buttonY">
           {{ artInfo.id ? '更新' : '提交' }}</a-button
         >
-        <a-button type="danger" @click="artCancel()" id="buttonN"
+        <a-button type="danger" @click="$refs.artInfoRef.resetFields()" id="buttonN"
           >清空</a-button
         >
       </a-form-model-item>
@@ -260,9 +260,6 @@ export default {
           this.$message.success('更新文章成功')
         }
       })
-    },
-    artCancel() {
-      this.$refs.artInfoRef.resetFields()
     },
   },
 }
