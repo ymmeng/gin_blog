@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
-import theme from './vuetify/theme'
+import theme from './theme'
 
 Vue.use(Vuetify)
 
@@ -8,8 +8,6 @@ Vuetify.config.silent = true
 
 // 由Vuetify（javascript）提供的翻译
 import zhHans from 'vuetify/es5/locale/zh-Hans'
-
-
 
 const vuetify = new Vuetify({
   // 镜像模式

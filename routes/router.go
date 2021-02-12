@@ -26,13 +26,13 @@ func createMyRender() multitemplate.Renderer {
 func InitRouter() {
 	gin.SetMode(utils.AppMode)
 	r := gin.New()
-	r.HTMLRender = createMyRender()
+
 	r.Use(middleware.Loggoer())
 	r.Use(gin.Recovery())
 	r.Use(middleware.Cors())
-
 	r.Static("/admin", "./static/admin")
 
+	r.HTMLRender = createMyRender()
 	r.GET("/admin", func(c *gin.Context) {
 		c.HTML(200, "admin", nil)
 	})

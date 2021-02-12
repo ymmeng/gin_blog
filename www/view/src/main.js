@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router/index'
-import vuetify from './plugins/vuetify';
+import router from '@/router/index'
+import vuetify from '@/plugins/vuetify/vuetify';
 import aplayer from 'aplayer'
 import moment from 'moment'
 

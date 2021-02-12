@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="less" scoped >
 #main {
   background-color: rgb(88, 125, 156);
   width: 100%;

@@ -42,7 +42,7 @@
   </div>
 </template>
 
-<style lang="scss"  scoped>
+<style lang="scss" scoped>
 @-moz-keyframes rocket-movement {
   100% {
     -moz-transform: translate(1200px, -600px);
