@@ -5,11 +5,11 @@ import vuetify from '@/plugins/vuetify/vuetify';
 import aplayer from 'aplayer'
 import moment from 'moment'
 
-import './assets/css/style.css'
+import '@/assets/css/style.css'
 import './plugins/editArt'
-import './plugins/http'
+import './request/http'
 import './plugins/antUi'
-import './plugins/veelidata'
+import './plugins/veeLiData'
 
 // 日期格式化
 Vue.filter('dataFormat',function(inData,outData){

@@ -48,6 +48,7 @@
 
 <script>
 import Vue from "vue";
+import { ApiArticles } from "@/request/http";
 
 // Vue.component('button-counter', {
 //   data: function () {
@@ -83,6 +84,13 @@ export default Vue.extend({
     },
     // 获取所有文章
     async getArtList() {
+      // ApiArticles(this.queryParam.PageSize, this.queryParam.Current).then(
+      //   (res) => {
+      //     console.log(res);
+      //     this.Artlist = res.data;
+      //     this.queryParam.total = res.total;
+      //   }
+      // );
       const { data: res } = await this.$http.get("articles", {
         params: {
           title: this.queryParam.title,

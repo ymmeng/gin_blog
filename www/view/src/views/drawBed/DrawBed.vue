@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { Url } from "../../plugins/http";
+import { Url } from "@/request/http";
 
 export default {
   data() {

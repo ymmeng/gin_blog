@@ -126,7 +126,7 @@
 <script>
 import Header from "@/components/Index/Header";
 import Footer from "@/components/Index/Footer";
-import { Url } from "../../plugins/http";
+import { Url } from "../../request/http";
 import axios from 'axios';
 export default {
   components: { Header, Footer },

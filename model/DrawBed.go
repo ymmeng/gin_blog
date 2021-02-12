@@ -10,6 +10,8 @@ import (
 type DrawBed struct {
 	ID        string `gorm:"type:char(36);primary_key" json:"id"`
 	URL       string `gorm:"type:varchar(100);not null" json:"url"`
+	Type      string `gorm:"type:varchar(20);not null" json:"type"`
+	Size      int    `gorm:"type:int(10) unsigned;not null;default:0;comment:'单位:MB'" json:"size"`
 	CreatedAt int    `gorm:"type:int(10) unsigned not null;default:0" json:"created_at"`
 }
 

@@ -1,6 +1,6 @@
 
 <template>
-  <v-app app>
+  <v-app id="index" app>
     <Header></Header>
     <Carousel />
     <v-main>
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#main {
-  background: #ddd;
+#index {
+  background: #e0e0e0;
 }
 </style>

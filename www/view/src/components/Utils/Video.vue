@@ -11,10 +11,6 @@ export default {
   data() {
     return { inputValue: 0 };
   },
-  created() {
-        this.dplayer();
-  },
-
   methods: {
     dplayer() {
       const dp = new DPlayer({
@@ -70,10 +66,6 @@ export default {
         ],
       });
     },
-    // 视频播放速度
-    playerChange(value) {
-      this.inputValue = value;
-    },
   },
 };
 </script>
@@ -81,6 +73,6 @@ export default {
 <style lang="less" scoped>
 #dplayer {
   border-radius: 8px;
-  max-width:1400px;
+  max-width: 1400px;
 }
 </style>

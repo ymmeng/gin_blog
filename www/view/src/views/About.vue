@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-sheet rounded="lg">
-      <h1 class="d-flex py-5 justify-center">关于 My</h1>
-      <Video></Video>
+      <h1 class="d-flex pa-5 justify-center">关于 My</h1>
+      <Video class="ma-6"></Video>
     </v-sheet>
   </div>
 </template>

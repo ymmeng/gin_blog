@@ -10,15 +10,6 @@ const routes = [
     },
     component: resolve => void (require(['@/views/Index.vue'], resolve)),
     children: [
-
-      {
-        path: '/about',
-        name: 'about',
-        meta: {
-          title: '关于' + name
-        },
-        component: resolve => void (require(['@/views/About.vue'], resolve)),
-      },
       {
         path: '/drawBed',
         name: 'drawBed',
@@ -40,6 +31,14 @@ const routes = [
               title: '首页' + name
             },
             component: resolve => void (require(['@/components/Index/Content.vue'], resolve)),
+          },
+          {
+            path: '/about',
+            name: 'about',
+            meta: {
+              title: '关于' + name
+            },
+            component: resolve => void (require(['@/views/About.vue'], resolve)),
           },
         ]
       }
