@@ -5,7 +5,7 @@
       <div class="header">
         <div title="返回首页" id="logo"><a href="/">幽梦Blog</a></div>
       </div>
-      <v-avatar class="mr-10" color="teal" size="42"
+      <v-avatar class="mr-10 cluster" color="teal" size="42" @click="$router.push('/my')"
         ><a-icon type="user"
       /></v-avatar>
 

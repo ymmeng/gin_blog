@@ -4,20 +4,13 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    redirect: '/',
+    redirect: '/art',
     meta: {
       title: ''
     },
     component: resolve => void (require(['@/views/Index.vue'], resolve)),
     children: [
-      {
-        path: '/',
-        name: 'index',
-        meta: {
-          title: '首页' + name
-        },
-        component: resolve => void (require(['@/components/Index/Content.vue'], resolve)),
-      },
+
       {
         path: '/about',
         name: 'about',
@@ -34,6 +27,22 @@ const routes = [
         },
         component: resolve => void (require(['@/views/drawBed/DrawBed.vue'], resolve)),
       },
+      {
+        path: '/',
+        name: 'art',
+        redirect: '/',
+        component: resolve => void (require(['@/views/article/ArtList.vue'], resolve)),
+        children: [
+          {
+            path: '/',
+            name: 'index',
+            meta: {
+              title: '首页' + name
+            },
+            component: resolve => void (require(['@/components/Index/Content.vue'], resolve)),
+          },
+        ]
+      }
     ],
   },
   {
