@@ -30,6 +30,12 @@ export default {
             "http://192.168.58.111:6080/upload/2021-02-04/f03d7bb9-d91e-46ec-854f-5362983ffefa.jpg",
           url: "https://bilibili.com",
         },
+        {
+          title: "啥也不是",
+          src:
+            "http://192.168.58.111:6080/upload/2021-02-11/72682eb2-a772-486e-9002-5c7914f324c0.jpg",
+          url: "",
+        },
       ],
     };
   },

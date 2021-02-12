@@ -6,16 +6,16 @@
     <v-divider class="primary my-3"> </v-divider>
     <div class="cateInfo">
       <!-- 近期发布 -->
-      <div class="ontime mb-5"><span>近期发布:</span></div>
+      <div class="ontime mb-5"><span class="ml-5">近期发布:</span></div>
       <!-- 访问排行 -->
-      <div class="onview mb-5"><span>访问排行:</span></div>
+      <div class="onview mb-5"><span class="ml-5 text-h6">访问排行:</span></div>
       <!-- 标签云 -->
       <div class="bq">
         <p>标签云:</p>
         <a-tag
           v-for="itme in Catelist"
           :key="itme.id"
-          class="ma-1"
+          class="ma-1 pointer"
           @click="test(itme.name)"
           :color="colors[Math.floor(Math.random() * colors.length)]"
         >

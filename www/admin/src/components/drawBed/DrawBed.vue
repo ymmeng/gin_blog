@@ -45,14 +45,28 @@ const columns = [
   {
     title: 'ID',
     dataIndex: 'id',
-    width: '7%',
+    width: '5%',
     key: 'id',
     align: 'center',
     slots: { title: 'customTitle' },
     scopedSlots: { customRender: 'IDx' },
   },
   {
-    title: '大小',
+    title: '名字',
+    dataIndex: 'name',
+    width: '5%',
+    key: 'name',
+    align: 'center',
+  },
+  {
+    title: '类型',
+    dataIndex: 'type',
+    width: '5%',
+    key: 'type',
+    align: 'center',
+  },
+  {
+    title: '大小(KB)',
     dataIndex: 'size',
     width: '5%',
     key: 'size',
@@ -61,14 +75,14 @@ const columns = [
   {
     title: '上传日期',
     dataIndex: 'created_at',
-    width: '5%',
+    width: '8%',
     key: 'created_at ',
     align: 'center',
   },
   {
     title: '图片链接',
     dataIndex: 'url',
-    width: '10%',
+    width: '8%',
     align: 'center',
     key: 'link',
   },
@@ -88,7 +102,7 @@ const columns = [
     scopedSlots: { customRender: 'action' },
   },
 ]
-
+import moment from 'moment'
 export default {
   data() {
     return {
@@ -114,8 +128,13 @@ export default {
   },
   methods: {
     async getDraw() {
-      const { data: res } = await this.$http.get('drawBeds')
+      const { data: res } = await this.$http.get('/drawBeds')
       if (res.status != 200) return this.$message.error(res.message)
+      res.data.forEach((img) => {
+        img.created_at = moment(img.created_at * 1000).format(
+          'YYYY-MM-DD  HH:mm:ss'
+        )
+      })
       this.drawlist = res.data
       this.paginationOption.total = res.total
     },
@@ -146,8 +165,10 @@ export default {
     // 上传图片
     upChange(info) {
       if (info.file.status === 'done') {
-        const imgUrl = info.file.response.url
-        this.drawInfo.url = imgUrl
+        this.drawInfo.name = info.file.name
+        this.drawInfo.size = info.file.size / 1000
+        this.drawInfo.type = info.file.type
+        this.drawInfo.url = info.file.response.url
         this.addDrawBed()
       } else if (info.file.status === 'error') {
         this.$message.error(info.file.response.message)

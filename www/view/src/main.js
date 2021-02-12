@@ -5,14 +5,14 @@ import vuetify from '@/plugins/vuetify/vuetify';
 import aplayer from 'aplayer'
 import moment from 'moment'
 
-import '@/assets/css/style.css'
+import '@/assets/scss/style.scss'
 import './plugins/editArt'
 import './request/http'
 import './plugins/antUi'
 import './plugins/veeLiData'
 
 // 日期格式化
-Vue.filter('dataFormat',function(inData,outData){
+Vue.filter('dataFormat', function (inData, outData) {
   return moment(inData).format(outData)
 })
 

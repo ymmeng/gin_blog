@@ -14,6 +14,11 @@ Vue.filter('dataFormat', (inData, outData) => {
   return moment(inData).format(outData)
 })
 
+Vue.filter('moment', function (value, formatString) {
+  formatString = formatString || 'YYYY-MM-DD HH:mm:ss';
+  return moment(value).format(formatString);
+});
+
 Vue.config.productionTip = false
 Vue.use(less)
 new Vue({

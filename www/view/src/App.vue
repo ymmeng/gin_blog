@@ -9,6 +9,7 @@
 
 <script>
 import ToTop from "./components/Utils/GotoTop";
+
 export default {
   components: {
     ToTop,
