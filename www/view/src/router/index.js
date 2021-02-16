@@ -20,13 +20,13 @@ const router = new VueRouter({
 
 // 解决路由重复报错问题
 const originalPush = VueRouter.prototype.push
-//修改原型对象中的push方法
 VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
 router.beforeEach((to, from, next) => {
   Modal.destroyAll();
+  // 修改网页名字i
   if (to.meta.title) {
     document.title = to.meta.title
   }

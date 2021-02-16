@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  width: 100%;
+  min-width: 1280px;
+}
+
+
+$primary-color:#abcaff;
+$tint-color: #f3f3f3;
+
+//文本不换行，这样超出一行的部分被截取，显示为...
+.line-length-limited {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.inline-hidden-input {
+  padding: 0;
+  height: 1.5em;
+  width: auto;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+// 三角
+.triangle-up {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border: 9px solid transparent;
+  border-bottom-color: $tint-color;
+}
+
+.tip-box-shadow {
+  box-shadow: 0 3px 12px 2px rgba(0, 0, 0, 0.12), 0 5px 22px 4px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder {
+  &::-webkit-input-placeholder {
+      color: #bfbfbf;
+  }
+
+  &::-ms-input-placeholder {
+      color: #bfbfbf;
+  }
+
+  &::-moz-placeholder {
+      color: #bfbfbf;
+  }
+
+  &::-o-placeholder {
+      color: #bfbfbf;
+  }
+}
+
+.radius-5 {
+  border-radius: 5px;
+}
+
+.radius-8 {
+  border-radius: 8px;
+}
+
+
+.radius-10 {
+  border-radius: 10px;
+}
+
+
+.hidden-input {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: rgba(255, 255, 255, 0);
+
+  &:hover {
+      border-color: $primary-color;
+      background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+      border-color: $primary-color;
+      background-color: rgba(255, 255, 255, 1);
+  }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.moveable {
+  cursor: move;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.flex-bwn {
+  justify-content: space-between;
+}
+
+.flex-between-vcenter {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.flex-no-shrink {
+  flex-shrink: 0;
+}
+
+.flex11 {
+  flex: 1 1;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.box-shadow {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.24);
+}
+
+.box-shadow-soft {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-shadow {
+  box-shadow: 0px 0px 3px 0px rgba(40, 40, 40, 0.24);
+}
+
+.header-box-shadow {
+  box-shadow: 0 1px 4px rgba(40, 40, 40, 0.14);
+}
+
+.no-border-menu {
+  border-bottom: transparent;
+}
+
+//大圆角的搜索框
+.rounded-search-box .ant-input {
+  border-radius: 20px;
+}
+
+//没有边框的选择器
+.no-border-select .ant-select-selection {
+  border: none;
+  box-shadow: none;
+}

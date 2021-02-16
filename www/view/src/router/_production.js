@@ -3,10 +3,10 @@ let name = " - 幽梦";
 const routes = [
   {
     path: '/',
-    name: 'home',
-    redirect: '/art',
+    name: 'index',
+    redirect: '/',
     meta: {
-      title: ''
+      title: 'Ymmeng'
     },
     component: resolve => void (require(['@/views/Index.vue'], resolve)),
     children: [
@@ -55,15 +55,15 @@ const routes = [
         path: '/',
         name: 'art',
         redirect: '/',
-        component: resolve => void (require(['@/views/article/ArtList.vue'], resolve)),
+        component: resolve => void (require(['@/views/article/Content.vue'], resolve)),
         children: [
           {
             path: '/',
-            name: 'index',
+            name: 'content',
             meta: {
               title: '首页' + name
             },
-            component: resolve => void (require(['@/components/Index/Content.vue'], resolve)),
+            component: resolve => void (require(['@/views/article/ArtList.vue'], resolve)),
           },
           {
             path: '/cateList/:id',
@@ -71,10 +71,10 @@ const routes = [
               title: `文章列表` + name
             },
             props: true,
-            component: resolve => void (require(['@/views/article/cateList.vue'], resolve)),
+            component: resolve => void (require(['@/views/article/ArtList.vue'], resolve)),
           },
           {
-            path: 'about',
+            path: '/about',
             name: 'about',
             meta: {
               title: '关于' + name
@@ -102,8 +102,6 @@ const routes = [
     component: () => import("@/views/auth/Login.vue")
   },
   {
-    path: "*",
-    redirect: "/404",
     path: '/404',
     name: '404',
     component: resolve => void (require(['@/views/404'], resolve)),

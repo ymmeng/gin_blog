@@ -3,8 +3,8 @@
   <a-anchor>
     <v-app-bar class="blue accent-1">
       <v-container class="py-0 fill-height">
-        <div class="header">
-          <div title="返回首页" id="logo"><a href="/">幽梦Blog</a></div>
+        <div class="pr-10 pl-10">
+          <div title="返回首页" class="fz-32"><a href="/">幽梦Blog</a></div>
         </div>
         <v-avatar
           class="mr-10 cluster pointer"
@@ -30,12 +30,11 @@
           v-model="value"
           placeholder="输入您要查找的文章标题"
           size="large"
-          @search="onSearch"
+          @search="searchArt"
           allowClear
           :loading="loading"
           class="search-box rounded-search-box"
-        >
-        </a-input-search>
+        />
       </v-container>
     </v-app-bar>
   </a-anchor>
@@ -48,13 +47,13 @@ export default {
       { title: "登录", link: "/login", color: "primary" },
       { title: "注册", link: "/registered", color: "info" },
       { title: "写文章", link: "/addArt", color: "waring" },
-      { title: "图床", link: "/drawBed", color: "#ffceff" },
+      { title: "图床", link: "/drawBed", color: "orange" },
     ],
     value: "",
     loading: false,
   }),
   methods: {
-    onSearch() {
+    searchArt() {
       console.log(this.value);
     },
   },
@@ -62,22 +61,12 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.header {
-  padding: 0 40px 0 40px;
-  #logo {
-    font-size: 30px;
-  }
-  .button {
-    position: absolute;
-    right: 40px;
-  }
-}
 .search-box {
   width: 240px;
   transition: width;
-  -webkit-transition: width 0.4s;
+  -webkit-transition: width 0.3s;
   &:hover {
-    width: 306px;
+    width: 336px;
   }
 }
 </style>

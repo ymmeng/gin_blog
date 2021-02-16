@@ -2,9 +2,6 @@
   <div class="bg-purple">
     <div class="stars">
       <div class="custom-navbar">
-        <div class="brand-logo">
-          <img src="../assets/logo.svg" width="86px" />
-        </div>
         <div class="navbar-links">
           <ul>
             <li><a href="/" target="_blank">主页</a></li>
@@ -32,11 +29,6 @@
             width="140px"
           />
         </div>
-      </div>
-      <div class="glowing_stars">
-        <div class="star">404</div>
-        <div class="star">404</div>
-        <div class="star">404</div>
       </div>
     </div>
   </div>
@@ -121,46 +113,6 @@
   }
 }
 
-@-moz-keyframes glow-star {
-  40% {
-    -moz-opacity: 0.3;
-  }
-
-  90%,
-  100% {
-    -moz-opacity: 1;
-    -moz-transform: scale(1.2);
-  }
-}
-
-@-webkit-keyframes glow-star {
-  40% {
-    -webkit-opacity: 0.3;
-  }
-
-  90%,
-  100% {
-    -webkit-opacity: 1;
-    -webkit-transform: scale(1.2);
-  }
-}
-
-@keyframes glow-star {
-  40% {
-    -webkit-opacity: 0.3;
-    opacity: 0.3;
-  }
-
-  90%,
-  100% {
-    -webkit-opacity: 1;
-    opacity: 1;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-    border-radius: 999999px;
-  }
-}
-
 .spin-earth-on-hover {
   transition: ease 200s !important;
   transform: rotate(-3600deg) !important;
@@ -187,20 +139,12 @@ body {
 
 .bg-purple {
   background: url("../assets/img/bg_purple.png");
-  background-repeat: repeat-x;
   background-size: cover;
-  background-position: left top;
-  overflow: hidden;
+  height: 100vh;
 }
 
 .custom-navbar {
   padding-top: 15px;
-}
-
-.brand-logo {
-  margin-left: 25px;
-  margin-top: 5px;
-  display: inline-block;
 }
 
 .navbar-links {
