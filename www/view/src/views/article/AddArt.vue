@@ -1,135 +1,128 @@
 <template>
   <v-app>
-    <Header></Header>
-    <v-main>
-      <v-container>
-        <v-form>
-          <h1 id="title">
-            {{ artInfo.id ? "编辑文章" : "添加新的文章" }}
-          </h1>
-        </v-form>
+    <v-container>
+      <v-form>
+        <h1 id="title">
+          {{ artInfo.id ? "编辑文章" : "添加新的文章" }}
+        </h1>
+      </v-form>
 
-        <a-form-model :model="artInfo" ref="artInfoRef" :rules="artInfoRules">
-          <!-- 文章标题 -->
-          <a-form-model-item label="文章标题" prop="title" class="bt">
-            <v-text-field
-              label="文章标题"
-              placeholder="文章标题"
-              counter
-              maxlength="100"
-              style="width: 600px"
-              v-model="artInfo.title"
-              prepend-inner-icon="mdi-home"
+      <a-form-model :model="artInfo" ref="artInfoRef" :rules="artInfoRules">
+        <!-- 文章标题 -->
+        <a-form-model-item label="文章标题" prop="title" class="bt">
+          <v-text-field
+            label="文章标题"
+            placeholder="文章标题"
+            counter
+            maxlength="100"
+            style="width: 600px"
+            v-model="artInfo.title"
+            prepend-inner-icon="mdi-home"
+          >
+          </v-text-field>
+        </a-form-model-item>
+
+        <!-- 文章分类 -->
+        <a-form-model-item label="文章分类" prop="cid">
+          <a-select
+            v-model="artInfo.cid"
+            style="width: 300px"
+            placeholder="请选择文章分类"
+            @change="cateChange"
+          >
+            <a-select-option
+              v-for="item in Carelist"
+              :key="item.id"
+              :value="item.id"
+              >{{ item.name }}</a-select-option
             >
-            </v-text-field>
-          </a-form-model-item>
+          </a-select>
+        </a-form-model-item>
 
-          <!-- 文章分类 -->
-          <a-form-model-item label="文章分类" prop="cid">
+        <a-form-model-item label="文章描述" prop="desc">
+          <v-text-field
+            label="文章描述"
+            counter
+            maxlength="1000"
+            v-model="artInfo.desc"
+          ></v-text-field>
+        </a-form-model-item>
+
+        <!-- 文章缩略图 -->
+        <a-form-model-item label="文章缩略图"
+          ><p style="color: #999">
+            图片大小5M以内(支持jpg、png、gif、jpeg、swf、svg格式) <br />
+            封面只能为一张,后来添加的将会覆盖之前的.
+          </p>
+          <a-upload
+            :multiple="true"
+            :action="upUrl"
+            :headers="headers"
+            @change="upChange"
+            list-type="picture-card"
+            data:{inputType="importValue}"
+            accept=".jpg,.png,.gif,.jpeg,.swf,.svg"
+          >
+            <a-button name="不是file也行">
+              <a-icon type="upload" /> 点击上传缩略图
+            </a-button>
+          </a-upload>
+        </a-form-model-item>
+        <!-- 文章内容 -->
+        <a-form-model-item label="文章内容" prop="content">
+          <!-- 选择编辑器 -->
+          <div>
             <a-select
-              v-model="artInfo.cid"
-              style="width: 300px"
-              placeholder="请选择文章分类"
-              @change="cateChange"
+              v-model="editValue"
+              style="width: 249px"
+              @change="SelectEditChange"
             >
-              <a-select-option
-                v-for="item in Carelist"
-                :key="item.id"
-                :value="item.id"
-                >{{ item.name }}</a-select-option
+              <a-select-option value="v-md-editor"
+                >v-md-editor编辑器</a-select-option
+              >
+              <a-select-option value="mavon-editor"
+                >mavon-editor编辑器</a-select-option
               >
             </a-select>
-          </a-form-model-item>
+          </div>
+          <div class="editor">
+            <!-- v-md-editor编辑器 -->
+            <v-md-editor
+              v-if="editValue == 'v-md-editor'"
+              v-model="artInfo.content"
+              :disabled-menus="[]"
+              :include-level="[2, 3, 4, 5]"
+              @upload-image="handleUploadImage"
+              height="700px"
+            ></v-md-editor>
 
-          <a-form-model-item label="文章描述" prop="desc">
-            <v-text-field
-              label="文章描述"
-              counter
-              maxlength="1000"
-              v-model="artInfo.desc"
-            ></v-text-field>
-          </a-form-model-item>
-
-          <!-- 文章缩略图 -->
-          <a-form-model-item label="文章缩略图"
-            ><p style="color: #999">
-              图片大小5M以内(支持jpg、png、gif、jpeg、swf、svg格式) <br />
-              封面只能为一张,后来添加的将会覆盖之前的.
-            </p>
-            <a-upload
-              :multiple="true"
-              :action="upUrl"
-              :headers="headers"
-              @change="upChange"
-              list-type="picture-card"
-              data:{inputType="importValue}"
-              accept=".jpg,.png,.gif,.jpeg,.swf,.svg"
-            >
-              <a-button name="不是file也行">
-                <a-icon type="upload" /> 点击上传缩略图
-              </a-button>
-            </a-upload>
-          </a-form-model-item>
-          <!-- 文章内容 -->
-          <a-form-model-item label="文章内容" prop="content">
-            <!-- 选择编辑器 -->
-            <div>
-              <a-select
-                v-model="editValue"
-                style="width: 249px"
-                @change="SelectEditChange"
-              >
-                <a-select-option value="v-md-editor"
-                  >v-md-editor编辑器</a-select-option
-                >
-                <a-select-option value="mavon-editor"
-                  >mavon-editor编辑器</a-select-option
-                >
-              </a-select>
-            </div>
-            <div class="editor">
-              <!-- v-md-editor编辑器 -->
-              <v-md-editor
-                v-if="editValue == 'v-md-editor'"
-                v-model="artInfo.content"
-                :disabled-menus="[]"
-                :include-level="[2, 3, 4, 5]"
-                @upload-image="handleUploadImage"
-                height="700px"
-              ></v-md-editor>
-
-              <!-- mavon-editor编辑器 -->
-              <mavon-editor
-                v-if="editValue == 'mavon-editor'"
-                v-model="artInfo.content"
-                ref="md"
-                @imgAdd="$imgAdd"
-                style="z-index: 0; height: 700px"
-              ></mavon-editor>
-            </div>
-          </a-form-model-item>
-          <hr />
-          <!-- 按钮 -->
-          <a-form-model-item class="butdiv">
-            <v-btn color="primary" @click="artOk(artInfo.id)" id="buttonY">
-              {{ artInfo.id ? "更新" : "提交" }}</v-btn
-            >
-            <v-btn color="error" @click="artCancel()" id="buttonN">清空</v-btn>
-          </a-form-model-item>
-        </a-form-model>
-      </v-container>
-    </v-main>
-    <Footer></Footer>
+            <!-- mavon-editor编辑器 -->
+            <mavon-editor
+              v-if="editValue == 'mavon-editor'"
+              v-model="artInfo.content"
+              ref="md"
+              @imgAdd="$imgAdd"
+              style="z-index: 0; height: 700px"
+            ></mavon-editor>
+          </div>
+        </a-form-model-item>
+        <hr />
+        <!-- 按钮 -->
+        <a-form-model-item class="butdiv">
+          <v-btn color="primary" @click="artOk(artInfo.id)" id="buttonY">
+            {{ artInfo.id ? "更新" : "提交" }}</v-btn
+          >
+          <v-btn color="error" @click="artCancel()" id="buttonN">清空</v-btn>
+        </a-form-model-item>
+      </a-form-model>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-import Header from "@/components/Index/Header";
-import Footer from "@/components/Index/Footer";
 import { Url } from "../../request/http";
-import axios from 'axios';
+import axios from "axios";
 export default {
-  components: { Header, Footer },
   props: ["id"],
   data() {
     return {
@@ -201,7 +194,7 @@ export default {
 
     // v-md-editor上传
     async handleUploadImage(event, insertImage, files) {
-      this.file = files[0]
+      this.file = files[0];
       const { data: res } = await this.$http.post("upload", this.file);
       console.log(res);
       insertImage({

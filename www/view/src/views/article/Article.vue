@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-    <Header></Header>
+  <div>
     <v-img class="Cates" :src="artInfo.img">
       <div class="artInfo">
         <!-- <v-alert> -->
@@ -32,23 +31,19 @@
               </div>
             </template>
           </v-col>
-
           <v-col cols="2"> <NavR></NavR></v-col>
         </v-row>
       </v-container>
     </div>
-    <Footer></Footer>
-  </v-app>
+  </div>
 </template>
 <script>
 import ToTop from "@/components/Utils/GotoTop";
-import Header from "@/components/Index/Header";
-import Footer from "@/components/Index/Footer";
 import NavR from "@/components/Index/NavR";
 import NavL from "@/components/Index/NavL";
 import Comment from "@/views/comment/Comment";
 export default {
-  components: { ToTop, Header, Footer, NavR, NavL, Comment },
+  components: { ToTop, NavR, NavL, Comment },
   props: ["id"],
   data() {
     return {
@@ -100,9 +95,8 @@ export default {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 520px;
+  height: 666px;
   background-image: url("https://s3.ax1x.com/2021/02/01/yZeMCT.jpg");
-  background-size: 100%;
   .artInfo {
     margin-top: 20px;
     text-align: center;

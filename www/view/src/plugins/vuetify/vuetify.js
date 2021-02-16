@@ -22,11 +22,11 @@ const vuetify = new Vuetify({
     },
   },
   theme: theme,
-  // iconfont: 'md',
-  // icons: {
-  //   iconfont: 'mdi',
-  //   values: {},
-  // },
+  iconfont: 'md',
+  icons: {
+    iconfont: 'mdi',
+    values: {},
+  },
   lang: {
     locales: { zhHans },
     current: 'zhHans',

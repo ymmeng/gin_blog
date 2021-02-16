@@ -1,9 +1,5 @@
 <template>
   <v-app>
-    <v-app-bar app color="white" flat>
-      <Header></Header>
-    </v-app-bar>
-
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
@@ -28,28 +24,21 @@
           </v-col>
 
           <v-col>
-            <v-sheet min-height="70vh" rounded="lg" id="content">
-              <MyArt></MyArt>
-            </v-sheet>
+            <MyArt></MyArt>
           </v-col>
 
           <v-col cols="2">
-            <v-sheet rounded="lg">
-              <v-list color="transparent">
-                <v-list-item link color="grey lighten-4">
-                  <v-list-item-content>
-                    <v-list-item-title> <NavR></NavR> </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-sheet>
+            <v-list color="transparent">
+              <v-list-item link color="grey lighten-4">
+                <v-list-item-content>
+                  <v-list-item-title> <NavR></NavR> </v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
           </v-col>
         </v-row>
       </v-container>
     </v-main>
-
-    <ToTop></ToTop>
-    <Footer></Footer>
   </v-app>
 </template>
 

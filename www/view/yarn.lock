@@ -9688,6 +9688,11 @@ vue@^2.6.11:
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha1-9evU+mvShpQD4pqJau1JBEVskSM=
 
+vuescroll@^4.17.3:
+  version "4.17.3"
+  resolved "https://registry.npm.taobao.org/vuescroll/download/vuescroll-4.17.3.tgz#e1c29372a007e0dff0cee6b4515783d43924f9e1"
+  integrity sha1-4cKTcqAH4N/wzua0UVeD1Dkk+eE=
+
 vuetify-loader@^1.7.2:
   version "1.7.2"
   resolved "https://registry.npm.taobao.org/vuetify-loader/download/vuetify-loader-1.7.2.tgz#5cdc45309496cf3a5fe431fd7611706ffa4aa8c8"

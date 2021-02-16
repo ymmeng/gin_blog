@@ -37,8 +37,8 @@
         :page-size-options="pageSizeOptions"
         :page-size="queryParam.PageSize"
         :total="queryParam.total"
-        @change="pagChange"
-        @showSizeChange="onShowSizeChange"
+        @change="pageChange"
+        @showSizeChange="pageChange"
       >
       </a-pagination>
     </div>
@@ -48,7 +48,7 @@
 
 <script>
 import Vue from "vue";
-import { ApiArticles } from "@/request/http";
+// import { ApiArticles } from "@/request/http";
 
 // Vue.component('button-counter', {
 //   data: function () {
@@ -60,7 +60,6 @@ import { ApiArticles } from "@/request/http";
 // })
 
 export default Vue.extend({
-  props: ["id"],
   data() {
     return {
       Artlist: {},
@@ -68,18 +67,14 @@ export default Vue.extend({
       queryParam: { title: "", PageSize: 7, Current: 1, total: 0 },
     };
   },
-  mounted() {
+  created() {
     this.getArtList();
   },
   methods: {
     // 改变多少条每页时候执行
-    onShowSizeChange(current, pageSize) {
-      this.queryParam.PageSize = pageSize;
-      this.getArtList();
-    },
-    // 改变分页时执行
-    pagChange(pageNumber) {
+    pageChange(pageNumber, pageSize) {
       this.queryParam.Current = pageNumber;
+      this.queryParam.PageSize = pageSize;
       this.getArtList();
     },
     // 获取所有文章
@@ -91,7 +86,7 @@ export default Vue.extend({
       //     this.queryParam.total = res.total;
       //   }
       // );
-      const { data: res } = await this.$http.get("articles", {
+      const { data: res } = await this.$http.get("/articles", {
         params: {
           title: this.queryParam.title,
           pageSize: this.queryParam.PageSize,

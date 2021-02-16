@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 获取指定用户信息
-export const ApiUserInfoById = (id: number) => axios.get(`/user/${id}`);
+export const ApiUserInfoById = (id: string) => axios.get(`/user/${id}`);
 // 更新指定用户信息
 export const ApiEditorUserById = (id: number) => axios.put(`/user/${id}`);
 // 新增用户

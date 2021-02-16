@@ -6,6 +6,7 @@
         <v-row @click="$router.push(`/article/${itme.ID}`)" :title="itme.title">
           <v-col class="col-4">
             <v-img
+              class="art-img"
               :src="itme.img"
               alt="正在加载图片..."
               :aspect-ratio="20 / 9"
@@ -35,27 +36,17 @@
         :page-size-options="pageSizeOptions"
         :page-size="queryParam.PageSize"
         :total="queryParam.total"
-        @change="pagChange"
-        @showSizeChange="onShowSizeChange"
+        @change="pageChange"
+        @showSizeChange="pageChange"
       >
       </a-pagination>
     </div>
   </div>
 </template>
 
-
 <script>
-import Vue from "vue";
-export default Vue.extend({
+export default {
   props: ["id"],
-  props: {
-    id: {
-      type: String,
-    },
-    artlist: {
-      type: Array,
-    },
-  },
   data() {
     return {
       Artlist: {},
@@ -63,23 +54,18 @@ export default Vue.extend({
       queryParam: { title: "", PageSize: 7, Current: 1, total: 0 },
     };
   },
-  mounted() {
-    this.getArtList();
+  created() {
+    this.getArtListByClass(this.id);
   },
   methods: {
     // 改变多少条每页时候执行
-    onShowSizeChange(current, pageSize) {
+    pageChange(pageNumber, pageSize) {
+      this.queryParam.Current = pageNumber;
       this.queryParam.PageSize = pageSize;
       this.getArtList();
     },
-    // 改变分页时执行
-    pagChange(pageNumber) {
-      this.queryParam.Current = pageNumber;
-      this.getArtList();
-    },
-    // 获取所有文章
-    async getArtList() {
-      const { data: res } = await this.$http.get("articles", {
+    async getArtListByClass(id) {
+      const { data: res } = await this.$http.get(`article/catelist/${id}`, {
         params: {
           title: this.queryParam.title,
           pageSize: this.queryParam.PageSize,
@@ -91,7 +77,7 @@ export default Vue.extend({
       this.queryParam.total = res.total;
     },
   },
-});
+};
 </script>
 
 <style lang="less" scoped>
@@ -101,11 +87,14 @@ export default Vue.extend({
   #art {
     width: 100%;
     height: 200px;
-    background: rgb(89, 150, 180);
+    background: rgba(228, 233, 240, 0.6);
     border-radius: 8px;
     margin: 0 0 20px 0;
     padding: 20px;
     cursor: pointer;
+    .art-img {
+      max-height: 100px;
+    }
     .artInfo {
       padding-bottom: 10px;
       h1 {

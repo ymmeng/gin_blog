@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view :key="$router.path" />
+    <router-view />
     <!-- 全局引入一键置顶按钮 -->
     <ToTop></ToTop>
   </div>

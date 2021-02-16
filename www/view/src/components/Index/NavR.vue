@@ -16,7 +16,7 @@
           v-for="itme in Catelist"
           :key="itme.id"
           class="ma-1 pointer"
-          @click="test(itme.name)"
+          @click="$router.push(`/cateList/${itme.id}`)"
           :color="colors[Math.floor(Math.random() * colors.length)]"
         >
           {{ itme.name }}
@@ -60,9 +60,6 @@ export default {
       if (res.status != 200) return this.$message.error(res.message);
       this.Catelist = res.data;
       this.cates = res.total;
-    },
-    test(name) {
-      this.$router.push(`cate/${name}`);
     },
   },
 };

@@ -1,19 +1,24 @@
 <template>
   <v-card>
-    <v-img src="https://s3.ax1x.com/2021/02/01/yZetV1.jpg">
+    <v-img
+      src="http://192.168.58.111:6080/upload/2021-02-11/f21e99bc-f947-4cf4-af35-2abfca4c9cae.jpg"
+    >
       <v-card-title>
         <v-col align="center">
           <v-avatar size="96" color="grey">
-            <img src="https://s3.ax1x.com/2020/12/06/DXIQjU.jpg" alt="" />
+            <img
+              src="http://192.168.58.111:6080/upload/2021-02-16/b254e7a1-acd7-4999-a8c4-7f8acc3116d9.jpg"
+              alt=""
+            />
           </v-avatar>
-          <div class="ma-4 bleak--text">ymmeng</div>
+          <div class="ma-4 white--text">ymmeng</div>
         </v-col>
       </v-card-title>
     </v-img>
-    <v-divider class="primary ma-3" />
+    <v-divider class="primary darken-1 ma-3" />
     <v-list nav>
-      <v-icon light>{{ "mdi-wechat" }}</v-icon>
-      <v-icon color="blue darken-2">{{ "mdi-github" }}</v-icon>
+      <v-icon>{{ "mdi-wechat" }}</v-icon>
+      <v-icon>{{ "mdi-github" }}</v-icon>
       <v-icon>{{ "mdi-youtube" }}</v-icon>
       <v-icon>{{ "mdi-email" }}</v-icon>
     </v-list>

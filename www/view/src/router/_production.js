@@ -11,12 +11,45 @@ const routes = [
     component: resolve => void (require(['@/views/Index.vue'], resolve)),
     children: [
       {
-        path: '/drawBed',
+        path: '/my',
+        name: '个人主页',
+        meta: {
+          title: '个人主页' + name
+        },
+        component: resolve => void (require(['@/views/user/MyOnly.vue'], resolve)),
+      },
+      {
+        path: 'drawBed',
         name: 'drawBed',
         meta: {
           title: '图床' + name
         },
         component: resolve => void (require(['@/views/drawBed/DrawBed.vue'], resolve)),
+      },
+      {
+        path: '/drawBed/:id',
+        name: 'drawBed.details',
+        meta: {
+          title: '图床详情' + name
+        },
+        props: true,
+        component: resolve => void (require(['@/views/drawBed/DrawBedItem.vue'], resolve)),
+      },
+      {
+        path: '/article/:id',
+        meta: {
+          title: `文章详情` + name
+        },
+        props: true,
+        component: resolve => void (require(['@/views/article/Article.vue'], resolve)),
+      },
+      {
+        path: '/addArt',
+        name: 'addArt',
+        meta: {
+          title: '写文章' + name
+        },
+        component: resolve => void (require(['@/views/article/AddArt.vue'], resolve)),
       },
       {
         path: '/',
@@ -33,7 +66,15 @@ const routes = [
             component: resolve => void (require(['@/components/Index/Content.vue'], resolve)),
           },
           {
-            path: '/about',
+            path: '/cateList/:id',
+            meta: {
+              title: `文章列表` + name
+            },
+            props: true,
+            component: resolve => void (require(['@/views/article/cateList.vue'], resolve)),
+          },
+          {
+            path: 'about',
             name: 'about',
             meta: {
               title: '关于' + name
@@ -60,31 +101,6 @@ const routes = [
     },
     component: () => import("@/views/auth/Login.vue")
   },
-  {
-    path: '/article/:id',
-    meta: {
-      title: `文章详情` + name
-    },
-    props: true,
-    component: resolve => void (require(['@/views/article/Article.vue'], resolve)),
-  },
-  {
-    path: '/addArt',
-    name: 'addArt',
-    meta: {
-      title: '写文章' + name
-    },
-    component: resolve => void (require(['@/views/article/AddArt.vue'], resolve)),
-  },
-  {
-    path: '/my',
-    name: '个人主页',
-    meta: {
-      title: '个人主页' + name
-    },
-    component: resolve => void (require(['@/views/user/MyOnly.vue'], resolve)),
-  },
-
   {
     path: "*",
     redirect: "/404",

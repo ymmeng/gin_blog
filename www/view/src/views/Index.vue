@@ -2,12 +2,8 @@
 <template>
   <v-app id="index" app>
     <Header></Header>
-    <Carousel />
-    <v-main>
-      <v-container>
-        <router-view :key="$router.path"></router-view>
-      </v-container>
-    </v-main>
+    <Carousel v-show="$route.path == '/'" />
+    <router-view></router-view>
     <Footer></Footer>
   </v-app>
 </template>

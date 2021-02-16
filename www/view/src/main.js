@@ -5,9 +5,11 @@ import vuetify from '@/plugins/vuetify/vuetify';
 import aplayer from 'aplayer'
 import moment from 'moment'
 
+import './plugins/vuescroll'
+
+import './request/http'
 import '@/assets/scss/style.scss'
 import './plugins/editArt'
-import './request/http'
 import './plugins/antUi'
 import './plugins/veeLiData'
 
