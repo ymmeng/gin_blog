@@ -1,9 +1,11 @@
 
 <template>
-  <v-app id="index" app>
+  <v-app app>
     <Header></Header>
     <Carousel v-show="$route.path == '/'" />
-    <router-view></router-view>
+    <div class="h-100">
+      <router-view></router-view>
+    </div>
     <Footer></Footer>
   </v-app>
 </template>
@@ -22,7 +24,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#index {
-  background: #e0e0e0;
-}
 </style>

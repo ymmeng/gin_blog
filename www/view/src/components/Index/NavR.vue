@@ -11,12 +11,12 @@
       <div class="onview mb-5"><span class="ml-5 text-h6">访问排行:</span></div>
       <!-- 标签云 -->
       <div class="bq">
-        <p>标签云:</p>
+        <p>标签云({{cates}}):</p>
         <a-tag
           v-for="itme in Catelist"
           :key="itme.id"
           class="ma-1 pointer"
-          @click="$router.push(`/cateList/${itme.id}`)"
+          @click="getArtListByClass(itme.id)"
           :color="colors[Math.floor(Math.random() * colors.length)]"
         >
           {{ itme.name }}
@@ -28,6 +28,7 @@
 
 
 <script>
+import { mapState } from "vuex";
 const colors = [
   "pink",
   "red",
@@ -42,12 +43,17 @@ const colors = [
   "blue",
   "purple",
 ];
+
 export default {
   data() {
     return {
       Catelist: [],
       colors,
+      cates: 0,
     };
+  },
+  computed: {
+    ...mapState(["queryParam"]),
   },
   created() {
     this.getCateList();
@@ -59,6 +65,16 @@ export default {
       if (res.status != 200) return this.$message.error(res.message);
       this.Catelist = res.data;
       this.cates = res.total;
+    },
+    // 获取指定分类下的所有文章
+    getArtListByClass(id) {
+      this.$router.push(`/cateList/${id}`);
+      this.$store.dispatch("getArtListByClass", {
+        title: this.queryParam.title,
+        pageSize: this.queryParam.PageSize,
+        pageNum: this.queryParam.Current,
+        id: id,
+      });
     },
   },
 };

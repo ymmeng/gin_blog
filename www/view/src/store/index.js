@@ -6,7 +6,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     ArtList: {},
-    total: 0
+    total: 0,
+    pageSizeOptions: ["3", "5", "7", "10", "15"],
+    queryParam: { title: "", PageSize: 7, Current: 1 },
   },
   mutations: {
     setData(state, data) {

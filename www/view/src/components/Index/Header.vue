@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data: () => ({
     links: [
@@ -52,13 +53,18 @@ export default {
     value: "",
     loading: false,
   }),
+  computed: {
+    ...mapState(["queryParam"]),
+  },
   methods: {
     searchArt() {
+      this.loading = true;
       this.$store.dispatch("getArtList", {
         title: this.value,
-        pageSize: 7,
-        pageNum: 1,
+        pageSize: this.queryParam.PageSize,
+        pageNum: this.queryParam.Current,
       });
+      this.loading = false;
     },
   },
 };

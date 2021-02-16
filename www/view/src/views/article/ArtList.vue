@@ -53,14 +53,8 @@
 import { mapState } from "vuex";
 export default {
   props: ["id"],
-  data() {
-    return {
-      pageSizeOptions: ["3", "5", "7", "10", "15"],
-      queryParam: { title: "", PageSize: 7, Current: 1 },
-    };
-  },
   computed: {
-    ...mapState(["ArtList", "total"]),
+    ...mapState(["ArtList", "total", "pageSizeOptions", "queryParam"]),
   },
   created() {
     if (this.id) {
@@ -90,7 +84,7 @@ export default {
       });
     },
     // 获取所有文章
-    async getArtList() {
+    getArtList() {
       this.$store.dispatch("getArtList", {
         title: this.queryParam.title,
         pageSize: this.queryParam.PageSize,
