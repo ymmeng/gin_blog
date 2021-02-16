@@ -1,52 +1,12 @@
-$fontsize: () !default;
-$fontsize: ("fz-1": 1px,
-  "fz-2": 2px,
-  "fz-3": 3px,
-  "fz-4": 4px,
-  "fz-5": 5px,
-  "fz-6": 6px,
-  "fz-7": 7px,
-  "fz-8": 8px,
-  "fz-9": 9px,
-  "fz-10": 10px,
-  "fz-11": 11px,
-  "fz-12": 12px,
-  "fz-13": 13px,
-  "fz-14": 14px,
-  "fz-15": 15px,
-  "fz-16": 16px,
-  "fz-17": 17px,
-  "fz-18": 18px,
-  "fz-19": 19px,
-  "fz-20": 20px,
-  "fz-21": 21px,
-  "fz-22": 22px,
-  "fz-23": 23px,
-  "fz-24": 24px,
-  "fz-25": 25px,
-  "fz-26": 26px,
-  "fz-27": 27px,
-  "fz-28": 28px,
-  "fz-30": 30px,
-  "fz-31": 31px,
-  "fz-32": 32px,
-  "fz-33": 33px,
-  "fz-34": 34px,
-  "fz-35": 35px,
-  "fz-36": 36px,
-  "fz-37": 37px,
-  "fz-38": 38px,
-  "fz-39": 39px,
-  "fz-40": 40px,
-);
+$count : 100;
 
 @mixin fontsize($value) {
   font-size: $value !important;
 }
 
-@each $name,
-$value in $fontsize {
-  .#{$name} {
-    @include fontsize($value);
+@for $i from 1 through $count {
+
+  .fz-#{$i} {
+    @include fontsize(#{$i}px);
   }
 }
