@@ -49,7 +49,6 @@ export default {
       colors,
     };
   },
-
   created() {
     this.getCateList();
   },

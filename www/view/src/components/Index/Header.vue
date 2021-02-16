@@ -54,7 +54,11 @@ export default {
   }),
   methods: {
     searchArt() {
-      console.log(this.value);
+      this.$store.dispatch("getArtList", {
+        title: this.value,
+        pageSize: 7,
+        pageNum: 1,
+      });
     },
   },
 };

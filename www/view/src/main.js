@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import store from './store/index'
 import router from '@/router/index'
 import vuetify from '@/plugins/vuetify/vuetify';
 import aplayer from 'aplayer'
@@ -21,6 +22,7 @@ Vue.filter('dataFormat', function (inData, outData) {
 Vue.config.productionTip = false
 new Vue({
   router,
+  store,
   vuetify,
   aplayer,
   render: h => h(App)

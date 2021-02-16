@@ -5,7 +5,7 @@
       <article
         id="art"
         class="blue lighten-3 pa-5 mb-5 pointer radius-8"
-        v-for="itme in Artlist"
+        v-for="itme in ArtList.data"
         :key="itme.ID"
       >
         <v-row @click="$router.push(`/article/${itme.ID}`)" :title="itme.title">
@@ -40,7 +40,7 @@
         show-size-changer
         :page-size-options="pageSizeOptions"
         :page-size="queryParam.PageSize"
-        :total="queryParam.total"
+        :total="total"
         @change="pageChange"
         @showSizeChange="pageChange"
       >
@@ -50,14 +50,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   props: ["id"],
   data() {
     return {
-      Artlist: {},
       pageSizeOptions: ["3", "5", "7", "10", "15"],
-      queryParam: { title: "", PageSize: 7, Current: 1, total: 0 },
+      queryParam: { title: "", PageSize: 7, Current: 1 },
     };
+  },
+  computed: {
+    ...mapState(["ArtList", "total"]),
   },
   created() {
     if (this.id) {
@@ -71,33 +74,28 @@ export default {
     pageChange(pageNumber, pageSize) {
       this.queryParam.Current = pageNumber;
       this.queryParam.PageSize = pageSize;
-      this.getArtList();
+      if (this.id) {
+        this.getArtListByClass(this.id);
+      } else {
+        this.getArtList();
+      }
     },
     // 获取指定分类下的所有文章
-    async getArtListByClass(id) {
-      const { data: res } = await this.$http.get(`article/catelist/${id}`, {
-        params: {
-          title: this.queryParam.title,
-          pageSize: this.queryParam.PageSize,
-          pageNum: this.queryParam.Current,
-        },
+    getArtListByClass(id) {
+      this.$store.dispatch("getArtListByClass", {
+        title: this.queryParam.title,
+        pageSize: this.queryParam.PageSize,
+        pageNum: this.queryParam.Current,
+        id: id,
       });
-      if (res.status != 200) return this.$message.error(res.message);
-      this.Artlist = res.data;
-      this.queryParam.total = res.total;
     },
     // 获取所有文章
     async getArtList() {
-      const { data: res } = await this.$http.get("/articles", {
-        params: {
-          title: this.queryParam.title,
-          pageSize: this.queryParam.PageSize,
-          pageNum: this.queryParam.Current,
-        },
+      this.$store.dispatch("getArtList", {
+        title: this.queryParam.title,
+        pageSize: this.queryParam.PageSize,
+        pageNum: this.queryParam.Current,
       });
-      if (res.status != 200) return this.$message.error(res.message);
-      this.Artlist = res.data;
-      this.queryParam.total = res.total;
     },
   },
 };

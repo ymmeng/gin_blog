@@ -11,7 +11,7 @@
     <a-col :span="16">
       <router-view />
     </a-col>
-    <a-col :span="4"><NavR></NavR></a-col>
+    <a-col :span="4" class="mb-4"><NavR></NavR></a-col>
   </a-row>
 </template>
 
