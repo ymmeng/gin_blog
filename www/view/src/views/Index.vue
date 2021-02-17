@@ -1,6 +1,6 @@
 
 <template>
-  <v-app class="cyan lighten-5" app>
+  <v-app app>
     <Header></Header>
     <Carousel v-show="$route.path == '/'" />
     <div class="h-100">

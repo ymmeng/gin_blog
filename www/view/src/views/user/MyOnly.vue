@@ -28,13 +28,7 @@
           </v-col>
 
           <v-col cols="2">
-            <v-list color="transparent">
-              <v-list-item link color="grey lighten-4">
-                <v-list-item-content>
-                  <v-list-item-title> <NavR></NavR> </v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
+            <NavR></NavR>
           </v-col>
         </v-row>
       </v-container>

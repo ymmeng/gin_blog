@@ -43,5 +43,7 @@ export default new Vuex.Store({
         ctx.commit('setData', res.data)
       })
     }
+  },
+  modules: {
   }
 })

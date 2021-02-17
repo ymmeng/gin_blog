@@ -5,7 +5,7 @@
       <section>
         <article
           id="art"
-          class="blue lighten-3 pa-5 mb-5 pointer radius-8"
+          class="pa-5 mb-5 pointer radius-8 border"
           v-for="itme in ArtList.data"
           :key="itme.ID"
         >

@@ -1,17 +1,19 @@
 <template>
-  <v-sheet class="pa-5" min-width="25vh" rounded="lg">
+  <div class="border radius-8 pa-5">
     <v-list-item-title>公告?</v-list-item-title>
-    <v-toolbar>^_^|||</v-toolbar>
+    <v-toolbar>^_^|||开发中...</v-toolbar>
     <!-- 分割线 -->
     <v-divider class="primary my-3"> </v-divider>
     <div class="cateInfo">
       <!-- 近期发布 -->
       <div class="ontime mb-5"><span class="ml-5">近期发布:</span></div>
       <!-- 访问排行 -->
-      <div class="onview mb-5"><span class="ml-5 text-h6">访问排行:</span></div>
+      <div class="onview mb-5">
+        <span class="ml-5 text-h6">访问排行:</span>
+      </div>
       <!-- 标签云 -->
       <div class="bq">
-        <p>标签云({{cates}}):</p>
+        <p>标签云({{ cates }}):</p>
         <a-tag
           v-for="itme in Catelist"
           :key="itme.id"
@@ -23,7 +25,7 @@
         </a-tag>
       </div>
     </div>
-  </v-sheet>
+  </div>
 </template>
 
 

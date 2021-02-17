@@ -90,7 +90,6 @@ $tint-color: #f3f3f3;
   border-radius: 8px;
 }
 
-
 .radius-10 {
   border-radius: 10px;
 }
@@ -111,6 +110,29 @@ $tint-color: #f3f3f3;
   }
 }
 
+.ma {
+  margin: 0 auto;
+}
+
+.center-row {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center-col {
+  position: absolute;
+  right: 50%;
+  transform: translateY(-50%);
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -119,10 +141,23 @@ $tint-color: #f3f3f3;
   cursor: move;
 }
 
+.r0 {
+  position: absolute;
+  right: 0;
+}
+
+.l0 {
+  position: absolute;
+  left: 0;
+}
+
+.border {
+  border: 1px solid #000;
+}
+
 .flex {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .flex-end {

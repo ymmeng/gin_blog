@@ -1,21 +1,12 @@
 <template>
-  <div>
+  <a-back-top :visibilityHeight="521">
     <a-tooltip placement="bottom" title="回到顶部">
-      <a-back-top :visibilityHeight="521">
-        <div class="ant-back-top-inner" style="top: -72px">
-          <picture
-            ><source
-              srcset="
-                https://cdn.jsdelivr.net/gh/DIYgod/diygod.me@gh-pages/images/scroll.webp
-              "
-              type="image/webp" />
-            <img
-              src="https://cdn.jsdelivr.net/gh/DIYgod/diygod.me@gh-pages/images/scroll.png"
-          /></picture>
-        </div>
-      </a-back-top>
+      <div class="ant-back-top-inner">
+        <img
+          src="http://192.168.58.111:6080/upload/2021-02-17/df6e8dae-695f-4a30-a6f7-fa436e1613c5.png"
+      /></div>
     </a-tooltip>
-  </div>
+  </a-back-top>
 </template>
 
 <style lang="less" scoped>
@@ -24,6 +15,7 @@
 }
 .ant-back-top-inner {
   position: fixed;
+  top: -108px;
   img {
     height: 100%;
     width: 100%;
