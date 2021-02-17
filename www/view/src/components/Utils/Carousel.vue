@@ -1,16 +1,23 @@
 <template>
-  <v-carousel cycle height="360" hide-delimiter-background show-arrows-on-hover>
-    <v-carousel-item
-      v-for="slide in slides"
-      :key="slide.title"
-      :src="slide.src"
-      :href="slide.url"
+  <div>
+    <v-carousel
+      cycle
+      height="360"
+      hide-delimiter-background
+      show-arrows-on-hover
     >
-      <v-row class="fill-height align-center justify-center">
-        <div class="display-2">{{ slide.title }}</div>
-      </v-row>
-    </v-carousel-item>
-  </v-carousel>
+      <v-carousel-item
+        v-for="slide in slides"
+        :key="slide.title"
+        :src="slide.src"
+        :href="slide.url"
+      >
+        <v-row class="fill-height align-center justify-center">
+          <div class="display-2">{{ slide.title }}</div>
+        </v-row>
+      </v-carousel-item>
+    </v-carousel>
+  </div>
 </template>
 
 <script>
