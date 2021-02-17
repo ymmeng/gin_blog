@@ -13,7 +13,27 @@
         :loading="loading"
         class="search-box center-row"
       />
-      <div v-if="true" class="r0">
+      <a-dropdown v-if="token" placement="bottomRight">
+        <div class="mr-10 cluster pointer r0">
+          <a-avatar
+            :size="40"
+            src="http://192.168.58.111:6080/upload/2021-02-16/048e591e-6099-4368-ba70-a61ceb4ae91d.jpg"
+          /><a-icon type="down" />
+        </div>
+        <a-menu slot="overlay" style="width: 156px">
+          <a-menu-item v-for="menu in userMenu" :key="menu.name">
+            <router-link :to="menu.href">
+              <a-icon class="pr-10" :type="menu.icon" />
+              <span>{{ menu.name }}</span></router-link
+            >
+          </a-menu-item>
+          <a-menu-item>
+            <a-icon class="pr-5" type="logout" />
+            <span @click="loginOut" class="red--text">退出登录</span>
+          </a-menu-item>
+        </a-menu>
+      </a-dropdown>
+      <div v-else class="r0">
         <v-btn
           text
           :title="i.title"
@@ -25,22 +45,6 @@
           {{ i.title }}
         </v-btn>
       </div>
-      <a-dropdown v-else placement="bottomRight">
-        <div class="mr-10 cluster pointer r0">
-          <a-avatar
-            :size="40"
-            src="http://192.168.58.111:6080/upload/2021-02-16/048e591e-6099-4368-ba70-a61ceb4ae91d.jpg"
-          /><a-icon type="down" />
-        </div>
-        <a-menu slot="overlay" style="width: 156px">
-          <a-menu-item v-for="menu in userMenu" :key="menu.name">
-            <router-link :to="menu.href">
-              <a-icon class="ml-3 pr-10" :type="menu.icon" />
-              <span>{{ menu.name }}</span></router-link
-            >
-          </a-menu-item>
-        </a-menu>
-      </a-dropdown>
     </v-app-bar>
   </a-anchor>
 </template>
@@ -57,13 +61,12 @@ export default {
       { icon: "user", name: "个人主页", href: "/my" },
       { icon: "setting", name: "账户设置", href: "/my/setting" },
       { icon: "picture", name: "免费图床", href: "/drawBed" },
-      { icon: "logout", name: "退出登录", href: "/my" },
     ],
     value: "",
     loading: false,
   }),
   computed: {
-    ...mapState(["queryParam"]),
+    ...mapState(["queryParam", "token", "username"]),
   },
   methods: {
     // 搜索文章
@@ -75,6 +78,12 @@ export default {
         pageNum: this.queryParam.Current,
       });
       this.loading = false;
+    },
+    // 退出登录
+    loginOut() {
+      window.sessionStorage.clear("token");
+      this.$message.success("注销成功!");
+      this.$router.push("/");
     },
   },
 };

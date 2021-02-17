@@ -24,25 +24,26 @@ VueRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
 
+// 路由导航
 router.beforeEach((to, from, next) => {
   Modal.destroyAll();
-  // 修改网页名字i
+  // 修改网页名字
   if (to.meta.title) {
-    document.title = to.meta.title
+    document.title = to.meta.title;
   }
-
-  const token = window.sessionStorage.getItem('token')
-
-  if (to.path == '/login') return next()
-  if (!token && to.path == '/app/' || to.path == 'app/*') {
-    next('/login')
-  } else {
-    // 已登录的用户重定向非登录界面
-    if (token && to.name == 'login') {
-      router.push('/app');
-      next('/app');
+  //路由中设置的needLogin字段就在to当中 
+  if (window.sessionStorage.data) {
+    if (to.path === '/login') {
+      next("/");
+    } else {
+      next();
     }
-    next();
+  } else {
+    // 如果没有session ,访问任何页面。都会进入到 登录页
+    if (to.path === '/' || to.path === '/login' || to.path === '/registered') { // 如果是登录页面的话，直接next() -->解决注销后的循环执行bug
+      next();
+    }
   }
 })
+
 export default router

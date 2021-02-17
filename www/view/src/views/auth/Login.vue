@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -61,6 +62,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["setUserName"]),
     resetForm() {
       this.formdata.username = "";
       this.formdata.password = "";
@@ -70,19 +72,17 @@ export default {
       this.$refs.loginFormRef.validate(async (valid) => {
         if (!valid)
           return this.$message.error("您输入的内容不符，请检查后重新输入");
-        const { data: res } = await this.$http.post("login", this.formdata);
+        const { data: res } = await this.$http.post("/login", this.formdata);
         if (res.status != 200 && res.status != 201) {
           return this.$message.error(res.message);
         }
-        if (this.formdata.checkbox) {
-          window.sessionStorage.setItem("token", res.token);
-        }
-        this.$message.success(this.formdata.username + " 欢迎");
+        // if (this.formdata.checkbox) {
+        window.sessionStorage.setItem("token", res.token);
+        // }
+        this.$message.success(res.message);
         this.$router.push("/");
+        this.setUserName(this.formdata.username);
       });
-    },
-    toRegistered() {
-      this.$router.push("/registered");
     },
   },
 };
