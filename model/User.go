@@ -51,9 +51,9 @@ func CreateUser(data *User) int {
 }
 
 // GetUser 获取单个用户
-func GetUser(id int) (User, int) {
+func GetUser(id int, username string) (User, int) {
 	var user User
-	err := db.Where("id = ?", id).First(&user).Error
+	err := db.Where("id = ? OR username = ?", id, username).First(&user).Error
 	if err != nil {
 		return user, errmsg.ERROR_USER_NOT_EXIST
 	}

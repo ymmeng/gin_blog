@@ -51,7 +51,7 @@ func (u *UserController) AddUser(c *gin.Context) {
 // GetUser 查询单个用户
 func (u *UserController) GetUser(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
-	data, code := model.GetUser(id)
+	data, code := model.GetUser(id, "")
 	c.JSON(200, gin.H{
 		"status":  code,
 		"data":    data,

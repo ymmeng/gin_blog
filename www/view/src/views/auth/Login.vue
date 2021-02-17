@@ -83,6 +83,7 @@ export default {
         this.$message.success(res.message);
         this.$router.push("/");
         this.setUserName(res.userInfo);
+        location.reload();
       });
     },
   },

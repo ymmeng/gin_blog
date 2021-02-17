@@ -13,7 +13,7 @@
         :loading="loading"
         class="search-box center-row"
       />
-      <a-popover v-if="token" placement="bottomRight" class="pointer r0">
+      <a-popover v-if="token" placement="bottomRight" class="pointer r0 pr-5">
         <template slot="title">
           <span>admin</span>
         </template>
@@ -85,6 +85,7 @@ export default {
       window.sessionStorage.clear("token");
       this.$message.success("注销成功!");
       this.$router.push("/");
+      location.reload();
     },
   },
 };

@@ -23,9 +23,12 @@ func Login(c *gin.Context) {
 	if code == errmsg.ADMIN_USER {
 		token, code = middleware.SetToken(1, data.Username)
 	}
+	user, _ := model.GetUser(0, data.Username)
+
 	c.JSON(200, gin.H{
-		"status":  code,
-		"message": errmsg.GetErrMsg(code),
-		"token":   token,
+		"userInfo": user,
+		"status":   code,
+		"message":  errmsg.GetErrMsg(code),
+		"token":    token,
 	})
 }
