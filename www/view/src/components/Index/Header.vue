@@ -13,26 +13,27 @@
         :loading="loading"
         class="search-box center-row"
       />
-      <a-dropdown v-if="token" placement="bottomRight">
-        <div class="mr-10 cluster pointer r0">
-          <a-avatar
-            :size="40"
-            src="http://192.168.58.111:6080/upload/2021-02-16/048e591e-6099-4368-ba70-a61ceb4ae91d.jpg"
-          /><a-icon type="down" />
-        </div>
-        <a-menu slot="overlay" style="width: 156px">
-          <a-menu-item v-for="menu in userMenu" :key="menu.name">
+      <a-popover v-if="token" placement="bottomRight" class="pointer r0">
+        <template slot="title">
+          <span>admin</span>
+        </template>
+        <template slot="content">
+          <div v-for="menu in userMenu" :key="menu.name">
             <router-link :to="menu.href">
-              <a-icon class="pr-10" :type="menu.icon" />
+              <a-icon class="pr-10 mb-15" :type="menu.icon" />
               <span>{{ menu.name }}</span></router-link
             >
-          </a-menu-item>
-          <a-menu-item>
-            <a-icon class="pr-5" type="logout" />
-            <span @click="loginOut" class="red--text">退出登录</span>
-          </a-menu-item>
-        </a-menu>
-      </a-dropdown>
+          </div>
+          <div @click="loginOut" class="pointer red--text">
+            <a-icon class="pr-10" type="logout" />
+            <span>退出登录</span>
+          </div>
+        </template>
+        <a-avatar
+          :size="40"
+          src="https://s3.ax1x.com/2020/12/06/DXIfv8.jpg"
+        /><a-icon type="down" />
+      </a-popover>
       <div v-else class="r0">
         <v-btn
           text
@@ -66,7 +67,7 @@ export default {
     loading: false,
   }),
   computed: {
-    ...mapState(["queryParam", "token", "username"]),
+    ...mapState(["queryParam", "token", "userInfo"]),
   },
   methods: {
     // 搜索文章

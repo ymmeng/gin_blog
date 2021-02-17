@@ -31,18 +31,18 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
   }
-  //路由中设置的needLogin字段就在to当中 
-  if (window.sessionStorage.data) {
-    if (to.path === '/login') {
-      next("/");
-    } else {
-      next();
-    }
+  const token = window.sessionStorage.getItem('token')
+
+  if (to.path == '/login' || to.path == '/' || to.path == '/registered') return next()
+  console.log(token);
+  if (!token && to.path !== '/') {
+    next("/")
   } else {
-    // 如果没有session ,访问任何页面。都会进入到 登录页
-    if (to.path === '/' || to.path === '/login' || to.path === '/registered') { // 如果是登录页面的话，直接next() -->解决注销后的循环执行bug
-      next();
+    // 已登录的用户重定向非登录界面
+    if (token && to.path === '/login') {
+      next('/');
     }
+    next()
   }
 })
 

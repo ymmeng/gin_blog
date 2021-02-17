@@ -79,9 +79,10 @@ export default {
         // if (this.formdata.checkbox) {
         window.sessionStorage.setItem("token", res.token);
         // }
+        console.log(res);
         this.$message.success(res.message);
         this.$router.push("/");
-        this.setUserName(this.formdata.username);
+        this.setUserName(res.userInfo);
       });
     },
   },

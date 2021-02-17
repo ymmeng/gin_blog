@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     token: Boolean(window.sessionStorage.getItem('token')),
     ArtList: {},
-    username: "",
+    userInfo: {},
     total: 0,
     pageSizeOptions: ["3", "5", "7", "10", "15"],
     queryParam: { title: "", PageSize: 7, Current: 1 },
@@ -17,8 +17,8 @@ export default new Vuex.Store({
       state.ArtList = data;
       state.total = data.total
     },
-    setUserName(state, username) {
-      state.username = username
+    setUserName(state, userInfo) {
+      state.userInfo = userInfo
     }
   },
   actions: {
@@ -47,7 +47,7 @@ export default new Vuex.Store({
       }).then((res) => {
         ctx.commit('setData', res.data)
       })
-    }
+    },
   },
   modules: {
   }
