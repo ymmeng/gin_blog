@@ -61,6 +61,7 @@ export default {
     userMenu: [
       { icon: "user", name: "个人主页", href: "/my" },
       { icon: "setting", name: "账户设置", href: "/my/setting" },
+      { icon: "setting", name: "写文章", href: "/addArt" },
       { icon: "picture", name: "免费图床", href: "/drawBed" },
     ],
     value: "",

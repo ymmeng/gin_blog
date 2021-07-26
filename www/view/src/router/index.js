@@ -34,7 +34,6 @@ router.beforeEach((to, from, next) => {
   const token = window.sessionStorage.getItem('token')
 
   if (to.path == '/login' || to.path == '/' || to.path == '/registered') return next()
-  console.log(token);
   if (!token && to.path !== '/') {
     next("/")
   } else {

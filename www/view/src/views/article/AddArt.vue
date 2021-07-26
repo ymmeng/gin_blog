@@ -196,7 +196,6 @@ export default {
     async handleUploadImage(event, insertImage, files) {
       this.file = files[0];
       const { data: res } = await this.$http.post("upload", this.file);
-      console.log(res);
       insertImage({
         url: this.test,
         desc: files[0].name,

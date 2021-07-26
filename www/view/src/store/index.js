@@ -17,7 +17,7 @@ export default new Vuex.Store({
       state.ArtList = data;
       state.total = data.total
     },
-    setUserName(state, userInfo) {
+    setUserInfo(state, userInfo) {
       state.userInfo = userInfo
     }
   },

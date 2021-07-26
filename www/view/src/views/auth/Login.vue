@@ -62,7 +62,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(["setUserName"]),
+    ...mapMutations(["setUserInfo"]),
     resetForm() {
       this.formdata.username = "";
       this.formdata.password = "";
@@ -79,10 +79,9 @@ export default {
         // if (this.formdata.checkbox) {
         window.sessionStorage.setItem("token", res.token);
         // }
-        console.log(res);
         this.$message.success(res.message);
         this.$router.push("/");
-        this.setUserName(res.userInfo);
+        this.setUserInfo(res.userInfo);
         location.reload();
       });
     },

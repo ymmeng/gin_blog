@@ -19,6 +19,14 @@ const routes = [
         component: resolve => void (require(['@/views/user/MyOnly.vue'], resolve)),
       },
       {
+        path: 'my/setting',
+        name: '账户设置',
+        meta: {
+          title: '账户设置' + name
+        },
+        component: resolve => void (require(['@/views/user/UserSetting.vue'], resolve)),
+      },
+      {
         path: 'drawBed',
         name: 'drawBed',
         meta: {
